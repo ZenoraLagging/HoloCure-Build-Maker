@@ -1,4 +1,6 @@
-import { writable } from 'svelte/store';
+import {
+	writable
+} from 'svelte/store';
 
 export const charSelected = writable('Amelia Watson');
 /// choices
@@ -7,6 +9,8 @@ export const displayWeaponChoices = writable(false);
 export const displayItemChoices = writable(false);
 export const displayStampChoices = writable(false);
 export const displayStatChoices = writable(false);
+export const unavailableWeaponChoices = writable([]);
+export const unavailableItemChoices = writable([]);
 // add symbols
 export const weaponAddSymbols = writable(Array(5).fill('add'));
 export const itemAddSymbols = writable(Array(6).fill('add'));
