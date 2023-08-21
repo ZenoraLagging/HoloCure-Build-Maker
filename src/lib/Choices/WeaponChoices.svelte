@@ -2,7 +2,6 @@
 	import {
 		displayChoices,
 		displayWeaponChoices,
-		unavailableWeaponChoices,
 		collabLimit,
 		superCollabLimit,
 		itemSlots,
@@ -62,7 +61,6 @@
 				collabForumlas[collabWeapon].includes(weapon)
 			) {
 				unavailableWeapons.add(collabWeapon);
-				unavailableWeaponChoices.update((v) => [...v, collabWeapon]);
 			}
 			// collabs
 			else if (
@@ -71,7 +69,6 @@
 			) {
 				[...collabForumlas[collabWeapon]].forEach((weap) => {
 					unavailableWeapons.add(weap);
-					unavailableWeaponChoices.update((v) => [...v, weap]);
 				});
 				// ban collabs relating to basic weapons used for the initial collab
 				collabForumlas[collabWeapon].forEach((formula) =>
@@ -84,12 +81,10 @@
 				// ban all super collabs
 				superCollabWeapons.forEach((weap) => {
 					unavailableWeapons.add(weap);
-					unavailableWeaponChoices.update((v) => [...v, weap]);
 				});
 				// ban all weapons related to the super collab
 				collabForumlas[collabWeapon].forEach((formula) => {
 					getUnavailableWeapons(formula);
-					unavailableWeaponChoices.update((v) => [...v, formula]);
 				});
 			}
 		}
@@ -115,7 +110,6 @@
 			{}
 		);
 		unavailableWeapons = new Set();
-		unavailableWeaponChoices.set([]);
 
 		// hide all collabs
 		if ($collabLimit === 0) {
@@ -172,7 +166,6 @@
 			.filter((str) => str !== "")
 			.forEach((weapon) => {
 				unavailableWeapons.add(weapon);
-				unavailableWeaponChoices.update((v) => [...v, weapon]);
 				getUnavailableWeapons(weapon);
 			});
 
@@ -188,8 +181,7 @@
 				}
 			}
 			remainingCollabs.forEach((collab) => {
-				unavailableWeapons.add(collab),
-					unavailableWeaponChoices.update((v) => [...v, collab]);
+				unavailableWeapons.add(collab);
 			});
 		}
 

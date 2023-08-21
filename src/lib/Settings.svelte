@@ -14,6 +14,7 @@
 		stampAddSymbols,
 		resetStampSlots,
 		displayChoices,
+		displayCharacterChoices,
 		displayStatChoices,
 		showBuildName,
 		showStamps,
@@ -62,11 +63,16 @@
 			resetItemSlots.set(true);
 		}
 	}
-
 	function showStatChoices() {
 		// show menu
 		displayChoices.set(true);
 		displayStatChoices.set(true);
+	}
+
+	function showCharacterChoices() {
+		// show menu
+		displayChoices.set(true);
+		displayCharacterChoices.set(true);
 	}
 
 	function clearWeapons() {
@@ -90,7 +96,7 @@
 
 <div id="settings">
 	<div id="char-select-container">
-		<select
+		<!-- <select
 			id="char-select"
 			bind:value={$charSelected}
 			on:change={(e) => charSelected.set(e.target.value)}
@@ -98,8 +104,14 @@
 			{#each characters as character}
 				<option value={character}>{character}</option>
 			{/each}
-		</select>
+		</select> -->
+		<button id="char-select-button" on:click={showCharacterChoices}
+			>{$charSelected ? $charSelected : "Select Character"}</button
+		>
 	</div>
+
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+
 	<div id="more-settings">
 		<div id="slot-container">
 			<div id="input-number">
@@ -175,32 +187,53 @@
 		width: 100%;
 	}
 
+	//uncomment me for the select dropdown version
+	// #char-select-container {
+	// 	position: relative;
+	// 	display: flex;
+	// 	width: 200px;
+	// 	height: 45px;
+	// 	overflow: hidden;
+	// 	margin-bottom: 20px;
+
+	// 	&::after {
+	// 		content: "\25BC";
+	// 		position: absolute;
+	// 		top: 0;
+	// 		right: 0;
+	// 		padding: 15px;
+	// 		color: var(--font-color);
+	// 		background-color: var(--dark-bg-color);
+	// 		pointer-events: none;
+	// 	}
+
+	// 	&:hover::after {
+	// 		background-color: var(--font-color);
+	// 		color: var(--dark-bg-color);
+	// 	}
+	// }
+
+	#char-selected {
+		position: relative;
+		font-size: 24px;
+		margin-bottom: 20px;
+	}
+
+	#char-select-button {
+		font-size: 24px;
+		width: 100%;
+		height: 100%;
+		padding: 15px;
+		text-align: center;
+	}
 	#char-select-container {
 		position: relative;
 		display: flex;
-		width: 200px;
-		height: 45px;
 		overflow: hidden;
 		margin-bottom: 20px;
-
-		&::after {
-			content: "\25BC";
-			position: absolute;
-			top: 0;
-			right: 0;
-			padding: 15px;
-			color: var(--font-color);
-			background-color: var(--dark-bg-color);
-			pointer-events: none;
-		}
-
-		&:hover::after {
-			background-color: var(--font-color);
-			color: var(--dark-bg-color);
-		}
 	}
 
-	#char-select {
+	#char-select-button #char-select {
 		border: none;
 		flex: 1;
 		padding-left: 12px;

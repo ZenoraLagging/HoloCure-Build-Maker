@@ -2,12 +2,12 @@
 	import {
 		displayChoices,
 		displayItemChoices,
-		unavailableItemChoices,
 		equippedItems,
 		equippedWeapons,
 		itemAddSymbols,
 		clickedSlotIndex,
 		removeItem,
+		removeInvalidItem,
 		resetItemSlots,
 	} from "$lib/stores";
 
@@ -42,15 +42,24 @@
 		let superCollab = $equippedWeapons.filter((weapon) =>
 			superCollabWeapons.includes(weapon)
 		);
+		let itemsToSearch = [];
 		if (superCollab.length > 0) {
 			// ban all items related to the super collab
 			superCollabFormulas[superCollab[0]].forEach((formula) => {
 				if (
 					basicItems.includes(formula) ||
 					superItems.includes(formula)
-				)
+				) {
 					unavailableItems.add(formula);
+					itemsToSearch.push(formula);
+				}
 			});
+			var item = $equippedItems.findIndex((v) => {
+				return itemsToSearch.includes(v);
+			});
+			if (item > -1) {
+				removeInvalidItem.set(item);
+			}
 		}
 	}
 

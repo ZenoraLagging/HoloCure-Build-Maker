@@ -1,0 +1,152 @@
+<script>
+	import {
+		charSelected,
+		displayChoices,
+		displayCharacterChoices,
+	} from "$lib/stores";
+	import {
+		myth,
+		council,
+		projectHope,
+		enCharacters,
+		gamers,
+		jpGen0,
+		jpGen1,
+		jpGen2,
+		jpCharacters,
+		idArea15,
+		idHoloro,
+		idHoloH3ro,
+		idCharacters,
+		characters,
+	} from "$lib/variables";
+	export let display;
+
+	function clickHandler(character) {
+		if (character === "en") {
+			let random = Math.floor(Math.random() * enCharacters.length);
+			character = enCharacters[random];
+		} else if (character === "jp") {
+			let random = Math.floor(Math.random() * jpCharacters.length);
+			character = jpCharacters[random];
+		} else if (character === "id") {
+			let random = Math.floor(Math.random() * idCharacters.length);
+			character = idCharacters[random];
+		} else if (character === "random") {
+			let random = Math.floor(Math.random() * characters.length);
+			character = characters[random];
+		}
+		charSelected.set(character);
+
+		// hide menu
+		displayChoices.set(false);
+		displayCharacterChoices.set(false);
+	}
+
+	//dynamically import images as urls so i don't go crazy manually importing all by hand
+	let enChars = enCharacters.reduce(
+		(accumulator, currValue) => (
+			(accumulator[currValue] = new URL(
+				"../Images/Character/Select/en/" +
+					currValue.replace(" ", "_").replace("'", "") +
+					"_Icon.png",
+				import.meta.url
+			).href),
+			accumulator
+		),
+		{}
+	);
+
+	let jpChars = jpCharacters.reduce(
+		(accumulator, currValue) => (
+			(accumulator[currValue] = new URL(
+				"../Images/Character/Select/jp/" +
+					currValue.replace(" ", "_").replace("'", "") +
+					"_Icon.png",
+				import.meta.url
+			).href),
+			accumulator
+		),
+		{}
+	);
+
+	let idChars = idCharacters.reduce(
+		(accumulator, currValue) => (
+			(accumulator[currValue] = new URL(
+				"../Images/Character/Select/id/" +
+					currValue.replace(" ", "_").replace("'", "") +
+					"_Icon.png",
+				import.meta.url
+			).href),
+			accumulator
+		),
+		{}
+	);
+</script>
+
+<div id="character-choices" class={display}>
+	<div id="select-character-choices">
+		<h1 id="generation-header">HoloEN</h1>
+		{#each Object.entries(enChars) as [character, url]}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div
+				class="character choice"
+				on:click={(e) => clickHandler(character)}
+			>
+				<div class="img-char" style="background-image: url('{url}');" />
+			</div>
+		{/each}
+
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div class="character choice" on:click={(e) => clickHandler("en")}>
+			<div class="img-char"><h1 id="random-character">?</h1></div>
+		</div>
+
+		<h1 id="generation-header">HoloJP</h1>
+		{#each Object.entries(jpChars) as [character, url]}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div
+				class="character choice"
+				on:click={(e) => clickHandler(character)}
+			>
+				<div class="img-char" style="background-image: url('{url}');" />
+			</div>
+		{/each}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div class="character choice" on:click={(e) => clickHandler("jp")}>
+			<div class="img-char"><h1 id="random-character">?</h1></div>
+		</div>
+
+		<h1 id="generation-header">HoloID</h1>
+		{#each Object.entries(idChars) as [character, url]}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div
+				class="character choice"
+				on:click={(e) => clickHandler(character)}
+			>
+				<div class="img-char" style="background-image: url('{url}');" />
+			</div>
+		{/each}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div class="character choice" on:click={(e) => clickHandler("id")}>
+			<div class="img-char"><h1 id="random-character">?</h1></div>
+		</div>
+
+		<h1 id="generation-header">Random</h1>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div class="character choice" on:click={(e) => clickHandler("random")}>
+			<div class="img-char"><h1 id="random-character">?</h1></div>
+		</div>
+	</div>
+</div>
+
+<style lang="scss">
+	.character:hover {
+		background-color: #2a2a2a;
+	}
+	#random-character {
+		font-size: 50px;
+		text-align: center;
+		margin-left: 5px;
+	}
+</style>

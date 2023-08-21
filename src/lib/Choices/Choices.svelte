@@ -1,10 +1,12 @@
 <script>
+	import CharacterChoices from "./CharacterChoices.svelte";
 	import WeaponsChoices from "./WeaponChoices.svelte";
 	import ItemsChoices from "./ItemChoices.svelte";
 	import StampChoices from "./StampChoices.svelte";
 	import StatChoices from "./StatChoices.svelte";
 	import {
 		displayChoices,
+		displayCharacterChoices,
 		displayWeaponChoices,
 		displayItemChoices,
 		displayStampChoices,
@@ -13,6 +15,7 @@
 
 	function hide() {
 		displayChoices.set(false);
+		displayCharacterChoices.set(false);
 		displayWeaponChoices.set(false);
 		displayItemChoices.set(false);
 		displayStampChoices.set(false);
@@ -23,6 +26,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div id="choices-bg" class={$displayChoices ? "" : "hidden"} on:click={hide}>
 	<div id="choices-container" on:click={(e) => e.stopPropagation()}>
+		<CharacterChoices display={$displayCharacterChoices ? "" : "hidden"} />
 		<WeaponsChoices display={$displayWeaponChoices ? "" : "hidden"} />
 		<ItemsChoices display={$displayItemChoices ? "" : "hidden"} />
 		<StampChoices display={$displayStampChoices ? "" : "hidden"} />
@@ -31,7 +35,7 @@
 </div>
 
 <style lang="scss">
-	#choices-bg {
+	:global(#choices-bg) {
 		position: fixed;
 		top: 0;
 		background-color: rgba(0, 0, 0, 0.3);
@@ -40,7 +44,7 @@
 		z-index: 1;
 	}
 
-	#choices-container {
+	:global(#choices-container) {
 		position: absolute;
 		top: 50%;
 		left: 50%;
@@ -62,9 +66,22 @@
 		width: 530px;
 	}
 
-	:global(#weapon-header, #item-header) {
+	:global(#select-character-choices) {
+		display: flex;
+		flex-flow: row wrap;
+		width: 630px;
+	}
+
+	:global(#weapon-header, #item-header, #generation-header) {
 		flex-basis: 100%;
 		font-size: 24px;
+		margin-bottom: 10px;
+		margin-left: 5px;
+	}
+
+	:global(#character-header) {
+		flex-basis: 100%;
+		font-size: 18px;
 		margin-bottom: 10px;
 		margin-left: 5px;
 	}

@@ -316,6 +316,18 @@
 		height: 40px;
 	}
 
+	:global(.img-char) {
+		position: relative;
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 64px;
+		height: 64px;
+	}
+
+	:global(.character) {
+		border: 3px solid #ffffff;
+	}
 	:global(.weapon) {
 		border: 3px solid #4779f4;
 	}

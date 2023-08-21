@@ -1,15 +1,24 @@
-export const characters = [
-	'Amelia Watson', 'Gawr Gura', 'Ninomae Inanis', 'Takanashi Kiara', 'Calliope Mori',
-	'Hakos Baelz', 'Ouro Kronii', 'Ceres Fauna', 'Nanashi Mumei', 'Tsukumo Sana', 'IRyS',
-	'Tokino Sora', 'AZKi', 'Roboco-san', 'Hoshimachi Suisei', 'Sakura Miko',
-	'Shirakami Fubuki', 'Ookami Mio', 'Nekomata Okayu', 'Inugami Korone',
-	'Akai Haato', 'Yozora Mel', 'Natsuiro Matsuri', 'Aki Rosenthal',
-	'Oozora Subaru', 'Yuzuki Choco', 'Murasaki Shion', 'Nakiri Ayame', 'Minato Aqua',
-	'Moona Hoshinova', 'Ayunda Risu', 'Airani Iofifteen',
-	'Kureiji Ollie', 'Pavolia Reine', 'Anya Melfissa',
-	'Kobo Kanaeru', 'Kaela Kovalskia', 'Vestia Zeta'
+//en characters
+export const myth = ['Amelia Watson', 'Gawr Gura', 'Ninomae Inanis', 'Takanashi Kiara', 'Calliope Mori', ]
+export const council = ['Hakos Baelz', 'Ouro Kronii', 'Ceres Fauna', 'Nanashi Mumei', 'Tsukumo Sana']
+export const projectHope = ['IRyS']
+export const gamers = ['Shirakami Fubuki', 'Ookami Mio', 'Nekomata Okayu', 'Inugami Korone']
 
-];
+//jp characters
+export const jpGen0 = ['Tokino Sora', 'AZKi', 'Roboco-san', 'Hoshimachi Suisei', 'Sakura Miko']
+export const jpGen1 = ['Akai Haato', 'Yozora Mel', 'Natsuiro Matsuri', 'Aki Rosenthal']
+export const jpGen2 = ['Oozora Subaru', 'Yuzuki Choco', 'Murasaki Shion', 'Nakiri Ayame', 'Minato Aqua']
+
+//id characters
+export const idArea15 = ['Moona Hoshinova', 'Ayunda Risu', 'Airani Iofifteen']
+export const idHoloro = ['Kureiji Ollie', 'Pavolia Reine', 'Anya Melfissa']
+export const idHoloH3ro = ['Kobo Kanaeru', 'Kaela Kovalskia', 'Vestia Zeta']
+
+//concat them all
+export const enCharacters = myth.concat(council, projectHope);
+export const jpCharacters = gamers.concat(jpGen0, jpGen1, jpGen2);
+export const idCharacters = idArea15.concat(idHoloro, idHoloH3ro);
+export const characters = enCharacters.concat(jpCharacters, idCharacters);
 
 export const basicWeapons = [
 	'bl-book', 'bounce-ball', 'ceos-tears', 'cutting-board', 'lava-bucket',
