@@ -16,6 +16,7 @@
 		superItems,
 		items,
 		superCollabFormulas,
+		superCollabWeapons,
 	} from "$lib/variables";
 
 	export let display;
@@ -35,12 +36,47 @@
 		{}
 	);
 
-	let availableItems = [];
+	let unavailableItems = [];
+
+	function handleUnavailableItems() {
+		let superCollab = $equippedWeapons.filter((weapon) =>
+			superCollabWeapons.includes(weapon)
+		);
+		if (superCollab.length > 0) {
+			// ban all items related to the super collab
+			superCollabFormulas[superCollab[0]].forEach((formula) => {
+				if (
+					basicItems.includes(formula) ||
+					superItems.includes(formula)
+				)
+					unavailableItems.add(formula);
+			});
+		}
+	}
+
+	function reinitialize() {
+		// initialize item displays
+		availableBasicItems = basicItems.reduce(
+			(accumulator, currValue) => (
+				(accumulator[currValue] = true), accumulator
+			),
+			{}
+		);
+
+		availableSuperItems = superItems.reduce(
+			(accumulator, currValue) => (
+				(accumulator[currValue] = true), accumulator
+			),
+			{}
+		);
+
+		unavailableItems = new Set();
+	}
 
 	// show previous equipped item when replacing
 	function showPrevious() {
 		if ($equippedItems[$clickedSlotIndex]) {
-			availableItems[$equippedItems[$clickedSlotIndex]] = true;
+			unavailableItems[$equippedItems[$clickedSlotIndex]] = true;
 		}
 	}
 
@@ -60,18 +96,47 @@
 		});
 
 		// hide selected item
-		availableItems[item] = false;
+		// unavailableItems[item] = false;
+
+		manageItemChoices();
 
 		// hide menu
 		displayChoices.set(false);
 		displayItemChoices.set(false);
 	}
 
-	function manageItemChoices() {}
+	function manageItemChoices() {
+		reinitialize();
 
-	function update() {
-		$equippedItems.forEach((item) => {
-			availableItems[item] = false;
+		// identify unavailable items
+		$equippedItems
+			.filter((str) => str !== "")
+			.forEach((item) => {
+				unavailableItems.add(item);
+			});
+
+		handleUnavailableItems();
+
+		// assign availability via janky checks ohgodwhydidIdothis
+		[...Object.keys(availableBasicItems)].forEach((item) => {
+			if (unavailableItems.has(item)) {
+				availableBasicItems[item] = false;
+				let superItemCheck = superItems.filter((v) => v.includes(item));
+				if (superItemCheck.length > 0) {
+					availableSuperItems[superItemCheck[0]] = false;
+				}
+			}
+		});
+		[...Object.keys(availableSuperItems)].forEach((item) => {
+			if (unavailableItems.has(item)) {
+				availableSuperItems[item] = false;
+				let basicItemCheck = basicItems.filter((v) =>
+					v.includes(item.replace("super-", ""))
+				);
+				if (basicItemCheck.length > 0) {
+					availableBasicItems[basicItemCheck[0]] = false;
+				}
+			}
 		});
 	}
 
@@ -84,28 +149,20 @@
 				arr[$clickedSlotIndex] = "";
 				return arr;
 			});
-		} else {
-			// update available items from shared build
-			update();
 		}
+		// update available items from shared build
+		manageItemChoices();
 
 		// set boolean back to false
 		removeItem.set(false);
 	}
 
+	$: if ($equippedWeapons) {
+		manageItemChoices();
+	}
+
 	$: if ($resetItemSlots) {
-		availableBasicItems = basicItems.reduce(
-			(accumulator, currValue) => (
-				(accumulator[currValue] = true), accumulator
-			),
-			{}
-		);
-		availableSuperItems = superItems.reduce(
-			(accumulator, currValue) => (
-				(accumulator[currValue] = true), accumulator
-			),
-			{}
-		);
+		reinitialize();
 		resetItemSlots.set(false);
 	}
 </script>
@@ -114,29 +171,25 @@
 	<div id="basic-choices">
 		<h1 id="item-header">Basic</h1>
 		{#each Object.entries(availableBasicItems) as [basicItem, available]}
-			{#if available}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					class="item choice"
-					on:click={() => clickHandler(basicItem)}
-				>
-					<div class="img {basicItem}" />
-				</div>
-			{/if}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div
+				class="item choice {!available ? 'unavailable' : ''}"
+				on:click={() => (available ? clickHandler(basicItem) : "")}
+			>
+				<div class="img {basicItem}" />
+			</div>
 		{/each}
 	</div>
 	<div id="basic-choices">
 		<h1 id="item-header">Super</h1>
 		{#each Object.entries(availableSuperItems) as [superItem, available]}
-			{#if available}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div
-					class="item choice"
-					on:click={() => clickHandler(superItem)}
-				>
-					<div class="img {superItem}" />
-				</div>
-			{/if}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div
+				class="item choice {!available ? 'unavailable' : ''}"
+				on:click={() => (available ? clickHandler(superItem) : "")}
+			>
+				<div class="img {superItem}" />
+			</div>
 		{/each}
 	</div>
 </div>

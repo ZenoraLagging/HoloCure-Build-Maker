@@ -320,12 +320,12 @@
 		border: 3px solid #4779f4;
 	}
 
-	:global(.unavailable) {
-		border: 3px solid #cc2e5b;
-	}
-
 	:global(.item) {
 		border: 3px solid #9fff87;
+	}
+
+	:global(.unavailable) {
+		border: 3px solid #cc2e5b;
 	}
 
 	:global(.stamp) {

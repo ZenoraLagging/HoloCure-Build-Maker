@@ -4,11 +4,14 @@
 		displayWeaponChoices,
 		unavailableWeaponChoices,
 		collabLimit,
+		superCollabLimit,
+		itemSlots,
 		clickedSlotIndex,
 		weaponAddSymbols,
 		equippedItems,
 		equippedWeapons,
 		removeWeapon,
+		removeSuperIndex,
 		resetWeaponSlots,
 	} from "$lib/stores";
 
@@ -45,7 +48,8 @@
 	);
 	let unavailableWeapons,
 		remainingCollabs = [],
-		oldWeaponSlotValue;
+		oldWeaponSlotValue,
+		oldItemSlotValue;
 
 	// process for hiding/unhiding basic weapons and collabs:
 	// basic weapon selected -> hide/unhide selected, all related collabs
@@ -84,7 +88,8 @@
 				});
 				// ban all weapons related to the super collab
 				collabForumlas[collabWeapon].forEach((formula) => {
-					getUnavailableWeapons(formula), console.log(formula);
+					getUnavailableWeapons(formula);
+					unavailableWeaponChoices.update((v) => [...v, formula]);
 				});
 			}
 		}
@@ -123,6 +128,19 @@
 			);
 		}
 
+		if ($superCollabLimit === 0) {
+			superCollabWeapons.forEach(
+				(collabWeapon) =>
+					(availableSuperCollabWeapons[collabWeapon] = false)
+			);
+			var item = $equippedWeapons.findIndex((v) => {
+				return superCollabWeapons.includes(v);
+			});
+			if (item > -1) {
+				removeSuperIndex.set(item);
+			}
+		}
+
 		// reenable collabs on 2 weapon slots available (excluding default weapon) and coming from less slots
 		if (oldWeaponSlotValue === 2 && $equippedWeapons.length === 2) {
 			collabWeapons.forEach(
@@ -134,7 +152,16 @@
 			);
 		}
 
+		// reenable super collabs on 1 item slot and coming from less slots
+		if (oldItemSlotValue === 1 && $equippedItems.length === 1) {
+			superCollabWeapons.forEach(
+				(collabWeapon) =>
+					(availableSuperCollabWeapons[collabWeapon] = true)
+			);
+		}
+
 		oldWeaponSlotValue = $equippedWeapons.length;
+		oldItemSlotValue = $equippedItems.length;
 	}
 
 	function manageWeaponChoices() {
@@ -224,8 +251,8 @@
 		resetWeaponSlots.set(false);
 	}
 
-	$: if ($equippedItems) {
-		console.log($equippedItems);
+	$: if ($superCollabLimit) {
+		reinitialize();
 	}
 </script>
 

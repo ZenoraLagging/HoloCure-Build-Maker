@@ -6,6 +6,7 @@
 		weaponAddSymbols,
 		clickedSlotIndex,
 		removeWeapon,
+		removeSuperIndex,
 	} from "$lib/stores";
 
 	export let charName;
@@ -30,6 +31,11 @@
 		clickedSlotIndex.set(index);
 		// set boolean to true for the if-block in WeaponChoices to execute
 		removeWeapon.set(true);
+	}
+
+	$: if ($removeSuperIndex > -1) {
+		removeGear($removeSuperIndex);
+		removeSuperIndex.set(-1);
 	}
 </script>
 
