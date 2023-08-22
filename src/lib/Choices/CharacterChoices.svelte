@@ -5,18 +5,8 @@
 		displayCharacterChoices,
 	} from "$lib/stores";
 	import {
-		myth,
-		council,
-		projectHope,
 		enCharacters,
-		gamers,
-		jpGen0,
-		jpGen1,
-		jpGen2,
 		jpCharacters,
-		idArea15,
-		idHoloro,
-		idHoloH3ro,
 		idCharacters,
 		characters,
 	} from "$lib/variables";
@@ -85,12 +75,14 @@
 </script>
 
 <div id="character-choices" class={display}>
+	<h1 id="generation-header">HoloEN</h1>
 	<div id="select-character-choices">
-		<h1 id="generation-header">HoloEN</h1>
 		{#each Object.entries(enChars) as [character, url]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
-				class="character choice"
+				class="character choice {$charSelected === character
+					? 'selected'
+					: ''}"
 				on:click={(e) => clickHandler(character)}
 			>
 				<!-- <div id="char-name-container">
@@ -104,12 +96,15 @@
 		<div class="character choice" on:click={(e) => clickHandler("en")}>
 			<div class="img-char"><h1 id="random-character">?</h1></div>
 		</div>
-
-		<h1 id="generation-header">HoloJP</h1>
+	</div>
+	<h1 id="generation-header">HoloJP</h1>
+	<div id="select-character-choices">
 		{#each Object.entries(jpChars) as [character, url]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
-				class="character choice"
+				class="character choice {$charSelected === character
+					? 'selected'
+					: ''}"
 				on:click={(e) => clickHandler(character)}
 			>
 				<div class="img-char" style="background-image: url('{url}');" />
@@ -119,12 +114,15 @@
 		<div class="character choice" on:click={(e) => clickHandler("jp")}>
 			<div class="img-char"><h1 id="random-character">?</h1></div>
 		</div>
-
-		<h1 id="generation-header">HoloID</h1>
+	</div>
+	<h1 id="generation-header">HoloID</h1>
+	<div id="select-character-choices">
 		{#each Object.entries(idChars) as [character, url]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
-				class="character choice"
+				class="character choice {$charSelected === character
+					? 'selected'
+					: ''}"
 				on:click={(e) => clickHandler(character)}
 			>
 				<div class="img-char" style="background-image: url('{url}');" />
@@ -134,23 +132,36 @@
 		<div class="character choice" on:click={(e) => clickHandler("id")}>
 			<div class="img-char"><h1 id="random-character">?</h1></div>
 		</div>
+	</div>
 
-		<h1 id="generation-header">Random</h1>
+	<h1 id="generation-header">Random</h1>
+	<div id="select-character-choices">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="character choice" on:click={(e) => clickHandler("random")}>
-			<div class="img-char"><h1 id="random-character">?</h1></div>
+		<div
+			class="character choice random-character"
+			on:click={(e) => clickHandler("random")}
+		>
+			<div class="img-char random-select">
+				<h1 id="random-character">?</h1>
+			</div>
 		</div>
 	</div>
 </div>
 
 <style lang="scss">
-	#select-character-choices {
-		display: flex;
-		flex-flow: row wrap;
-		width: 630px;
-	}
 	.character:hover {
 		background-color: #2a2a2a;
+	}
+
+	.random-character {
+		width: 64px;
+	}
+
+	.selected {
+		border: 3px solid #fff38c;
+		filter: brightness(30%);
+		pointer-events: none;
+		cursor: default;
 	}
 	#random-character {
 		font-size: 50px;

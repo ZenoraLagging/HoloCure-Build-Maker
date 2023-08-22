@@ -177,8 +177,8 @@
 </script>
 
 <div id="item-choices" class={display}>
+	<h1 id="item-header">Basic</h1>
 	<div id="basic-choices">
-		<h1 id="item-header">Basic</h1>
 		{#each Object.entries(availableBasicItems) as [basicItem, available]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
@@ -189,8 +189,8 @@
 			</div>
 		{/each}
 	</div>
+	<h1 id="item-header">Super</h1>
 	<div id="basic-choices">
-		<h1 id="item-header">Super</h1>
 		{#each Object.entries(availableSuperItems) as [superItem, available]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div

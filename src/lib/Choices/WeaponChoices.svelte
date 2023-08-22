@@ -249,8 +249,8 @@
 </script>
 
 <div id="weapon-choices" class={display}>
+	<h1 id="weapon-header">Basic</h1>
 	<div id="basic-choices">
-		<h1 id="weapon-header">Basic</h1>
 		{#each Object.entries(availableBasicWeapons) as [basicWeapon, available]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
@@ -261,8 +261,8 @@
 			</div>
 		{/each}
 	</div>
+	<h1 id="weapon-header">Collabs</h1>
 	<div id="collab-choices">
-		<h1 id="weapon-header">Collabs</h1>
 		{#each Object.entries(availableCollabWeapons) as [collabWeapon, available]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
@@ -273,8 +273,8 @@
 			</div>
 		{/each}
 	</div>
+	<h1 id="weapon-header">Super Collabs</h1>
 	<div id="super-collab-choices">
-		<h1 id="weapon-header">Super Collabs</h1>
 		{#each Object.entries(availableSuperCollabWeapons) as [superCollabWeapon, available]}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div

@@ -205,7 +205,6 @@
 <Link />
 <Choices />
 <div id="source-code-container">
-	<p id="timestamp">Last updated: August 19th 2023</p>
 	<a
 		id="source-code"
 		href="https://github.com/risbi0/HoloCure-Build-Maker"
@@ -247,6 +246,9 @@
 		background-color: var(--bg-color);
 		min-height: 100vh;
 		position: relative;
+		@media only screen and (max-width: 600px) {
+			position: absolute;
+		}
 	}
 
 	:global(*, body) {
@@ -297,6 +299,7 @@
 		margin-top: 50px;
 		margin-bottom: 30px;
 		letter-spacing: 3px;
+		text-align: center;
 	}
 	#subtitle {
 		margin-bottom: 50px;
@@ -350,7 +353,7 @@
 		width: 100%;
 		padding-bottom: 20px;
 	}
-	:global(#save-image, #generate-link) {
+	:global(#save-image, #generate-link, #add-stat-prio) {
 		font-size: 16px;
 		width: 175px;
 		height: 40px;

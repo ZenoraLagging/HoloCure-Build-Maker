@@ -52,6 +52,7 @@
 		border: 3px solid var(--font-color);
 		background-color: #171717;
 		padding: 10px;
+		overflow-y: initial !important;
 	}
 
 	:global(
@@ -59,15 +60,30 @@
 			#collab-choices,
 			#super-collab-choices,
 			#item-choices,
-			#stamp-choices
+			#stamp-choices,
+			#select-character-choices
 		) {
+		--min: 5rem;
+		--gap: 0.9rem;
+
 		display: flex;
-		flex-flow: row wrap;
-		width: 530px;
+		flex-wrap: wrap;
+		gap: var(--gap);
+		@media only screen and (max-width: 600px) {
+			justify-content: center;
+		}
+	}
+
+	:global(#item-choices, #weapon-choices, #character-choices) {
+		display: table;
+		@media only screen and (max-width: 600px) {
+			height: 80vh;
+			display: block;
+			overflow-y: auto;
+		}
 	}
 
 	:global(#weapon-header, #item-header, #generation-header) {
-		flex-basis: 100%;
 		font-size: 24px;
 		margin-bottom: 10px;
 		margin-left: 5px;

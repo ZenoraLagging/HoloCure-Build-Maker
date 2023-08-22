@@ -18,6 +18,7 @@
 		displayStatChoices,
 		showBuildName,
 		showStamps,
+		buildName,
 		superCollabLimit,
 	} from "$lib/stores";
 
@@ -102,6 +103,11 @@
 			>{$charSelected ? $charSelected : "Select Character"}</button
 		>
 	</div>
+	<div id="options-container">
+		<button id="add-stat-prio" on:click={showStatChoices}
+			>Stat Priority</button
+		>
+	</div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div id="more-settings">
 		<div id="slot-container">
@@ -115,6 +121,9 @@
 					<div>{$weaponSlots}</div>
 					<button class="plus" on:click={() => weaponSlotAmount(1)} />
 				</div>
+				<button id="clear-button" on:click={() => clearWeapons()}
+					>Clear Weapons</button
+				>
 			</div>
 			<div id="input-number">
 				<p for="item-slots">Item Slot #</p>
@@ -123,6 +132,9 @@
 					<div>{$itemSlots}</div>
 					<button class="plus" on:click={() => itemSlotAmount(1)} />
 				</div>
+				<button id="clear-button" on:click={() => clearItems()}
+					>Clear Items</button
+				>
 			</div>
 		</div>
 		<div id="toggle-container">
@@ -147,16 +159,9 @@
 					/>
 					<span class="slider" />
 				</label>
-			</div>
-		</div>
-		<div id="options-container">
-			<button id="add-stat-prio" on:click={showStatChoices}
-				>Stat Priority</button
-			>
-			<div id="clear-btn-container">
-				<button on:click={() => clearWeapons()}>Clear Weapons</button>
-				<button on:click={() => clearItems()}>Clear Items</button>
-				<button on:click={() => clearStamps()}>Clear Stamps</button>
+				<button id="clear-button" on:click={() => clearStamps()}
+					>Clear Stamps</button
+				>
 			</div>
 		</div>
 	</div>
@@ -192,22 +197,21 @@
 		margin-bottom: 20px;
 	}
 	#slot-container {
+		--min: 5rem;
+		--gap: 0.9rem;
+
 		display: flex;
-		flex-direction: row;
-		justify-content: space-evenly;
-		align-items: center;
-		flex-basis: auto;
-		width: 100%;
-		height: 100%;
+		flex-wrap: wrap;
+		gap: var(--gap);
 	}
 	#toggle-container,
 	#options-container {
+		--min: 5rem;
+		--gap: 0.9rem;
+
 		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		flex-basis: auto;
-		height: 100%;
+		flex-wrap: wrap;
+		gap: var(--gap);
 	}
 
 	#input-number {
@@ -232,6 +236,12 @@
 			width: 30px;
 			height: 30px;
 			margin: auto;
+		}
+		#clear-button {
+			width: auto;
+			height: auto;
+			margin-top: 15px;
+			padding: 10px;
 		}
 	}
 
@@ -273,17 +283,23 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		height: 65px;
+		min-height: 65px;
 		background-color: var(--dark-bg-color);
 		padding: 15px;
 		margin: 20px auto;
+		#clear-button {
+			width: auto;
+			height: auto;
+			padding: 10px;
+		}
 	}
 
 	.switch {
 		position: relative;
 		display: inline-block;
 		width: 60px;
-		height: 36px;
+		min-height: 36px;
+		margin: 10px 0;
 
 		input {
 			opacity: 0;
