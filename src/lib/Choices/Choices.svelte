@@ -66,12 +66,6 @@
 		width: 530px;
 	}
 
-	:global(#select-character-choices) {
-		display: flex;
-		flex-flow: row wrap;
-		width: 630px;
-	}
-
 	:global(#weapon-header, #item-header, #generation-header) {
 		flex-basis: 100%;
 		font-size: 24px;

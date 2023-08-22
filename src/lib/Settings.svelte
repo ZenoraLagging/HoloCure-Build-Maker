@@ -21,7 +21,7 @@
 		superCollabLimit,
 	} from "$lib/stores";
 
-	import { characters } from "$lib/variables";
+	import CharacterChoicesDropdown from "./Choices/CharacterChoicesDropdown.svelte";
 
 	function weaponSlotAmount(num) {
 		if (
@@ -95,23 +95,14 @@
 </script>
 
 <div id="settings">
+	<!-- <CharacterChoicesDropdown /> -->
 	<div id="char-select-container">
-		<!-- <select
-			id="char-select"
-			bind:value={$charSelected}
-			on:change={(e) => charSelected.set(e.target.value)}
-		>
-			{#each characters as character}
-				<option value={character}>{character}</option>
-			{/each}
-		</select> -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<button id="char-select-button" on:click={showCharacterChoices}
 			>{$charSelected ? $charSelected : "Select Character"}</button
 		>
 	</div>
-
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-
 	<div id="more-settings">
 		<div id="slot-container">
 			<div id="input-number">
@@ -187,38 +178,6 @@
 		width: 100%;
 	}
 
-	//uncomment me for the select dropdown version
-	// #char-select-container {
-	// 	position: relative;
-	// 	display: flex;
-	// 	width: 200px;
-	// 	height: 45px;
-	// 	overflow: hidden;
-	// 	margin-bottom: 20px;
-
-	// 	&::after {
-	// 		content: "\25BC";
-	// 		position: absolute;
-	// 		top: 0;
-	// 		right: 0;
-	// 		padding: 15px;
-	// 		color: var(--font-color);
-	// 		background-color: var(--dark-bg-color);
-	// 		pointer-events: none;
-	// 	}
-
-	// 	&:hover::after {
-	// 		background-color: var(--font-color);
-	// 		color: var(--dark-bg-color);
-	// 	}
-	// }
-
-	#char-selected {
-		position: relative;
-		font-size: 24px;
-		margin-bottom: 20px;
-	}
-
 	#char-select-button {
 		font-size: 24px;
 		width: 100%;
@@ -232,32 +191,6 @@
 		overflow: hidden;
 		margin-bottom: 20px;
 	}
-
-	#char-select-button #char-select {
-		border: none;
-		flex: 1;
-		padding-left: 12px;
-		padding-bottom: 5px;
-		font-size: 16px;
-		background-color: var(--dark-bg-color);
-		background-image: none;
-		cursor: pointer;
-
-		&:hover {
-			background-color: var(--font-color);
-			color: var(--dark-bg-color);
-
-			option {
-				background-color: var(--dark-bg-color);
-				color: var(--font-color);
-			}
-		}
-	}
-
-	select::-webkit-scrollbar-track {
-		background-color: var(--dark-bg-color);
-	}
-
 	#slot-container {
 		display: flex;
 		flex-direction: row;

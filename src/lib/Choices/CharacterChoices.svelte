@@ -93,6 +93,9 @@
 				class="character choice"
 				on:click={(e) => clickHandler(character)}
 			>
+				<!-- <div id="char-name-container">
+					<p id="char-name">{character}</p>
+				</div> -->
 				<div class="img-char" style="background-image: url('{url}');" />
 			</div>
 		{/each}
@@ -141,6 +144,11 @@
 </div>
 
 <style lang="scss">
+	#select-character-choices {
+		display: flex;
+		flex-flow: row wrap;
+		width: 630px;
+	}
 	.character:hover {
 		background-color: #2a2a2a;
 	}
@@ -148,5 +156,18 @@
 		font-size: 50px;
 		text-align: center;
 		margin-left: 5px;
+	}
+	#char-name-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		background: rgba(0, 0, 0, 0.4);
+		padding: 1px 0;
+		z-index: 10;
+	}
+	#char-name {
+		text-align: center;
 	}
 </style>
