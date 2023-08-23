@@ -77,10 +77,13 @@
 	:global(#item-choices, #weapon-choices, #character-choices) {
 		display: table;
 		@media only screen and (max-width: 1280px) {
-			height: 60vh;
+			max-height: 800px;
 			min-width: 500px;
 			display: block;
 			overflow-y: auto;
+		}
+		@media only screen and (max-width: 640px) {
+			max-height: 640px;
 		}
 	}
 
