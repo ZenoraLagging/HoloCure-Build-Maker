@@ -198,6 +198,12 @@
 <main id="main-container">
 	<h1 id="title">HOLOCURE BUILD MAKER</h1>
 	<p id="subtitle">Updated for v0.6</p>
+	<div id="pending-updates">
+		<p>○ Adding food buffs later</p>
+		<p>
+			○ Saved images looking blurry is a known issue; will be fixed later
+		</p>
+	</div>
 	<Frame />
 </main>
 <Settings />
@@ -302,7 +308,11 @@
 		text-align: center;
 	}
 	#subtitle {
-		margin-bottom: 50px;
+		margin-bottom: 10px;
+	}
+
+	#pending-updates {
+		margin-bottom: 20px;
 	}
 
 	#timestamp {
