@@ -20,6 +20,7 @@
 		showStamps,
 		buildName,
 		superCollabLimit,
+		banWeapon,
 	} from "$lib/stores";
 
 	import CharacterChoicesDropdown from "./Choices/CharacterChoicesDropdown.svelte";
@@ -149,6 +150,17 @@
 					<span class="slider" />
 				</label>
 			</div>
+			<div id="ban-weapon-container">
+				<p>Eliminate Main Weapon</p>
+				<label class="switch">
+					<input
+						type="checkbox"
+						bind:checked={$banWeapon}
+						on:change={(e) => banWeapon.set(e.target.checked)}
+					/>
+					<span class="slider" />
+				</label>
+			</div>
 			<div id="show-stamps-container">
 				<p>Show Stamps</p>
 				<label class="switch">
@@ -172,8 +184,15 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		width: 500px;
+		width: 600px;
 		margin: 40px auto;
+		--min: 5rem;
+		--gap: 0.5rem;
+		flex-wrap: wrap;
+		gap: var(--gap);
+		@media only screen and (max-width: 640px) {
+			width: 400px;
+		}
 	}
 
 	#more-settings {
@@ -196,18 +215,11 @@
 		overflow: hidden;
 		margin-bottom: 20px;
 	}
-	#slot-container {
-		--min: 5rem;
-		--gap: 0.9rem;
-
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--gap);
-	}
+	#slot-container,
 	#toggle-container,
 	#options-container {
 		--min: 5rem;
-		--gap: 0.9rem;
+		--gap: 0.5rem;
 
 		display: flex;
 		flex-wrap: wrap;
@@ -278,6 +290,7 @@
 	}
 
 	#show-build-name-container,
+	#ban-weapon-container,
 	#show-stamps-container {
 		display: flex;
 		flex-direction: column;

@@ -7,6 +7,7 @@
 		clickedSlotIndex,
 		removeWeapon,
 		removeSuperIndex,
+		banWeapon,
 	} from "$lib/stores";
 
 	export let charName;
@@ -41,10 +42,22 @@
 
 <div id="weapons-container">
 	<div id="default-weap">
-		<div
-			class="img"
-			style="background-image: url('/img/character/{charName}/weapon.png');"
-		/>
+		{#if charName}
+			<img
+				id="weapon-img"
+				src="/img/character/{charName}/{$banWeapon
+					? 'banned.png'
+					: 'weapon.png'}"
+				alt="main weapon"
+			/>
+		{:else}
+			<div class="img" />
+		{/if}
+		{#if charName}
+			<div id="weapon-level">
+				<p class="weapon-level-text">{$banWeapon ? "Lv 1" : "Lv 7"}</p>
+			</div>
+		{/if}
 	</div>
 	{#each $equippedWeapons as equippedWeapon, index}
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -79,5 +92,24 @@
 		border: 3px solid #4779f4;
 		margin: 5px;
 		padding: 5px;
+	}
+	#weapon-img {
+		object-fit: contain;
+		width: 40px;
+		height: 40px;
+	}
+	#banned-weapon {
+		position: absolute;
+		width: 40px;
+		height: 40px;
+		z-index: 10;
+	}
+	#weapon-level {
+		position: absolute;
+		background: rgb(0, 0, 0, 0.3);
+		margin: 0 -3px;
+		padding: 0 5px 5px 5px;
+	}
+	.weapon-level-text {
 	}
 </style>

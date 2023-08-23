@@ -40,3 +40,4 @@ export const itemSlots = writable(6);
 export const clickedSlotIndex = writable(null);
 export const statPriorityOrder = writable([]);
 export const showPriorityOrder = writable(false);
+export const banWeapon = writable(false);
