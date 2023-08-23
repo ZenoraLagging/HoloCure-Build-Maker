@@ -1,50 +1,55 @@
 <script>
-    import {
-        displayChoices,
-        displayStampChoices,
-        equippedStamps,
-        stampAddSymbols,
-        clickedSlotIndex,
-        removeStamp,
-        resetStampSlots
-    } from '$lib/stores';
+	import {
+		displayChoices,
+		displayStampChoices,
+		equippedStamps,
+		stampAddSymbols,
+		clickedSlotIndex,
+		removeStamp,
+		resetStampSlots,
+	} from "$lib/stores";
 
-	import { stamps } from '$lib/variables';
+	import { stamps } from "$lib/variables";
 
-    export let display;
+	export let display;
 
-    // initialize stamp displays
-    let availableStamps = stamps.reduce((accumulator, currValue) => (accumulator[currValue] = true, accumulator), {});
+	// initialize stamp displays
+	let availableStamps = stamps.reduce(
+		(accumulator, currValue) => (
+			(accumulator[currValue] = true), accumulator
+		),
+		{}
+	);
 
-    // show previous equipped stamp when replacing
-    function showPrevious() {
-        if ($equippedStamps[$clickedSlotIndex]) {
-            availableStamps[$equippedStamps[$clickedSlotIndex]] = true;
-        }
-    }
+	// show previous equipped stamp when replacing
+	function showPrevious() {
+		if ($equippedStamps[$clickedSlotIndex]) {
+			availableStamps[$equippedStamps[$clickedSlotIndex]] = true;
+		}
+	}
 
-    function clickHandler(stamp) {
-        showPrevious();
+	function clickHandler(stamp) {
+		showPrevious();
 
-        // remove add symbol
-        stampAddSymbols.update((arr) => {
-            arr[$clickedSlotIndex] = '';
-            return arr;
-        });
+		// remove add symbol
+		stampAddSymbols.update((arr) => {
+			arr[$clickedSlotIndex] = "";
+			return arr;
+		});
 
-        // add selected stamp to equipped stamps
-        equippedStamps.update((arr) => {
-            arr[$clickedSlotIndex] = stamp;
-            return arr;
-        });
+		// add selected stamp to equipped stamps
+		equippedStamps.update((arr) => {
+			arr[$clickedSlotIndex] = stamp;
+			return arr;
+		});
 
-        // hide selected item
-        availableStamps[stamp] = false;
+		// hide selected item
+		availableStamps[stamp] = false;
 
-        // hide menu
-        displayChoices.set(false);
-        displayStampChoices.set(false);
-    }
+		// hide menu
+		displayChoices.set(false);
+		displayStampChoices.set(false);
+	}
 
 	function update() {
 		$equippedStamps.forEach((stamp) => {
@@ -52,13 +57,13 @@
 		});
 	}
 
-    $: if ($removeStamp) {
+	$: if ($removeStamp) {
 		if ($clickedSlotIndex !== null) {
 			showPrevious();
 
 			// remove stamp in equipped stamp
 			equippedStamps.update((arr) => {
-				arr[$clickedSlotIndex] = '';
+				arr[$clickedSlotIndex] = "";
 				return arr;
 			});
 		} else {
@@ -66,46 +71,95 @@
 			update();
 		}
 
-        // set boolean back to false
-        removeStamp.set(false);
-    }
+		// set boolean back to false
+		removeStamp.set(false);
+	}
 
-    $: if ($resetStampSlots) {
-        availableStamps = stamps.reduce((accumulator, currValue) => (accumulator[currValue] = true, accumulator), {});
-        resetStampSlots.set(false);
-    }
+	$: if ($resetStampSlots) {
+		availableStamps = stamps.reduce(
+			(accumulator, currValue) => (
+				(accumulator[currValue] = true), accumulator
+			),
+			{}
+		);
+		resetStampSlots.set(false);
+	}
 </script>
 
-<div id="stamp-choices" class="{display}">
-    {#each Object.entries(availableStamps) as [stamp, available]}
-        {#if available}
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div class="stamp choice" on:click={() => clickHandler(stamp)}>
-                <div class="img {stamp}"></div>
-            </div>
-        {/if}
-    {/each}
+<div id="stamp-choices" class={display}>
+	{#each Object.entries(availableStamps) as [stamp, available]}
+		{#if available}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<div class="stamp choice" on:click={() => clickHandler(stamp)}>
+				<div class="img {stamp}" />
+			</div>
+		{/if}
+	{/each}
 </div>
 
 <style lang="scss">
 	.stamp:hover {
-		background-color: #C2B971;
+		background-color: #c2b971;
 	}
 
-    :global(.atk) { background-image: url("/img/stamp/ATK_Up_Stamp_Icon.png"); }
-    :global(.bomb) { background-image: url("/img/stamp/Bomb_Stamp_Icon.png"); }
-    :global(.crit) { background-image: url("/img/stamp/Crit_Up_Stamp_Icon.png"); }
-    :global(.greed) { background-image: url("/img/stamp/Greed_Stamp_Icon.png"); }
-    :global(.haste) { background-image: url("/img/stamp/Haste_Up_Stamp_Icon.png"); }
-    :global(.knockback) { background-image: url("/img/stamp/Knockback_Stamp_Icon.png"); }
-    :global(.life-steal) { background-image: url("/img/stamp/Life_Steal_Stamp_Icon.png"); }
-    :global(.projectile) { background-image: url("/img/stamp/Projectile_Up_Stamp_Icon.png"); }
-    :global(.reverse) { background-image: url("/img/stamp/Reverse_Stamp_Icon.png"); }
-    :global(.rgb) { background-image: url("/img/stamp/RGB_Stamp_Icon.png"); }
-    :global(.size) { background-image: url("/img/stamp/Size_Up_Stamp_Icon.png"); }
-    :global(.slow) { background-image: url("/img/stamp/Slow_Stamp_Icon.png"); }
-    :global(.solo) { background-image: url("/img/stamp/Solo_Stamp_Icon.png"); }
-    :global(.stun) { background-image: url("/img/stamp/Stun_Stamp_Icon.png"); }
-    :global(.trumpet) { background-image: url("/img/stamp/Trumpet_Stamp_Icon.png"); }
-    :global(.weaken) { background-image: url("/img/stamp/Weaken_Stamp_Icon.png"); }
+	:global(.atk) {
+		background-image: url("/img/stamp/ATK_Up_Stamp_Icon.png");
+	}
+	:global(.bomb) {
+		background-image: url("/img/stamp/Bomb_Stamp_Icon.png");
+	}
+	:global(.cold) {
+		background-image: url("/img/stamp/Cold_Stamp_Icon.png");
+	}
+	:global(.crit) {
+		background-image: url("/img/stamp/Crit_Up_Stamp_Icon.png");
+	}
+	:global(.greed) {
+		background-image: url("/img/stamp/Greed_Stamp_Icon.png");
+	}
+	:global(.haste) {
+		background-image: url("/img/stamp/Haste_Up_Stamp_Icon.png");
+	}
+	:global(.knockback) {
+		background-image: url("/img/stamp/Knockback_Stamp_Icon.png");
+	}
+	:global(.life-steal) {
+		background-image: url("/img/stamp/Life_Steal_Stamp_Icon.png");
+	}
+	:global(.lightness) {
+		background-image: url("/img/stamp/Lightness_Stamp_Icon.png");
+	}
+	:global(.marking) {
+		background-image: url("/img/stamp/Marking_Stamp_Icon.png");
+	}
+	:global(.projectile) {
+		background-image: url("/img/stamp/Projectile_Up_Stamp_Icon.png");
+	}
+	:global(.reverse) {
+		background-image: url("/img/stamp/Reverse_Stamp_Icon.png");
+	}
+	:global(.rgb) {
+		background-image: url("/img/stamp/RGB_Stamp_Icon.png");
+	}
+	:global(.size) {
+		background-image: url("/img/stamp/Size_Up_Stamp_Icon.png");
+	}
+	:global(.slow) {
+		background-image: url("/img/stamp/Slow_Stamp_Icon.png");
+	}
+	:global(.solo) {
+		background-image: url("/img/stamp/Solo_Stamp_Icon.png");
+	}
+	:global(.stun) {
+		background-image: url("/img/stamp/Stun_Stamp_Icon.png");
+	}
+	:global(.trumpet) {
+		background-image: url("/img/stamp/Trumpet_Stamp_Icon.png");
+	}
+	:global(.unit) {
+		background-image: url("/img/stamp/Unit_Stamp_Icon.png");
+	}
+	:global(.weaken) {
+		background-image: url("/img/stamp/Weaken_Stamp_Icon.png");
+	}
 </style>
