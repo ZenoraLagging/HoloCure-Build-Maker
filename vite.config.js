@@ -11,6 +11,6 @@ export default defineConfig({
 		'import.meta.env.VERCEL_ANALYTICS_ID': JSON.stringify(process.env.VERCEL_ANALYTICS_ID)
 	},
 	build: {
-		target: ['es2020']
+		target: 'es2020'
 	}
 });

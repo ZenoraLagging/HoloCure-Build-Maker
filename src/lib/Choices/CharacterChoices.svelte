@@ -37,7 +37,7 @@
 	let enChars = enCharacters.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = new URL(
-				"../Images/Character/Select/en/" +
+				"/img/character/Select/en/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
 				import.meta.url
@@ -50,7 +50,7 @@
 	let jpChars = jpCharacters.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = new URL(
-				"../Images/Character/Select/jp/" +
+				"/img/character/Select/jp/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
 				import.meta.url
@@ -63,7 +63,7 @@
 	let idChars = idCharacters.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = new URL(
-				"../Images/Character/Select/id/" +
+				"/img/character/Select/id/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
 				import.meta.url
