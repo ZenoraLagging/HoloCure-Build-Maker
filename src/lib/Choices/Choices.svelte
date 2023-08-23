@@ -69,7 +69,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--gap);
-		@media only screen and (max-width: 600px) {
+		@media only screen and (max-width: 1240px) {
 			justify-content: center;
 		}
 	}
@@ -85,8 +85,10 @@
 
 	:global(#weapon-header, #item-header, #generation-header) {
 		font-size: 24px;
-		margin-bottom: 10px;
-		margin-left: 5px;
+		margin: 5px 0 15px 10px;
+		@media only screen and (max-width: 600px) {
+			text-align: center;
+		}
 	}
 
 	:global(#character-header) {

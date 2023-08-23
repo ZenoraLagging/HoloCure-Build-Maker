@@ -325,6 +325,9 @@
 	:global(.piggy-bank) {
 		background-image: url("/img/item/basic/Stolen_Piggy_Bank_Icon.png");
 	}
+	:global(.super-piggy-bank) {
+		background-image: url("/img/item/super/Super_Stolen_Piggy_Bank_Icon.png");
+	}
 	:global(.glasses) {
 		background-image: url("/img/item/basic/Study_Glasses_Icon.png");
 	}
