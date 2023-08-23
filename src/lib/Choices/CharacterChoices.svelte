@@ -137,10 +137,7 @@
 	<h1 id="generation-header">Random</h1>
 	<div id="select-character-choices">
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div
-			class="character choice random-character"
-			on:click={(e) => clickHandler("random")}
-		>
+		<div class="character choice" on:click={(e) => clickHandler("random")}>
 			<div class="img-char random-select">
 				<h1 id="random-character">?</h1>
 			</div>
@@ -153,10 +150,6 @@
 		background-color: #2a2a2a;
 	}
 
-	.random-character {
-		width: 64px;
-	}
-
 	.selected {
 		border: 3px solid #fff38c;
 		filter: brightness(30%);
@@ -167,6 +160,9 @@
 		font-size: 50px;
 		text-align: center;
 		margin-left: 5px;
+		@media only screen and (max-width: 1280px) {
+			font-size: 40px;
+		}
 	}
 	#char-name-container {
 		display: flex;

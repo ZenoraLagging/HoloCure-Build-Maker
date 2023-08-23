@@ -69,14 +69,14 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--gap);
-		@media only screen and (max-width: 1240px) {
+		@media only screen and (max-width: 1280px) {
 			justify-content: center;
 		}
 	}
 
 	:global(#item-choices, #weapon-choices, #character-choices) {
 		display: table;
-		@media only screen and (max-width: 1240px) {
+		@media only screen and (max-width: 1280px) {
 			height: 60vh;
 			min-width: 500px;
 			display: block;

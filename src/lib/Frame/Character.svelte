@@ -17,7 +17,7 @@
 		flex-direction: column;
 		justify-content: center;
 		width: 200px;
-		@media only screen and (max-width: 600px) {
+		@media only screen and (max-width: 640px) {
 			position: absolute;
 			width: 100%;
 			height: 25%;

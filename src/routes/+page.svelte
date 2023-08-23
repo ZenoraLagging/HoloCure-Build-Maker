@@ -246,7 +246,7 @@
 		background-color: var(--bg-color);
 		min-height: 100vh;
 		position: relative;
-		@media only screen and (max-width: 600px) {
+		@media only screen and (max-width: 640px) {
 			position: absolute;
 		}
 	}
@@ -326,6 +326,10 @@
 		background-repeat: no-repeat;
 		width: 64px;
 		height: 64px;
+		@media only screen and (max-width: 1280px) {
+			width: 48px;
+			height: 48px;
+		}
 	}
 
 	:global(.character) {
