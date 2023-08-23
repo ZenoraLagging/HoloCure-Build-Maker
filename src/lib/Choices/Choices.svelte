@@ -76,8 +76,9 @@
 
 	:global(#item-choices, #weapon-choices, #character-choices) {
 		display: table;
-		@media only screen and (max-width: 600px) {
-			height: 80vh;
+		@media only screen and (max-width: 1240px) {
+			height: 60vh;
+			min-width: 500px;
 			display: block;
 			overflow-y: auto;
 		}
@@ -86,7 +87,7 @@
 	:global(#weapon-header, #item-header, #generation-header) {
 		font-size: 24px;
 		margin: 5px 0 15px 10px;
-		@media only screen and (max-width: 600px) {
+		@media only screen and (max-width: 1080px) {
 			text-align: center;
 		}
 	}

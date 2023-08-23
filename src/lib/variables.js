@@ -114,3 +114,41 @@ export const stamps = [
 ];
 
 export const stats = ['hp-up', 'atk-up', 'spd-up', 'crt-up', 'pick-up', 'haste-up'];
+
+export const food = [{
+	name: "Tempura",
+	stat: "atk-up",
+	effect: "30%",
+	description: "Increases ATK by 30%."
+}, {
+	name: "Tuna Sandwich",
+	stat: "spd-up",
+	effect: "25%",
+	description: "Increases SPD by 25%."
+}, {
+	name: "Sushi Set",
+	stat: "crt-up",
+	effect: "10%",
+	description: "Increases Crit by 10%."
+}, {
+	name: "Poke Bowl",
+	stat: "pick-up",
+	effect: "40%",
+	description: "Increases Pick Up Range by 40%."
+}, {
+	name: "Lobster Dinner",
+	stat: "atk-up",
+	effect: "30%",
+	description: "Increase ATK by 30%."
+}, {
+	name: "Lobster Dinner",
+	stat: {
+		statOne: ["atk-up", "spd-up", "pick-up"],
+		statTwo: ["hp-up", "crt-up", "haste-up"]
+	},
+	effect: {
+		statOne: "20%",
+		statTwo: "10%"
+	},
+	description: "Increase ATK/SPD/PUR by 20% and Max HP/Crit/Haste by 10%."
+}, ]
