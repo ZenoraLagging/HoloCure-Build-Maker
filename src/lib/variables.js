@@ -101,16 +101,16 @@ export const basicItems = [
 ];
 
 export const superItems = [
-	'super-body-pillow', 'super-breastplate', 'super-chickens-feather', 'super-credit-card',
-	'super-energy-drink', 'super-gorillas-paw', 'super-headphones', 'super-hope-soda', 'super-idol-costume',
-	'super-milk', 'super-limiter', 'super-horn', 'super-sake', 'super-sc-time',
+	'super-glasses', 'super-idol-costume', 'super-sc-time', 'super-gorillas-paw', 'super-body-pillow',
+	'super-milk', 'super-energy-drink', 'super-credit-card', 'super-chickens-feather', 'super-sake',
+	'super-limiter', 'super-horn', 'super-headphones', 'super-hope-soda', 'super-breastplate', 'super-piggy-bank'
 ]
 
 export const items = basicItems.concat(superItems);
 
 export const stamps = [
-	'atk', 'bomb', 'crit', 'greed', 'haste', 'knockback', 'life-steal', 'projectile',
-	'reverse', 'rgb', 'size', 'slow', 'solo', 'stun', 'trumpet', 'weaken'
+	'atk', 'bomb', 'cold', 'crit', 'greed', 'haste', 'knockback', 'life-steal', 'lightness', 'marking', 'projectile',
+	'reverse', 'rgb', 'size', 'slow', 'solo', 'stun', 'trumpet', 'unit', 'weaken'
 ];
 
 export const stats = ['hp-up', 'atk-up', 'spd-up', 'crt-up', 'pick-up', 'haste-up'];
