@@ -2,21 +2,26 @@
 	export let charName;
 </script>
 
-<div id="character-container">
-	<div id="character">
-		<div
-			id="img"
-			style="background-image: url('/img/character/{charName}/portrait.png');"
-		/>
+{#if charName}
+	<div id="character-container">
+		<div id="character">
+			<img
+				id="img"
+				src="/img/character/{charName}/portrait.png"
+				alt="{charName} portrait"
+			/>
+		</div>
 	</div>
-</div>
+{/if}
 
 <style lang="scss">
 	#character-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		object-fit: contain;
 		width: 200px;
+		align-items: center;
 		@media only screen and (max-width: 640px) {
 			position: absolute;
 			width: 100%;
@@ -32,13 +37,11 @@
 	}
 
 	#character {
-		height: 100%;
+		object-fit: contain;
 	}
 
 	#img {
-		background-size: auto 100%;
-		background-repeat: no-repeat;
-		background-position: center;
 		height: 100%;
+		width: 100%;
 	}
 </style>

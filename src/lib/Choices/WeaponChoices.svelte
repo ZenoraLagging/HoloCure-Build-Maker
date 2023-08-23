@@ -15,6 +15,7 @@
 	} from "$lib/stores";
 
 	import {
+		weapons,
 		basicWeapons,
 		collabWeapons,
 		superCollabWeapons,
@@ -45,6 +46,7 @@
 		),
 		{}
 	);
+
 	let unavailableWeapons,
 		remainingCollabs = [],
 		oldWeaponSlotValue,
