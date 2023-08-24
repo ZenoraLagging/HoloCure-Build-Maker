@@ -4,8 +4,14 @@
 
 	function saveImage() {
 		html2canvas(document.querySelector("#build-container"), {
+			scale: 1,
 			backgroundColor: "#27272A",
 		}).then((canvas) => {
+			const ctx = canvas.getContext("2d");
+			ctx.mozImageSmoothingEnabled = false;
+			ctx.webkitImageSmoothingEnabled = false;
+			ctx.msImageSmoothingEnabled = false;
+			ctx.imageSmoothingEnabled = false;
 			const bldName = document.querySelector("#build-name");
 			const fileName =
 				bldName !== null ? bldName.textContent : "Build Name";
