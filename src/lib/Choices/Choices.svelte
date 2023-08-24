@@ -69,21 +69,29 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--gap);
-		@media only screen and (max-width: 1280px) {
+		@media only screen and (max-width: 1440px) {
 			justify-content: center;
 		}
 	}
 
-	:global(#item-choices, #weapon-choices, #character-choices) {
+	:global(
+			#item-choices,
+			#weapon-choices,
+			#stamp-choices,
+			#character-choices
+		) {
 		display: table;
-		@media only screen and (max-width: 1280px) {
-			max-height: 800px;
-			min-width: 500px;
+		@media only screen and (max-width: 1440px) {
+			max-height: 500px;
+			min-width: 400px;
 			display: block;
 			overflow-y: auto;
 		}
 		@media only screen and (max-width: 640px) {
-			max-height: 640px;
+			max-height: 300px;
+			min-width: 350px;
+			display: block;
+			overflow-y: auto;
 		}
 	}
 

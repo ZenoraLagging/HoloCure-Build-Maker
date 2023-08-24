@@ -160,7 +160,7 @@
 		font-size: 50px;
 		text-align: center;
 		margin-left: 5px;
-		@media only screen and (max-width: 1280px) {
+		@media only screen and (max-width: 1440px) {
 			font-size: 40px;
 		}
 	}

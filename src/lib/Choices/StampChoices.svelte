@@ -87,14 +87,16 @@
 </script>
 
 <div id="stamp-choices" class={display}>
-	{#each Object.entries(availableStamps) as [stamp, available]}
-		{#if available}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<div class="stamp choice" on:click={() => clickHandler(stamp)}>
-				<div class="img {stamp}" />
-			</div>
-		{/if}
-	{/each}
+	<div id="basic-choices">
+		{#each Object.entries(availableStamps) as [stamp, available]}
+			{#if available}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<div class="stamp choice" on:click={() => clickHandler(stamp)}>
+					<div class="img {stamp}" />
+				</div>
+			{/if}
+		{/each}
+	</div>
 </div>
 
 <style lang="scss">
