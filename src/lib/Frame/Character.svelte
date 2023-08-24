@@ -25,11 +25,10 @@
 		@media only screen and (max-width: 640px) {
 			position: absolute;
 			width: 100%;
-			height: 25%;
 			overflow: hidden;
 			left: 0;
 			right: 0;
-			top: 20%;
+			text-align: center;
 			margin-left: auto;
 			margin-right: auto;
 			opacity: 0.15;
