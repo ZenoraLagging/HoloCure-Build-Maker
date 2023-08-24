@@ -69,7 +69,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--gap);
-		@media only screen and (max-width: 1440px) {
+		@media only screen and (max-width: 1920px) {
 			justify-content: center;
 		}
 	}
@@ -81,7 +81,7 @@
 			#character-choices
 		) {
 		display: table;
-		@media only screen and (max-width: 1440px) {
+		@media only screen and (max-width: 1920px) {
 			max-height: 500px;
 			min-width: 400px;
 			display: block;

@@ -336,7 +336,7 @@
 		background-repeat: no-repeat;
 		width: 64px;
 		height: 64px;
-		@media only screen and (max-width: 1440px) {
+		@media only screen and (max-width: 1920px) {
 			width: 48px;
 			height: 48px;
 		}
