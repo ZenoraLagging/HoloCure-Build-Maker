@@ -21,5 +21,5 @@
 </script>
 
 <div id="save-image-container">
-	<button id="save-image" on:click={saveImage}>Save Image</button>
+	<button id="save-image" onclick={saveImage}>Save Image</button>
 </div>

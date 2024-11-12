@@ -1,4 +1,6 @@
 <script>
+	import { run } from "svelte/legacy";
+
 	import {
 		displayChoices,
 		displayStampChoices,
@@ -11,14 +13,15 @@
 
 	import { stamps } from "$lib/variables";
 
+	/** @type {{display: any}} */
 	export let display;
 
 	// initialize stamp displays
-	let availableStamps = stamps.reduce(
+	$: availableStamps = stamps.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = true), accumulator
 		),
-		{}
+		{},
 	);
 
 	// show previous equipped stamp when replacing
@@ -57,42 +60,46 @@
 		});
 	}
 
-	$: if ($removeStamp) {
-		if ($clickedSlotIndex !== null) {
-			showPrevious();
+	run(() => {
+		if ($removeStamp) {
+			if ($clickedSlotIndex !== null) {
+				showPrevious();
 
-			// remove stamp in equipped stamp
-			equippedStamps.update((arr) => {
-				arr[$clickedSlotIndex] = "";
-				return arr;
-			});
-		} else {
-			// update available items from shared build
-			update();
+				// remove stamp in equipped stamp
+				equippedStamps.update((arr) => {
+					arr[$clickedSlotIndex] = "";
+					return arr;
+				});
+			} else {
+				// update available items from shared build
+				update();
+			}
+
+			// set boolean back to false
+			removeStamp.set(false);
 		}
+	});
 
-		// set boolean back to false
-		removeStamp.set(false);
-	}
-
-	$: if ($resetStampSlots) {
-		availableStamps = stamps.reduce(
-			(accumulator, currValue) => (
-				(accumulator[currValue] = true), accumulator
-			),
-			{}
-		);
-		resetStampSlots.set(false);
-	}
+	run(() => {
+		if ($resetStampSlots) {
+			availableStamps = stamps.reduce(
+				(accumulator, currValue) => (
+					(accumulator[currValue] = true), accumulator
+				),
+				{},
+			);
+			resetStampSlots.set(false);
+		}
+	});
 </script>
 
 <div id="stamp-choices" class={display}>
 	<div id="basic-choices">
 		{#each Object.entries(availableStamps) as [stamp, available]}
 			{#if available}
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				<div class="stamp choice" on:click={() => clickHandler(stamp)}>
-					<div class="img {stamp}" />
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<div class="stamp choice" onclick={() => clickHandler(stamp)}>
+					<div class="img {stamp}"></div>
 				</div>
 			{/if}
 		{/each}

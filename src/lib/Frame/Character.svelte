@@ -1,4 +1,5 @@
 <script>
+	/** @type {{charName: any}} */
 	export let charName;
 </script>
 

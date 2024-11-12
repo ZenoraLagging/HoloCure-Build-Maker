@@ -1,4 +1,6 @@
 <script>
+	import { run, stopPropagation } from "svelte/legacy";
+
 	import {
 		displayChoices,
 		displayWeaponChoices,
@@ -10,9 +12,10 @@
 		banWeapon,
 	} from "$lib/stores";
 
+	/** @type {{charName: any}} */
 	export let charName;
 
-	const displayRemoveBtn = Array(5).fill("hidden");
+	$: displayRemoveBtn = Array(5).fill("hidden");
 
 	function showWeaponChoices(index) {
 		// show menu
@@ -34,10 +37,12 @@
 		removeWeapon.set(true);
 	}
 
-	$: if ($removeSuperIndex > -1) {
-		removeGear($removeSuperIndex);
-		removeSuperIndex.set(-1);
-	}
+	run(() => {
+		if ($removeSuperIndex > -1) {
+			removeGear($removeSuperIndex);
+			removeSuperIndex.set(-1);
+		}
+	});
 </script>
 
 <div id="weapons-container">
@@ -51,7 +56,7 @@
 				alt="main weapon"
 			/>
 		{:else}
-			<div class="img" />
+			<div class="img"></div>
 		{/if}
 		{#if charName}
 			<div id="weapon-level">
@@ -60,15 +65,15 @@
 		{/if}
 	</div>
 	{#each $equippedWeapons as equippedWeapon, index}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<div
 			class="weapon slot"
-			on:click={() => showWeaponChoices(index)}
-			on:mouseenter={() => {
+			onclick={() => showWeaponChoices(index)}
+			onmouseenter={() => {
 				if ($equippedWeapons[index] !== "")
 					displayRemoveBtn[index] = "";
 			}}
-			on:mouseleave={() => (displayRemoveBtn[index] = "hidden")}
+			onmouseleave={() => (displayRemoveBtn[index] = "hidden")}
 		>
 			<div class="img {equippedWeapon}">
 				<span class="add material-symbols-outlined"
@@ -79,7 +84,7 @@
 				class="remove material-symbols-outlined {displayRemoveBtn[
 					index
 				]}"
-				on:click|stopPropagation={() => removeGear(index)}
+				onclick={stopPropagation(() => removeGear(index))}
 			>
 				cancel
 			</span>

@@ -19,28 +19,29 @@
 		superCollabWeapons,
 	} from "$lib/variables";
 
+	/** @type {{display: any}} */
 	export let display;
 
 	// initialize item displays
-	let availableBasicItems = basicItems.reduce(
+	$: availableBasicItems = basicItems.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = true), accumulator
 		),
-		{}
+		{},
 	);
 
-	let availableSuperItems = superItems.reduce(
+	$: availableSuperItems = superItems.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = true), accumulator
 		),
-		{}
+		{},
 	);
 
 	let unavailableItems = [];
 
 	function handleUnavailableItems() {
 		let superCollab = $equippedWeapons.filter((weapon) =>
-			superCollabWeapons.includes(weapon)
+			superCollabWeapons.includes(weapon),
 		);
 		let itemsToSearch = [];
 		if (superCollab.length > 0) {
@@ -69,14 +70,14 @@
 			(accumulator, currValue) => (
 				(accumulator[currValue] = true), accumulator
 			),
-			{}
+			{},
 		);
 
 		availableSuperItems = superItems.reduce(
 			(accumulator, currValue) => (
 				(accumulator[currValue] = true), accumulator
 			),
-			{}
+			{},
 		);
 
 		unavailableItems = new Set();
@@ -140,7 +141,7 @@
 			if (unavailableItems.has(item)) {
 				availableSuperItems[item] = false;
 				let basicItemCheck = basicItems.filter((v) =>
-					v.includes(item.replace("super-", ""))
+					v.includes(item.replace("super-", "")),
 				);
 				if (basicItemCheck.length > 0) {
 					availableBasicItems[basicItemCheck[0]] = false;
@@ -149,55 +150,61 @@
 		});
 	}
 
-	$: if ($removeItem) {
-		if ($clickedSlotIndex !== null) {
-			showPrevious();
+	run(() => {
+		if ($removeItem) {
+			if ($clickedSlotIndex !== null) {
+				showPrevious();
 
-			// remove item in equipped items
-			equippedItems.update((arr) => {
-				arr[$clickedSlotIndex] = "";
-				return arr;
-			});
+				// remove item in equipped items
+				equippedItems.update((arr) => {
+					arr[$clickedSlotIndex] = "";
+					return arr;
+				});
+			}
+			// update available items from shared build
+			manageItemChoices();
+
+			// set boolean back to false
+			removeItem.set(false);
 		}
-		// update available items from shared build
-		manageItemChoices();
+	});
 
-		// set boolean back to false
-		removeItem.set(false);
-	}
+	run(() => {
+		if ($equippedWeapons) {
+			manageItemChoices();
+		}
+	});
 
-	$: if ($equippedWeapons) {
-		manageItemChoices();
-	}
-
-	$: if ($resetItemSlots) {
-		reinitialize();
-		resetItemSlots.set(false);
-	}
+	run(() => {
+		if ($resetItemSlots) {
+			reinitialize();
+			resetItemSlots.set(false);
+		}
+	});
 </script>
 
 <div id="item-choices" class={display}>
 	<h1 id="item-header">Basic</h1>
 	<div id="basic-choices">
 		{#each Object.entries(availableBasicItems) as [basicItem, available]}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
 				class="item choice {!available ? 'unavailable' : ''}"
-				on:click={() => (available ? clickHandler(basicItem) : "")}
+				onclick={() => (available ? clickHandler(basicItem) : "")}
 			>
-				<div class="img {basicItem}" />
+				<div class="img {basicItem}"></div>
 			</div>
 		{/each}
 	</div>
 	<h1 id="item-header">Super</h1>
 	<div id="basic-choices">
 		{#each Object.entries(availableSuperItems) as [superItem, available]}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
 				class="item choice {!available ? 'unavailable' : ''}"
-				on:click={() => (available ? clickHandler(superItem) : "")}
+				onclick={() => (available ? clickHandler(superItem) : "")}
 			>
-				<div class="img {superItem}" />
+				<div class="img {superItem}"></div>
 			</div>
 		{/each}
 	</div>

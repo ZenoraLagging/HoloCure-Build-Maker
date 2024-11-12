@@ -1,4 +1,6 @@
 <script>
+	import { run } from "svelte/legacy";
+
 	import Frame from "$lib/Frame/Frame.svelte";
 	import Settings from "$lib/Settings.svelte";
 	import Link from "$lib/Link.svelte";
@@ -15,13 +17,15 @@
 
 	let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
 
-	$: if (browser && analyticsId) {
-		webVitals({
-			path: $page.url.pathname,
-			params: $page.params,
-			analyticsId,
-		});
-	}
+	run(() => {
+		if (browser && analyticsId) {
+			webVitals({
+				path: $page.url.pathname,
+				params: $page.params,
+				analyticsId,
+			});
+		}
+	});
 
 	// generate build from parameter
 	import { Buffer } from "buffer";
@@ -53,12 +57,13 @@
 		stats,
 	} from "$lib/variables";
 
+	/** @type {{data: any}} */
 	export let data;
 
 	if (data["buildStr"]) {
 		// decode string
 		const buildString = Buffer.from(data["buildStr"], "base64").toString(
-			"utf8"
+			"utf8",
 		);
 
 		/*
@@ -115,7 +120,7 @@
 					(i) =>
 						(parseInt(i) >= 0 &&
 							parseInt(i) <= weapons.length - 1) ||
-						i === ""
+						i === "",
 				)
 		) {
 			const indices = build["w"].split(",");
@@ -124,7 +129,8 @@
 				.filter((i) => i)
 				.map(
 					(i) =>
-						i >= collabWeapons.length - 1 && i <= weapons.length - 1
+						i >= collabWeapons.length - 1 &&
+						i <= weapons.length - 1,
 				).length;
 			// remove elemnts based on weapon slot amount
 			indices.splice($weaponSlots - 1);
@@ -134,7 +140,7 @@
 			equippedWeapons.set(
 				indices
 					.map((i) => weapons[parseInt(i)])
-					.map((i) => (i ? i : ""))
+					.map((i) => (i ? i : "")),
 			);
 			weaponAddSymbols.set(indices.map((i) => (i === "" ? "add" : "")));
 			collabLimit.set($weaponSlots - 2);
@@ -148,12 +154,12 @@
 				.every(
 					(i) =>
 						(parseInt(i) >= 0 && parseInt(i) <= items.length - 1) ||
-						i === ""
+						i === "",
 				)
 		) {
 			const indices = build["i"].split(",");
 			equippedItems.set(
-				indices.map((i) => items[parseInt(i)]).map((i) => (i ? i : ""))
+				indices.map((i) => items[parseInt(i)]).map((i) => (i ? i : "")),
 			);
 			itemAddSymbols.set(indices.map((i) => (i === "" ? "add" : "")));
 			removeItem.set(true);
@@ -168,12 +174,14 @@
 				.every(
 					(i) =>
 						(parseInt(i) >= 0 && parseInt(i) <= items.length - 1) ||
-						i === ""
+						i === "",
 				)
 		) {
 			const indices = build["s"].split(",");
 			equippedStamps.set(
-				indices.map((i) => stamps[parseInt(i)]).map((i) => (i ? i : ""))
+				indices
+					.map((i) => stamps[parseInt(i)])
+					.map((i) => (i ? i : "")),
 			);
 			stampAddSymbols.set(indices.map((i) => (i === "" ? "add" : "")));
 			removeStamp.set(true);
@@ -184,11 +192,11 @@
 			build["a"]
 				.split(",")
 				.every(
-					(i) => parseInt(i) >= 0 && parseInt(i) <= stats.length - 1
+					(i) => parseInt(i) >= 0 && parseInt(i) <= stats.length - 1,
 				)
 		) {
 			statPriorityOrder.set(
-				build["a"].split(",").map((i) => stats[parseInt(i)])
+				build["a"].split(",").map((i) => stats[parseInt(i)]),
 			);
 			showPriorityOrder.set(true);
 		}

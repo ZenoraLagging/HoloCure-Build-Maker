@@ -10,6 +10,7 @@
 		idCharacters,
 		characters,
 	} from "$lib/variables";
+	/** @type {{display: any}} */
 	export let display;
 
 	function clickHandler(character) {
@@ -40,11 +41,11 @@
 				"/img/character/Select/en/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
-				import.meta.url
+				import.meta.url,
 			).href),
 			accumulator
 		),
-		{}
+		{},
 	);
 
 	let jpChars = jpCharacters.reduce(
@@ -53,11 +54,11 @@
 				"/img/character/Select/jp/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
-				import.meta.url
+				import.meta.url,
 			).href),
 			accumulator
 		),
-		{}
+		{},
 	);
 
 	let idChars = idCharacters.reduce(
@@ -66,11 +67,11 @@
 				"/img/character/Select/id/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
-				import.meta.url
+				import.meta.url,
 			).href),
 			accumulator
 		),
-		{}
+		{},
 	);
 </script>
 
@@ -78,66 +79,75 @@
 	<h1 id="generation-header">HoloEN</h1>
 	<div id="select-character-choices">
 		{#each Object.entries(enChars) as [character, url]}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
 				class="character choice {$charSelected === character
 					? 'selected'
 					: ''}"
-				on:click={(e) => clickHandler(character)}
+				onclick={(e) => clickHandler(character)}
 			>
 				<!-- <div id="char-name-container">
 					<p id="char-name">{character}</p>
 				</div> -->
-				<div class="img-char" style="background-image: url('{url}');" />
+				<div
+					class="img-char"
+					style="background-image: url('{url}');"
+				></div>
 			</div>
 		{/each}
 
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="character choice" on:click={(e) => clickHandler("en")}>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<div class="character choice" onclick={(e) => clickHandler("en")}>
 			<div class="img-char"><h1 id="random-character">?</h1></div>
 		</div>
 	</div>
 	<h1 id="generation-header">HoloJP</h1>
 	<div id="select-character-choices">
 		{#each Object.entries(jpChars) as [character, url]}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
 				class="character choice {$charSelected === character
 					? 'selected'
 					: ''}"
-				on:click={(e) => clickHandler(character)}
+				onclick={(e) => clickHandler(character)}
 			>
-				<div class="img-char" style="background-image: url('{url}');" />
+				<div
+					class="img-char"
+					style="background-image: url('{url}');"
+				></div>
 			</div>
 		{/each}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="character choice" on:click={(e) => clickHandler("jp")}>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<div class="character choice" onclick={(e) => clickHandler("jp")}>
 			<div class="img-char"><h1 id="random-character">?</h1></div>
 		</div>
 	</div>
 	<h1 id="generation-header">HoloID</h1>
 	<div id="select-character-choices">
 		{#each Object.entries(idChars) as [character, url]}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<div
 				class="character choice {$charSelected === character
 					? 'selected'
 					: ''}"
-				on:click={(e) => clickHandler(character)}
+				onclick={(e) => clickHandler(character)}
 			>
-				<div class="img-char" style="background-image: url('{url}');" />
+				<div
+					class="img-char"
+					style="background-image: url('{url}');"
+				></div>
 			</div>
 		{/each}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="character choice" on:click={(e) => clickHandler("id")}>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<div class="character choice" onclick={(e) => clickHandler("id")}>
 			<div class="img-char"><h1 id="random-character">?</h1></div>
 		</div>
 	</div>
 
 	<h1 id="generation-header">Random</h1>
 	<div id="select-character-choices">
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div class="character choice" on:click={(e) => clickHandler("random")}>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<div class="character choice" onclick={(e) => clickHandler("random")}>
 			<div class="img-char random-select">
 				<h1 id="random-character">?</h1>
 			</div>

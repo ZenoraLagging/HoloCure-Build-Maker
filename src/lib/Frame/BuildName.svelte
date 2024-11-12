@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: Event attribute must be a JavaScript expression, not a string -->
 <script>
     import { showBuildName, buildName } from '$lib/stores';
 
@@ -57,18 +58,4 @@
     </div>
 {/if}
 
-<style lang="scss">
-    #build-name {
-        outline: none;
-        width: 390px;
-        margin-bottom: 15px;
-        margin-left: 5px;
-        font-size: 30px;
-        word-wrap: break-word;
-
-        &:hover {
-            font-weight: bold;
-            color: white;
-        }
-    }
-</style>
+<style lang="scss">/*$$__STYLE_CONTENT__$$*/</style>

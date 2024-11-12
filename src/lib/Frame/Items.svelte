@@ -1,4 +1,6 @@
 <script>
+	import { run, stopPropagation } from "svelte/legacy";
+
 	import {
 		displayChoices,
 		displayItemChoices,
@@ -9,7 +11,7 @@
 		removeInvalidItem,
 	} from "$lib/stores";
 
-	const displayRemoveBtn = Array(6).fill("hidden");
+	$: displayRemoveBtn = Array(6).fill("hidden");
 
 	function showItemChoices(index) {
 		// show menu
@@ -31,22 +33,24 @@
 		removeItem.set(true);
 	}
 
-	$: if ($removeInvalidItem > -1) {
-		removeGear($removeInvalidItem);
-		removeInvalidItem.set(-1);
-	}
+	run(() => {
+		if ($removeInvalidItem > -1) {
+			removeGear($removeInvalidItem);
+			removeInvalidItem.set(-1);
+		}
+	});
 </script>
 
 <div id="items-container">
 	{#each $equippedItems as equippedItem, index}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<div
 			class="item slot"
-			on:click={() => showItemChoices(index)}
-			on:mouseenter={() => {
+			onclick={() => showItemChoices(index)}
+			onmouseenter={() => {
 				if ($equippedItems[index] !== "") displayRemoveBtn[index] = "";
 			}}
-			on:mouseleave={() => (displayRemoveBtn[index] = "hidden")}
+			onmouseleave={() => (displayRemoveBtn[index] = "hidden")}
 		>
 			<div class="img {equippedItem}">
 				<span class="add material-symbols-outlined"
@@ -57,7 +61,7 @@
 				class="remove material-symbols-outlined {displayRemoveBtn[
 					index
 				]}"
-				on:click|stopPropagation={() => removeGear(index)}
+				onclick={stopPropagation(() => removeGear(index))}
 			>
 				cancel
 			</span>

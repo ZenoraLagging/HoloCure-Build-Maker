@@ -99,17 +99,17 @@
 <div id="settings">
 	<!-- <CharacterChoicesDropdown /> -->
 	<div id="char-select-container">
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<button id="char-select-button" on:click={showCharacterChoices}
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<button id="char-select-button" onclick={showCharacterChoices}
 			>{$charSelected ? $charSelected : "Select Character"}</button
 		>
 	</div>
 	<div id="options-container">
-		<button id="add-stat-prio" on:click={showStatChoices}
+		<button id="add-stat-prio" onclick={showStatChoices}
 			>Stat Priority</button
 		>
 	</div>
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div id="more-settings">
 		<div id="slot-container">
 			<div id="input-number">
@@ -117,23 +117,23 @@
 				<div id="weapon-slots">
 					<button
 						class="minus"
-						on:click={() => weaponSlotAmount(-1)}
-					/>
+						onclick={() => weaponSlotAmount(-1)}
+					></button>
 					<div>{$weaponSlots}</div>
-					<button class="plus" on:click={() => weaponSlotAmount(1)} />
+					<button class="plus" onclick={() => weaponSlotAmount(1)}></button>
 				</div>
-				<button id="clear-button" on:click={() => clearWeapons()}
+				<button id="clear-button" onclick={() => clearWeapons()}
 					>Clear Weapons</button
 				>
 			</div>
 			<div id="input-number">
 				<p for="item-slots">Item Slot #</p>
 				<div id="item-slots">
-					<button class="minus" on:click={() => itemSlotAmount(-1)} />
+					<button class="minus" onclick={() => itemSlotAmount(-1)}></button>
 					<div>{$itemSlots}</div>
-					<button class="plus" on:click={() => itemSlotAmount(1)} />
+					<button class="plus" onclick={() => itemSlotAmount(1)}></button>
 				</div>
-				<button id="clear-button" on:click={() => clearItems()}
+				<button id="clear-button" onclick={() => clearItems()}
 					>Clear Items</button
 				>
 			</div>
@@ -145,9 +145,9 @@
 					<input
 						type="checkbox"
 						bind:checked={$showBuildName}
-						on:change={(e) => showBuildName.set(e.target.checked)}
+						onchange={(e) => showBuildName.set(e.target.checked)}
 					/>
-					<span class="slider" />
+					<span class="slider"></span>
 				</label>
 			</div>
 			<div id="ban-weapon-container">
@@ -156,9 +156,9 @@
 					<input
 						type="checkbox"
 						bind:checked={$banWeapon}
-						on:change={(e) => banWeapon.set(e.target.checked)}
+						onchange={(e) => banWeapon.set(e.target.checked)}
 					/>
-					<span class="slider" />
+					<span class="slider"></span>
 				</label>
 			</div>
 			<div id="show-stamps-container">
@@ -167,11 +167,11 @@
 					<input
 						type="checkbox"
 						bind:checked={$showStamps}
-						on:change={(e) => showStamps.set(e.target.checked)}
+						onchange={(e) => showStamps.set(e.target.checked)}
 					/>
-					<span class="slider" />
+					<span class="slider"></span>
 				</label>
-				<button id="clear-button" on:click={() => clearStamps()}
+				<button id="clear-button" onclick={() => clearStamps()}
 					>Clear Stamps</button
 				>
 			</div>
