@@ -8,6 +8,8 @@ export const gamers = ['Shirakami Fubuki', 'Ookami Mio', 'Nekomata Okayu', 'Inug
 export const jpGen0 = ['Tokino Sora', 'AZKi', 'Roboco-san', 'Hoshimachi Suisei', 'Sakura Miko']
 export const jpGen1 = ['Akai Haato', 'Yozora Mel', 'Natsuiro Matsuri', 'Aki Rosenthal']
 export const jpGen2 = ['Oozora Subaru', 'Yuzuki Choco', 'Murasaki Shion', 'Nakiri Ayame', 'Minato Aqua']
+export const jpGen3 = ['Usada Pekora', 'Houshou Marine', 'Shirogane Noel', 'Shiranui Flare']
+export const jpGen4 = ['Kiryu Coco', 'Amane Kanata', 'Tokoyami Towa', 'Tsunomaki Watame', 'Himemori Luna']
 
 //id characters
 export const idArea15 = ['Moona Hoshinova', 'Ayunda Risu', 'Airani Iofifteen']
