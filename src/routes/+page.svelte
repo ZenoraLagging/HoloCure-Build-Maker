@@ -1,6 +1,5 @@
 <script>
-	import { run } from "svelte/legacy";
-
+	import "../app.css";
 	import Frame from "$lib/Frame/Frame.svelte";
 	import Settings from "$lib/Settings.svelte";
 	import Link from "$lib/Link.svelte";
@@ -17,7 +16,7 @@
 
 	let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
 
-	run(() => {
+	$effect(() => {
 		if (browser && analyticsId) {
 			webVitals({
 				path: $page.url.pathname,
@@ -58,7 +57,7 @@
 	} from "$lib/variables";
 
 	/** @type {{data: any}} */
-	export let data;
+	let { data } = $props();
 
 	if (data["buildStr"]) {
 		// decode string

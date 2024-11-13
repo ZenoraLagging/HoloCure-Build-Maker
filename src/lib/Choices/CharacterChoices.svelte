@@ -10,8 +10,9 @@
 		idCharacters,
 		characters,
 	} from "$lib/variables";
+	import { images } from "$lib/images/exports.svelte";
 	/** @type {{display: any}} */
-	export let display;
+	let { display } = $props();
 
 	function clickHandler(character) {
 		if (character === "en") {
@@ -38,7 +39,7 @@
 	let enChars = enCharacters.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = new URL(
-				"/img/character/Select/en/" +
+				"../images/characters/Select/en/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
 				import.meta.url,
@@ -51,7 +52,7 @@
 	let jpChars = jpCharacters.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = new URL(
-				"/img/character/Select/jp/" +
+				"../images/characters/Select/jp/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
 				import.meta.url,
@@ -64,7 +65,7 @@
 	let idChars = idCharacters.reduce(
 		(accumulator, currValue) => (
 			(accumulator[currValue] = new URL(
-				"/img/character/Select/id/" +
+				"../images/characters/Select/id/" +
 					currValue.replace(" ", "_").replace("'", "") +
 					"_Icon.png",
 				import.meta.url,

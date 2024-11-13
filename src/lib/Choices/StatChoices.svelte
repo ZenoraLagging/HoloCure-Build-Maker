@@ -11,9 +11,9 @@
 	/** @type {{display: any}} */
 	export let display;
 
-	$: (statPriorityDisplay = Array(stats.length).fill("")),
-		(currentOrder = 1),
-		(statPriorityList = []);
+	$: statPriorityDisplay = Array(stats.length).fill("");
+	$: currentOrder = 1;
+	$: statPriorityList = [];
 
 	function manageOrder(index) {
 		// unordered stat, assign order
@@ -70,14 +70,15 @@
 	<p>Not required to select all stats.</p>
 	<div>
 		{#each stats as stat, index}
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div class="stat {stat}" onclick={() => manageOrder(index)}>
 				<div class="order">{statPriorityDisplay[index]}</div>
 			</div>
 		{/each}
 	</div>
 	<div id="options-container">
-		<p id="confirm" onclick={() => clickHandler(true)}>Confirm</p>
-		<p id="clear" onclick={() => clickHandler(false)}>Clear</p>
+		<button id="confirm" onclick={() => clickHandler(true)}>Confirm</button>
+		<button id="clear" onclick={() => clickHandler(false)}>Clear</button>
 	</div>
 </div>
 

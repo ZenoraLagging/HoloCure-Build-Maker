@@ -6,10 +6,10 @@
 	import StatPriority from "./StatPriority.svelte";
 
 	/** @type {{charName: any}} */
-	let { charName } = "";
+	let { charName } = $props();
 </script>
 
-<div id="equipment-container">
+<div id="equipment-container" class="space-y-1">
 	<BuildName />
 	<Weapons {charName} />
 	<Items />

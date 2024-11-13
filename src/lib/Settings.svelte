@@ -23,8 +23,6 @@
 		banWeapon,
 	} from "$lib/stores";
 
-	import CharacterChoicesDropdown from "./Choices/CharacterChoicesDropdown.svelte";
-
 	function weaponSlotAmount(num) {
 		if (
 			($weaponSlots > 1 && num === -1) ||
@@ -115,12 +113,11 @@
 			<div id="input-number">
 				<p for="weapon-slots">Weapon Slot #</p>
 				<div id="weapon-slots">
-					<button
-						class="minus"
-						onclick={() => weaponSlotAmount(-1)}
+					<button class="minus" onclick={() => weaponSlotAmount(-1)}
 					></button>
 					<div>{$weaponSlots}</div>
-					<button class="plus" onclick={() => weaponSlotAmount(1)}></button>
+					<button class="plus" onclick={() => weaponSlotAmount(1)}
+					></button>
 				</div>
 				<button id="clear-button" onclick={() => clearWeapons()}
 					>Clear Weapons</button
@@ -129,9 +126,11 @@
 			<div id="input-number">
 				<p for="item-slots">Item Slot #</p>
 				<div id="item-slots">
-					<button class="minus" onclick={() => itemSlotAmount(-1)}></button>
+					<button class="minus" onclick={() => itemSlotAmount(-1)}
+					></button>
 					<div>{$itemSlots}</div>
-					<button class="plus" onclick={() => itemSlotAmount(1)}></button>
+					<button class="plus" onclick={() => itemSlotAmount(1)}
+					></button>
 				</div>
 				<button id="clear-button" onclick={() => clearItems()}
 					>Clear Items</button

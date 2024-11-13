@@ -1,6 +1,4 @@
 <script>
-	import { run, stopPropagation } from "svelte/legacy";
-
 	import {
 		displayChoices,
 		displayWeaponChoices,
@@ -12,10 +10,12 @@
 		banWeapon,
 	} from "$lib/stores";
 
-	/** @type {{charName: any}} */
-	export let charName;
+	/** @type {{charName: string}} */
+	let { charName } = $props();
 
-	$: displayRemoveBtn = Array(5).fill("hidden");
+	console.log(charName);
+
+	let displayRemoveBtn = $state(Array(5).fill("hidden"));
 
 	function showWeaponChoices(index) {
 		// show menu
@@ -37,7 +37,7 @@
 		removeWeapon.set(true);
 	}
 
-	run(() => {
+	$effect(() => {
 		if ($removeSuperIndex > -1) {
 			removeGear($removeSuperIndex);
 			removeSuperIndex.set(-1);
@@ -66,9 +66,13 @@
 	</div>
 	{#each $equippedWeapons as equippedWeapon, index}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			class="weapon slot"
-			onclick={() => showWeaponChoices(index)}
+			onclick={(e) => {
+				e.preventDefault();
+				showWeaponChoices(index);
+			}}
 			onmouseenter={() => {
 				if ($equippedWeapons[index] !== "")
 					displayRemoveBtn[index] = "";
@@ -84,7 +88,11 @@
 				class="remove material-symbols-outlined {displayRemoveBtn[
 					index
 				]}"
-				onclick={stopPropagation(() => removeGear(index))}
+				onclick={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					removeGear(index);
+				}}
 			>
 				cancel
 			</span>

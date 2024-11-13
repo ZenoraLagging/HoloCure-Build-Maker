@@ -27,27 +27,33 @@
 	} from "$lib/variables";
 
 	/** @type {{display: any}} */
-	export let display;
+	let { display } = $props();
 
 	// initialize weapon displays
-	$: availableBasicWeapons = basicWeapons.reduce(
-		(accumulator, currValue) => (
-			(accumulator[currValue] = true), accumulator
+	let availableBasicWeapons = $state(
+		basicWeapons.reduce(
+			(accumulator, currValue) => (
+				(accumulator[currValue] = true), accumulator
+			),
+			{},
 		),
-		{},
 	);
-	$: availableCollabWeapons = collabWeapons.reduce(
-		(accumulator, currValue) => (
-			(accumulator[currValue] = true), accumulator
+	let availableCollabWeapons = $state(
+		collabWeapons.reduce(
+			(accumulator, currValue) => (
+				(accumulator[currValue] = true), accumulator
+			),
+			{},
 		),
-		{},
 	);
 
-	$: availableSuperCollabWeapons = superCollabWeapons.reduce(
-		(accumulator, currValue) => (
-			(accumulator[currValue] = true), accumulator
+	let availableSuperCollabWeapons = $state(
+		superCollabWeapons.reduce(
+			(accumulator, currValue) => (
+				(accumulator[currValue] = true), accumulator
+			),
+			{},
 		),
-		{},
 	);
 
 	let unavailableWeapons,
@@ -229,31 +235,35 @@
 		displayWeaponChoices.set(false);
 	}
 
-	run(() => {
+	function handleRemoveWeapon() {
+		// remove weapon in equipped weapons
+		if ($clickedSlotIndex !== null) {
+			equippedWeapons.update((arr) => {
+				arr[$clickedSlotIndex] = "";
+				return arr;
+			});
+		}
+
+		manageWeaponChoices();
+
+		// set boolean back to false
+		removeWeapon.set(false);
+	}
+
+	$effect(() => {
 		if ($removeWeapon) {
-			// remove weapon in equipped weapons
-			if ($clickedSlotIndex !== null) {
-				equippedWeapons.update((arr) => {
-					arr[$clickedSlotIndex] = "";
-					return arr;
-				});
-			}
-
-			manageWeaponChoices();
-
-			// set boolean back to false
-			removeWeapon.set(false);
+			handleRemoveWeapon();
 		}
 	});
 
-	run(() => {
+	$effect(() => {
 		if ($resetWeaponSlots) {
 			reinitialize();
 			resetWeaponSlots.set(false);
 		}
 	});
 
-	run(() => {
+	$effect(() => {
 		if ($superCollabLimit) {
 			reinitialize();
 		}
@@ -265,6 +275,7 @@
 	<div id="basic-choices">
 		{#each Object.entries(availableBasicWeapons) as [basicWeapon, available]}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div
 				class="weapon choice {!available ? 'unavailable' : ''}"
 				onclick={() => (available ? clickHandler(basicWeapon) : "")}
@@ -277,6 +288,7 @@
 	<div id="collab-choices">
 		{#each Object.entries(availableCollabWeapons) as [collabWeapon, available]}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div
 				class="weapon choice {!available ? 'unavailable' : ''}"
 				onclick={() => (available ? clickHandler(collabWeapon) : "")}
@@ -289,6 +301,7 @@
 	<div id="super-collab-choices">
 		{#each Object.entries(availableSuperCollabWeapons) as [superCollabWeapon, available]}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<div
 				class="weapon choice {!available ? 'unavailable' : ''}"
 				onclick={() =>

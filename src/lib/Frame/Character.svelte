@@ -1,6 +1,7 @@
-<script>
-	/** @type {{charName: any}} */
-	export let charName;
+<script lang="ts">
+	import { images } from "$lib/images/exports.svelte";
+	let { charName }: { charName: string } = $props();
+	console.log(images);
 </script>
 
 {#if charName}
@@ -8,7 +9,9 @@
 		<div id="character">
 			<img
 				id="img"
-				src="/img/character/{charName}/portrait.png"
+				src={images[
+					`/src/lib/images/characters/${charName}/portrait.png`
+				].img.src}
 				alt="{charName} portrait"
 			/>
 		</div>
@@ -29,10 +32,8 @@
 			overflow: hidden;
 			left: 0;
 			right: 0;
-			text-align: center;
-			margin-left: auto;
-			margin-right: auto;
 			opacity: 0.15;
+			z-index: 1;
 		}
 	}
 

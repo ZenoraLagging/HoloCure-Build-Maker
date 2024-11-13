@@ -11,7 +11,7 @@
 		removeInvalidItem,
 	} from "$lib/stores";
 
-	$: displayRemoveBtn = Array(6).fill("hidden");
+	let displayRemoveBtn = $state(Array(6).fill("hidden"));
 
 	function showItemChoices(index) {
 		// show menu
@@ -33,7 +33,7 @@
 		removeItem.set(true);
 	}
 
-	run(() => {
+	$effect(() => {
 		if ($removeInvalidItem > -1) {
 			removeGear($removeInvalidItem);
 			removeInvalidItem.set(-1);
@@ -44,9 +44,13 @@
 <div id="items-container">
 	{#each $equippedItems as equippedItem, index}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			class="item slot"
-			onclick={() => showItemChoices(index)}
+			onclick={(e) => {
+				e.preventDefault();
+				showItemChoices(index);
+			}}
 			onmouseenter={() => {
 				if ($equippedItems[index] !== "") displayRemoveBtn[index] = "";
 			}}
@@ -61,7 +65,11 @@
 				class="remove material-symbols-outlined {displayRemoveBtn[
 					index
 				]}"
-				onclick={stopPropagation(() => removeGear(index))}
+				onclick={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					removeGear(index);
+				}}
 			>
 				cancel
 			</span>

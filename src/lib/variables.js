@@ -18,7 +18,7 @@ export const idHoloH3ro = ['Kobo Kanaeru', 'Kaela Kovalskia', 'Vestia Zeta']
 
 //concat them all
 export const enCharacters = myth.concat(council, projectHope);
-export const jpCharacters = gamers.concat(jpGen0, jpGen1, jpGen2);
+export const jpCharacters = gamers.concat(jpGen0, jpGen1, jpGen2, jpGen3, jpGen4);
 export const idCharacters = idArea15.concat(idHoloro, idHoloH3ro);
 export const characters = enCharacters.concat(jpCharacters, idCharacters);
 

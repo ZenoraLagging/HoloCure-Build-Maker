@@ -24,6 +24,7 @@
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div id="choices-bg" class={$displayChoices ? "" : "hidden"} onclick={hide}>
 	<div id="choices-container" onclick={(e) => e.stopPropagation()}>
 		<CharacterChoices display={$displayCharacterChoices ? "" : "hidden"} />

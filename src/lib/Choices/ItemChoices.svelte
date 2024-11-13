@@ -150,8 +150,8 @@
 		});
 	}
 
-	run(() => {
-		if ($removeItem) {
+	$: $removeItem,
+		() => {
 			if ($clickedSlotIndex !== null) {
 				showPrevious();
 
@@ -166,21 +166,16 @@
 
 			// set boolean back to false
 			removeItem.set(false);
-		}
-	});
+		};
 
-	run(() => {
-		if ($equippedWeapons) {
-			manageItemChoices();
-		}
-	});
+	if ($equippedWeapons) {
+		manageItemChoices();
+	}
 
-	run(() => {
-		if ($resetItemSlots) {
-			reinitialize();
-			resetItemSlots.set(false);
-		}
-	});
+	if ($resetItemSlots) {
+		reinitialize();
+		resetItemSlots.set(false);
+	}
 </script>
 
 <div id="item-choices" class={display}>
