@@ -11,7 +11,7 @@
 		banWeapon,
 	} from "$lib/stores";
 	import { basicWeapons, collabWeapons } from "$lib/variables";
-	import MdiPlusThick from "~icons/mdi/plus-thick";
+	import { images } from "$lib/images/exports.svelte";
 
 	/** @type {{charName: string}} */
 	let { charName } = $props();
@@ -56,9 +56,11 @@
 	<div id="default-weap" class="w-16 h-16 flex flex-col justify-center">
 		{#if charName}
 			<img
-				src="/src/lib/images/characters/{charName}/{$banWeapon
-					? 'banned.png'
-					: 'weapon.png'}"
+				src={images[
+					`/src/lib/images/characters/${charName}/${
+						$banWeapon ? "banned.png" : "weapon.png"
+					}`
+				].img.src}
 				alt="main weapon"
 				class="w-fit"
 			/>
@@ -90,12 +92,15 @@
 		>
 			{#if equippedWeapon}
 				<img
-					src={`src/lib/images/weapons/${getWeaponType(equippedWeapon)}/${equippedWeapon.replaceAll(" ", "_")}_Icon.png`}
+					src={images[
+						`/src/lib/images/weapons/${getWeaponType(equippedWeapon)}/${equippedWeapon.replaceAll(" ", "_")}_Icon.png`
+					].img.src}
 					alt={equippedWeapon}
 				/>
 			{:else}
 				<img
-					src={`src/lib/images/weapons/weapon_slot.png`}
+					src={images[`/src/lib/images/weapons/weapon_slot.png`].img
+						.src}
 					alt="weapon slot"
 				/>
 			{/if}
@@ -104,7 +109,7 @@
 				class="remove material-symbols-outlined {displayRemoveBtn[
 					index
 				]}"
-				onclick={(e) => {
+				onclick={(e: any) => {
 					e.preventDefault();
 					e.stopPropagation();
 					removeGear(index);

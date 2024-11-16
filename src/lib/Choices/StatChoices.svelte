@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
+	import { images } from "$lib/images/exports.svelte";
 	import {
 		displayChoices,
 		displayStatChoices,
@@ -80,7 +81,9 @@
 				>
 					<img
 						class="w-12"
-						src={`src/lib/images/stats/${stat.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/stats/${stat.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={stat}
 					/>
 					<div class="order">{statPriorityDisplay[index]}</div>

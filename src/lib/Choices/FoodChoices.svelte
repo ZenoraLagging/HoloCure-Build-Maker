@@ -29,7 +29,9 @@
 				>
 					<img
 						class="w-16 h-fit"
-						src={`src/lib/images/foods/${food.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/foods/${food.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={food}
 					/>
 				</Button>

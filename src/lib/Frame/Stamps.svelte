@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
+	import { images } from "$lib/images/exports.svelte";
 	import {
 		displayChoices,
 		displayStampChoices,
@@ -56,7 +57,9 @@
 				{#if equippedStamp}
 					<img
 						class="w-16"
-						src={`/src/lib/images/stamps/${equippedStamp.replaceAll(" ", "_")}_Stamp_Icon.png`}
+						src={images[
+							`/src/lib/images/stamps/${equippedStamp.replaceAll(" ", "_")}_Stamp_Icon.png`
+						].img.src}
 						alt={equippedStamp}
 					/>
 				{:else}

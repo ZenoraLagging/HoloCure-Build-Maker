@@ -27,6 +27,7 @@
 		superCollabFormulas,
 	} from "$lib/variables";
 	import { Button } from "$lib/components/ui/button";
+	import { images } from "$lib/images/exports.svelte";
 
 	/** @type {{display: boolean}} */
 	export let display;
@@ -274,7 +275,6 @@
 		<h1 id="weapon-header">Basic</h1>
 		<div id="basic-choices" class="flex flex-row flex-wrap">
 			{#each Object.entries(availableBasicWeapons) as [basicWeapon, available]}
-				<!-- svelte-ignore a11y_click_events_have_key_events -->
 				<Button
 					variant="ghost"
 					class=" {!available ? 'bg-red-500/50' : ''}  w-fit h-fit"
@@ -283,7 +283,9 @@
 				>
 					<img
 						class="w-12 max-h-12"
-						src={`src/lib/images/weapons/basic/${basicWeapon.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/weapons/basic/${basicWeapon.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={basicWeapon}
 					/>
 				</Button>
@@ -292,7 +294,6 @@
 		<h1 id="weapon-header">Collabs</h1>
 		<div id="collab-choices" class="flex flex-row flex-wrap">
 			{#each Object.entries(availableCollabWeapons) as [collabWeapon, available]}
-				<!-- svelte-ignore a11y_click_events_have_key_events -->
 				<Button
 					variant="ghost"
 					class=" {!available ? 'bg-red-500/50' : ''} w-fit h-fit"
@@ -302,7 +303,9 @@
 				>
 					<img
 						class="w-12"
-						src={`src/lib/images/weapons/collab/${collabWeapon.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/weapons/collab/${collabWeapon.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={collabWeapon}
 					/>
 				</Button>
@@ -321,7 +324,9 @@
 				>
 					<img
 						class="w-12"
-						src={`src/lib/images/weapons/super_collab/${superCollabWeapon.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/weapons/super_collab/${superCollabWeapon.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={superCollabWeapon}
 					/>
 				</Button>

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		charSelected,
 		displayChoices,
@@ -13,7 +13,7 @@
 	<select
 		id="char-select"
 		bind:value={$charSelected}
-		onchange={(e) => charSelected.set(e.target.value)}
+		onchange={(e: any) => charSelected.set(e.target.value)}
 	>
 		{#each characters as character}
 			<option value={character}>{character}</option>

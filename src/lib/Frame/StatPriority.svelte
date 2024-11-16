@@ -1,4 +1,5 @@
 <script>
+	import { images } from "$lib/images/exports.svelte";
 	import { statPriorityOrder, showPriorityOrder } from "$lib/stores";
 </script>
 
@@ -7,7 +8,9 @@
 		{#each $statPriorityOrder as stat, index}
 			<img
 				class="w-fit min-h-10"
-				src={`src/lib/images/stats/${stat.replaceAll(" ", "_")}_Icon.png`}
+				src={images[
+					`/src/lib/images/stats/${stat.replaceAll(" ", "_")}_Icon.png`
+				].img.src}
 				alt={stat}
 			/>
 			<p class="text-2xl justify-center">

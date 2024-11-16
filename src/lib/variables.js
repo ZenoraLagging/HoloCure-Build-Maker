@@ -29,10 +29,10 @@ export const basicWeapons = [
 ];
 
 export const collabWeapons = [
-	'Absolute Wall', 'BL Fujoshi', 'Bone Bros.', 'Breathe-In Type Asacoco', 'Broken Dreams', "Crescent Bardiche", "Curse Ball",
+	'Absolute Wall', 'BL Fujoshi', 'Bone Bros', 'Breathe-In Type Asacoco', 'Broken Dreams', "Crescent Bardiche", "Curse Ball",
 	'Dragon Fire', 'Eldritch Horror', 'Elite Cooking', 'Flattening Board', 'Frozen Sea',
 	'I\'m Die, Thank You Forever', "Legendary Sausage", "Lightning Wiener", 'Idol Concert', 'Light Beam', 'MiComet', 'MiKorone',
-	'Rap Dog', 'Ring Of Fitness', 'Snow Flower Sake', 'Stream Of Tears', "Black Plague", "Blood Lust"
+	'Rap Dog', 'Ring Of Fitness', 'Snow Flower Sake', 'Stream of Tears', "Black Plague", "Blood Lust"
 ];
 
 export const superCollabWeapons = ['Holy Fire', 'Idol Live', 'Jingisukan', 'Snow Queen', "True Infinite BL Works"]
@@ -63,7 +63,7 @@ export const basicCollabFormulas = {
 	"Rap Dog": ["Idol Song", "X-Potato"],
 	"Ring Of Fitness": ["Bounce Ball", "Ceo\'s Tears"],
 	"Snow Flower Sake": ["Glowstick", "Wamy Water"],
-	"Stream Of Tears": ["Ceo\'s Tears", "Fan Beam"],
+	"Stream of Tears": ["Ceo\'s Tears", "Fan Beam"],
 	"Black Plague": ['EN\'s Curse', "Owl Dagger"],
 	"Blood Lust": ['Psycho Axe', "Owl Dagger"],
 };
@@ -97,10 +97,10 @@ export const collabFormulas = {
 };
 
 export const basicItems = [
-	'Blacksmith\'s Gear', 'Body Pillow', 'breastplate', 'Chicken\'s Feather', 'Credit Card',
+	'Blacksmith\'s Gear', 'Body Pillow', 'Breastplate', 'Chicken\'s Feather', 'Credit Card',
 	'Devil Hat', 'Energy Drink', 'Face Mask', 'Full Meal', 'Gorilla\'s Paw',
 	'GWS Pill', 'Halu', 'Headphones', 'Hope Soda', 'Idol Costume',
-	'Injection Type Asacoco', 'Just Bandage', 'Knightly Milk', 'Kusogaki Shackles', 'limiter',
+	'Injection Type Asacoco', 'Just Bandage', 'Knightly Milk', 'Kusogaki Shackles', 'Limiter',
 	'Membership', 'Nurse\'s Horn', 'Piki Piki Piman', 'Plushie', 'Sake',
 	'Stolen Piggy Bank', 'Study Glasses', 'Super Chatto Time!', 'Uber Sheep', 'Focus Shades', 'Ninja Headband', 'Researcher\'s Coat',
 	'Candy Kingdom Sweets', 'Beetle', 'Corporation Pin', "Promise Tiara", 'Raven Feather'

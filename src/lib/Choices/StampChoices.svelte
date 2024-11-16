@@ -13,6 +13,7 @@
 
 	import { stamps } from "$lib/variables";
 	import { Button } from "$lib/components/ui/button";
+	import { images } from "$lib/images/exports.svelte";
 
 	/** @type {{display: boolean}} */
 	export let display;
@@ -104,7 +105,9 @@
 					>
 						<img
 							class="w-16 h-16"
-							src={`/src/lib/images/stamps/${stamp.replaceAll(" ", "_")}_Stamp_Icon.png`}
+							src={images[
+								`/src/lib/images/stamps/${stamp.replaceAll(" ", "_")}_Stamp_Icon.png`
+							].img.src}
 							alt={stamp}
 						/>
 					</Button>

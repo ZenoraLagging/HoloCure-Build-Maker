@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
+	import { images } from "$lib/images/exports.svelte";
 	import {
 		displayChoices,
 		displayItemChoices,
@@ -202,7 +203,9 @@
 				>
 					<img
 						class="w-16 h-fit"
-						src={`src/lib/images/items/basic/${basicItem.toLowerCase().replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/items/basic/${basicItem.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={basicItem}
 					/>
 				</Button>
@@ -221,7 +224,9 @@
 				>
 					<img
 						class="w-fit h-fit"
-						src={`src/lib/images/items/super/${superItem.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/items/super/${superItem.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={superItem}
 					/>
 				</Button>
