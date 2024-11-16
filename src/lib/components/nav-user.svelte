@@ -9,6 +9,7 @@
 	import CreditCard from "lucide-svelte/icons/credit-card";
 	import LogOut from "lucide-svelte/icons/log-out";
 	import Sparkles from "lucide-svelte/icons/sparkles";
+	import { images } from "$lib/images/exports.svelte";
 
 	let { user }: { user: string } = $props();
 	const sidebar = useSidebar();
@@ -27,7 +28,9 @@
 						<Avatar.Root class="h-8 w-8 rounded-lg">
 							{#if user}
 								<Avatar.Image
-									src={`/src/lib/images/characters/Select/${user.replaceAll(" ", "_")}_Icon.png`}
+									src={images[
+										`/src/lib/images/characters/Select/${user.replaceAll(" ", "_")}_Icon.png`
+									].img.src}
 									alt="holo member"
 									class="object-fill"
 								/>
@@ -56,7 +59,9 @@
 					>
 						<Avatar.Root class="h-8 w-8 rounded-lg">
 							<Avatar.Image
-								src={`/src/lib/images/characters/Select/${user.replaceAll(" ", "_")}_Icon.png`}
+								src={images[
+									`/src/lib/images/characters/Select/${user.replaceAll(" ", "_")}_Icon.png`
+								].img.src}
 								alt="holo member"
 								class="object-fill"
 							/>
