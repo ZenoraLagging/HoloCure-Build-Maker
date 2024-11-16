@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+	import { Button } from "$lib/components/ui/button";
 	import {
 		displayChoices,
 		displayWeaponChoices,
@@ -9,12 +10,15 @@
 		removeSuperIndex,
 		banWeapon,
 	} from "$lib/stores";
+	import { basicWeapons, collabWeapons } from "$lib/variables";
+	import { images } from "$lib/images/exports.svelte";
 
-	export let charName;
+	/** @type {{charName: string}} */
+	let { charName } = $props();
 
-	const displayRemoveBtn = Array(5).fill("hidden");
+	let displayRemoveBtn = $state(Array(5).fill("hidden"));
 
-	function showWeaponChoices(index) {
+	function showWeaponChoices(index: number) {
 		// show menu
 		displayChoices.set(true);
 		displayWeaponChoices.set(true);
@@ -22,7 +26,7 @@
 		clickedSlotIndex.set(index);
 	}
 
-	function removeGear(index) {
+	function removeGear(index: number) {
 		// add back add symbol
 		weaponAddSymbols.update((arr) => {
 			arr[index] = "add";
@@ -34,82 +38,100 @@
 		removeWeapon.set(true);
 	}
 
-	$: if ($removeSuperIndex > -1) {
-		removeGear($removeSuperIndex);
-		removeSuperIndex.set(-1);
+	function getWeaponType(weapon: string) {
+		if (basicWeapons.includes(weapon)) return "basic";
+		else if (collabWeapons.includes(weapon)) return "collab";
+		else return "super_collab";
 	}
+
+	$effect(() => {
+		if ($removeSuperIndex > -1) {
+			removeGear($removeSuperIndex);
+			removeSuperIndex.set(-1);
+		}
+	});
 </script>
 
 <div id="weapons-container">
-	<div id="default-weap">
+	<div id="default-weap" class="w-16 h-16 flex flex-col justify-center">
 		{#if charName}
 			<img
-				id="weapon-img"
-				src="/img/character/{charName}/{$banWeapon
-					? 'banned.png'
-					: 'weapon.png'}"
+				src={images[
+					`/src/lib/images/characters/${charName}/${
+						$banWeapon ? "banned.png" : "weapon.png"
+					}`
+				].img.src}
 				alt="main weapon"
+				class="w-fit"
 			/>
-		{:else}
-			<div class="img" />
 		{/if}
 		{#if charName}
-			<div id="weapon-level">
-				<p class="weapon-level-text">{$banWeapon ? "Lv 1" : "Lv 7"}</p>
+			<div class="relative">
+				<p class="absolute top-[-10px] left-3">
+					{$banWeapon ? "Lv1" : "Lv7"}
+				</p>
 			</div>
 		{/if}
 	</div>
 	{#each $equippedWeapons as equippedWeapon, index}
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<div
-			class="weapon slot"
-			on:click={() => showWeaponChoices(index)}
-			on:mouseenter={() => {
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<Button
+			class="weapon slot w-16 h-16"
+			size="icon"
+			variant="ghost"
+			onclick={(e: any) => {
+				e.preventDefault();
+				showWeaponChoices(index);
+			}}
+			onmouseenter={() => {
 				if ($equippedWeapons[index] !== "")
 					displayRemoveBtn[index] = "";
 			}}
-			on:mouseleave={() => (displayRemoveBtn[index] = "hidden")}
+			onmouseleave={() => (displayRemoveBtn[index] = "hidden")}
 		>
-			<div class="img {equippedWeapon}">
-				<span class="add material-symbols-outlined"
-					>{$weaponAddSymbols[index]}</span
-				>
-			</div>
+			{#if equippedWeapon}
+				<img
+					src={images[
+						`/src/lib/images/weapons/${getWeaponType(equippedWeapon)}/${equippedWeapon.replaceAll(" ", "_")}_Icon.png`
+					].img.src}
+					alt={equippedWeapon}
+				/>
+			{:else}
+				<img
+					src={images[`/src/lib/images/weapons/weapon_slot.png`].img
+						.src}
+					alt="weapon slot"
+				/>
+			{/if}
+
 			<span
 				class="remove material-symbols-outlined {displayRemoveBtn[
 					index
 				]}"
-				on:click|stopPropagation={() => removeGear(index)}
+				onclick={(e: any) => {
+					e.preventDefault();
+					e.stopPropagation();
+					removeGear(index);
+				}}
 			>
 				cancel
 			</span>
-		</div>
+		</Button>
 	{/each}
 </div>
 
 <style lang="scss">
 	#default-weap {
 		border: 3px solid #4779f4;
+		border-radius: 5px;
 		margin: 5px;
 		padding: 5px;
-	}
-	#weapon-img {
-		object-fit: contain;
-		width: 40px;
-		height: 40px;
 	}
 	#banned-weapon {
 		position: absolute;
 		width: 40px;
 		height: 40px;
 		z-index: 10;
-	}
-	#weapon-level {
-		position: absolute;
-		background: rgb(0, 0, 0, 0.3);
-		margin: -4px -4px 0 -4px;
-		padding: 0 5px 5px 5px;
-	}
-	.weapon-level-text {
 	}
 </style>

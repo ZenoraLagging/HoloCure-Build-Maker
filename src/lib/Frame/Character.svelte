@@ -1,5 +1,6 @@
-<script>
-	export let charName;
+<script lang="ts">
+	import { images } from "$lib/images/exports.svelte";
+	let { charName }: { charName: string } = $props();
 </script>
 
 {#if charName}
@@ -7,7 +8,9 @@
 		<div id="character">
 			<img
 				id="img"
-				src="/img/character/{charName}/portrait.png"
+				src={images[
+					`/src/lib/images/characters/${charName}/portrait.png`
+				].img.src}
 				alt="{charName} portrait"
 			/>
 		</div>
@@ -16,23 +19,12 @@
 
 <style lang="scss">
 	#character-container {
-		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		object-fit: contain;
+		display: flex;
 		width: 200px;
 		align-items: center;
-		@media only screen and (max-width: 640px) {
-			position: absolute;
-			width: 100%;
-			overflow: hidden;
-			left: 0;
-			right: 0;
-			text-align: center;
-			margin-left: auto;
-			margin-right: auto;
-			opacity: 0.15;
-		}
 	}
 
 	#character {

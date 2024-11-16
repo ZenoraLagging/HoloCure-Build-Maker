@@ -1,0 +1,1 @@
+ALTER TABLE "builds_table" ADD COLUMN "banStamp" boolean DEFAULT false NOT NULL;

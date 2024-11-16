@@ -11,7 +11,9 @@
 		displayItemChoices,
 		displayStampChoices,
 		displayStatChoices,
+		displayFoodChoices,
 	} from "$lib/stores";
+	import FoodChoices from "./FoodChoices.svelte";
 
 	function hide() {
 		displayChoices.set(false);
@@ -20,17 +22,20 @@
 		displayItemChoices.set(false);
 		displayStampChoices.set(false);
 		displayStatChoices.set(false);
+		displayFoodChoices.set(false);
 	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div id="choices-bg" class={$displayChoices ? "" : "hidden"} on:click={hide}>
-	<div id="choices-container" on:click={(e) => e.stopPropagation()}>
-		<CharacterChoices display={$displayCharacterChoices ? "" : "hidden"} />
-		<WeaponsChoices display={$displayWeaponChoices ? "" : "hidden"} />
-		<ItemsChoices display={$displayItemChoices ? "" : "hidden"} />
-		<StampChoices display={$displayStampChoices ? "" : "hidden"} />
-		<StatChoices display={$displayStatChoices ? "" : "hidden"} />
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div id="choices-bg" class={$displayChoices ? "" : "hidden"} onclick={hide}>
+	<div id="choices-container" onclick={(e) => e.stopPropagation()}>
+		<CharacterChoices display={$displayCharacterChoices} />
+		<WeaponsChoices display={$displayWeaponChoices} />
+		<ItemsChoices display={$displayItemChoices} />
+		<StampChoices display={$displayStampChoices} />
+		<StatChoices display={$displayStatChoices} />
+		<FoodChoices display={$displayFoodChoices} />
 	</div>
 </div>
 
@@ -61,13 +66,11 @@
 			#super-collab-choices,
 			#item-choices,
 			#stamp-choices,
+			#food-choices,
 			#select-character-choices
 		) {
 		--min: 5rem;
 		--gap: 0.9rem;
-
-		display: flex;
-		flex-wrap: wrap;
 		gap: var(--gap);
 		@media only screen and (max-width: 1920px) {
 			justify-content: center;
@@ -78,6 +81,7 @@
 			#item-choices,
 			#weapon-choices,
 			#stamp-choices,
+			#food-choices,
 			#character-choices
 		) {
 		display: table;
@@ -108,17 +112,5 @@
 		font-size: 18px;
 		margin-bottom: 10px;
 		margin-left: 5px;
-	}
-
-	:global(.unavailable) {
-		filter: brightness(30%);
-		background-color: #461523;
-		pointer-events: none;
-		cursor: default;
-	}
-	:global(.choice) {
-		cursor: pointer;
-		margin: 5px;
-		padding: 5px;
 	}
 </style>

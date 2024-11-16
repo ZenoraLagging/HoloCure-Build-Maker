@@ -1,74 +1,48 @@
-<script>
-    import { showBuildName, buildName } from '$lib/stores';
+<script lang="ts">
+	import { showBuildName, buildName } from "$lib/stores";
+	import { Input } from "$lib/components/ui/input/index.js";
+	import { Textarea } from "$lib/components/ui/textarea/index.js";
 
-    const buildNameCharLimit = 24;
-    let html;
+	const buildNameCharLimit = 32;
 
-    function keypressHandler(e) {
-        // disable input on reaching char limit and enter key
-        if (e.target.innerText.length >= buildNameCharLimit || e.keyCode === 13) {
-            e.preventDefault();
-            return false;
-        }
-    }
+	function focusHandler(name: string) {
+		if (name === "Build Name") {
+			$buildName = "";
+		}
+	}
 
-    function keyupHandler(e) {
-        // since enter key was already disabled, detecting an enter key
-        // from a keyup event would likely mean the input is coming from an IME
-        // this forces to cut the input when reaching the char limit
-        // since the length isn't updated when using an IME (keypress handler won't work)
-        if (e.keyCode === 13 && e.target.innerText.length >= buildNameCharLimit) {
-            $buildName = html.substring(0, buildNameCharLimit);
-        }
-    }
+	function handleChange(name: string) {
+		$buildName = name;
+	}
 
-    function focusHandler(e) {
-        // remove placeholder
-        if (e.target.innerText === 'Build Name') {
-            $buildName = '';
-        }
-    }
-
-    function blurHandler(e) {
-        // insert placeholder when leaving empty text
-        if (!e.target.innerText || e.target.innerText === '\n') {
-            $buildName = 'Build Name';
-        }
-        // other than the enter key that enters the input from an IME,
-        // the user can also unfocus the editable, this captures it
-        if (e.target.innerText.length >= buildNameCharLimit) {
-            $buildName = html.substring(0, buildNameCharLimit);
-        }
-    }
+	function blurHandler(name: string) {
+		// insert placeholder when leaving empty text
+		if (!name || name === "\n") {
+			$buildName = "Build Name";
+		}
+	}
 </script>
 
 {#if $showBuildName}
-    <div
-        id="build-name"
-        onpaste="return false;"
-        contenteditable="true"
-        bind:textContent={$buildName}
-        bind:innerHTML={html}
-        on:keypress={keypressHandler}
-        on:keyup={keyupHandler}
-        on:focus={focusHandler}
-        on:blur={blurHandler}
-    >
-    </div>
+	<Textarea
+		placeholder=""
+		spellcheck="false"
+		maxlength={buildNameCharLimit}
+		value={$buildName}
+		onkeyup={(e: any) => {
+			const target = e.target as HTMLTextAreaElement;
+			target.style.height = "0px";
+			target.style.height = target.scrollHeight + "px";
+			handleChange(e.currentTarget.value);
+		}}
+		ref={(textarea: any) => {
+			if (textarea) {
+				textarea.style.height = "0px";
+				textarea.style.height = textarea.scrollHeight + "px";
+			}
+		}}
+		onfocus={(e: any) => focusHandler(e.currentTarget.value)}
+		onblur={(e: any) => blurHandler(e.currentTarget.value)}
+		class="text-3xl lg:text-5xl break-all text-left lg:text-center border-none overflow-hidden min-h-10 h-16 max-h-32 bg-opacity-0 z-1 mb-4"
+	/>
 {/if}
-
-<style lang="scss">
-    #build-name {
-        outline: none;
-        width: 390px;
-        margin-bottom: 15px;
-        margin-left: 5px;
-        font-size: 30px;
-        word-wrap: break-word;
-
-        &:hover {
-            font-weight: bold;
-            color: white;
-        }
-    }
-</style>

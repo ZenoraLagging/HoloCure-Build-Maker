@@ -1,25 +1,44 @@
-<script>
-	import html2canvas from "html2canvas";
-	import FileSaver from "file-saver";
+<script lang="ts">
+	import { Button } from "./components/ui/button";
+	import {
+		buildName,
+		charSelected,
+		equippedItems,
+		showBuildName,
+	} from "./stores";
+
+	import { domToPng } from "modern-screenshot";
+
+	let item = (el: Node) => {
+		if ($equippedItems.length > 0) return true;
+		let ignore = document.querySelector("#items-container");
+		return el != ignore;
+	};
 
 	function saveImage() {
-		html2canvas(document.querySelector("#build-container"), {
-			scale: 1,
-			backgroundColor: "#27272A",
-		}).then((canvas) => {
-			const ctx = canvas.getContext("2d");
-			ctx.mozImageSmoothingEnabled = false;
-			ctx.webkitImageSmoothingEnabled = false;
-			ctx.msImageSmoothingEnabled = false;
-			ctx.imageSmoothingEnabled = false;
-			const bldName = document.querySelector("#build-name");
-			const fileName =
-				bldName !== null ? bldName.textContent : "Build Name";
-			canvas.toBlob((blob) => FileSaver.saveAs(blob, `${fileName}.png`));
+		domToPng(
+			document.querySelector("#build-container") as HTMLElement,
+			{},
+		).then((dataUrl) => {
+			const characterSelected = $charSelected ?? "Generic";
+			const link = document.createElement("a");
+			const name = $showBuildName
+				? $buildName != "Build Name" || $buildName !== null
+					? $buildName + ".png"
+					: characterSelected + " Build.png"
+				: characterSelected + " Build.png";
+			link.download = name;
+			link.href = dataUrl;
+			link.click();
 		});
 	}
 </script>
 
 <div id="save-image-container">
-	<button id="save-image" on:click={saveImage}>Save Image</button>
+	<Button
+		class="hover:bg-white"
+		variant="secondary"
+		id="save-image"
+		onclick={saveImage}>Save Image</Button
+	>
 </div>

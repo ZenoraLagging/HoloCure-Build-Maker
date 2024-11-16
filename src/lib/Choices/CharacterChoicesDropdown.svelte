@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		charSelected,
 		displayChoices,
@@ -9,11 +9,11 @@
 </script>
 
 <div id="char-select-container-mobile">
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<select
 		id="char-select"
 		bind:value={$charSelected}
-		on:change={(e) => charSelected.set(e.target.value)}
+		onchange={(e: any) => charSelected.set(e.target.value)}
 	>
 		{#each characters as character}
 			<option value={character}>{character}</option>

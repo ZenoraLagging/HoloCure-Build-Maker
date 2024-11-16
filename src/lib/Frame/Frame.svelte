@@ -1,7 +1,6 @@
 <script>
 	import Character from "./Character.svelte";
 	import Build from "./Build.svelte";
-
 	import { charSelected } from "$lib/stores";
 </script>
 
@@ -15,7 +14,10 @@
 		display: flex;
 		flex-direction: row;
 		background-color: var(--dark-bg-color);
-		height: 275px;
+		min-height: 350px;
+		@media only screen and (max-width: 640px) {
+			min-height: 0;
+		}
 		padding: 30px;
 		border: 3px solid var(--font-color);
 	}
