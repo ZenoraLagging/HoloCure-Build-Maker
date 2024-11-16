@@ -55,7 +55,9 @@
 				>
 					<img
 						class="w-16"
-						src={`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={character}
 					/>
 				</Button>
@@ -87,7 +89,9 @@
 					{/if}
 					<img
 						class="w-16"
-						src={`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={character}
 					/>
 				</Button>
