@@ -109,7 +109,7 @@
 				body: JSON.stringify(build),
 			})
 				.then(() => {
-					message = `${window.location.protocol}//${window.location.host}${window.location.pathname}/build?id=${id}`;
+					message = `${window.location.protocol}//${window.location.host}/build?id=${id}`;
 					copySuccess = false;
 					oldEncoded = finalEncoded;
 				})
