@@ -109,7 +109,7 @@
 		{#if $charSelected}
 			<div class="mt-auto flex justify-center">
 				<img
-					class="w-fit h-fit"
+					class="w-fit h-fit opacity-30"
 					src={images[
 						`/src/lib/images/characters/${$charSelected}/portrait.png`
 					].img.src}
