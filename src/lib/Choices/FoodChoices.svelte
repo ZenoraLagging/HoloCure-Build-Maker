@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
 	import { equippedFoodDish } from "$lib/stores";
-
+	import { images } from "$lib/images/exports.svelte";
 	import { foods } from "$lib/variables";
 
 	/** @type {{display: boolean}} */
