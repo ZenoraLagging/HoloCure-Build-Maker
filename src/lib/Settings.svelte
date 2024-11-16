@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		charSelected,
 		collabLimit,
@@ -18,12 +18,13 @@
 		displayStatChoices,
 		showBuildName,
 		showStamps,
-		buildName,
 		superCollabLimit,
 		banWeapon,
 	} from "$lib/stores";
 
-	function weaponSlotAmount(num) {
+	import { Button } from "$lib/components/ui/button/index.js";
+
+	function weaponSlotAmount(num: number) {
 		if (
 			($weaponSlots > 1 && num === -1) ||
 			($weaponSlots < 6 && num === 1)
@@ -43,7 +44,7 @@
 		}
 	}
 
-	function itemSlotAmount(num) {
+	function itemSlotAmount(num: number) {
 		if (($itemSlots > 0 && num === -1) || ($itemSlots < 6 && num === 1)) {
 			$itemSlots += num;
 
@@ -69,15 +70,17 @@
 		displayStatChoices.set(true);
 	}
 
-	function showCharacterChoices() {
+	function showCharacterChoices(e: any) {
+		e.preventDefault();
 		// show menu
-		displayChoices.set(true);
-		displayCharacterChoices.set(true);
+		displayChoices.set(!$displayChoices);
+		displayCharacterChoices.set(!$displayCharacterChoices);
 	}
 
 	function clearWeapons() {
 		weaponAddSymbols.set(Array($weaponSlots - 1).fill("add"));
 		equippedWeapons.set(Array($weaponSlots - 1).fill(""));
+		charSelected.set("");
 		resetWeaponSlots.set(true);
 	}
 
@@ -97,21 +100,25 @@
 <div id="settings">
 	<!-- <CharacterChoicesDropdown /> -->
 	<div id="char-select-container">
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<button id="char-select-button" onclick={showCharacterChoices}
-			>{$charSelected ? $charSelected : "Select Character"}</button
+		<Button
+			variant="secondary"
+			class="w-fit h-fit p-4 text-2xl hover:bg-white"
+			onclick={showCharacterChoices}
+			>{$charSelected ? $charSelected : "Select Character"}</Button
 		>
 	</div>
 	<div id="options-container">
-		<button id="add-stat-prio" onclick={showStatChoices}
-			>Stat Priority</button
+		<Button
+			variant="secondary"
+			class="w-fit h-fit p-4 text-2xl hover:bg-white"
+			onclick={showStatChoices}>Stat Priority</Button
 		>
 	</div>
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div id="more-settings">
 		<div id="slot-container">
 			<div id="input-number">
-				<p for="weapon-slots">Weapon Slot #</p>
+				<p>Weapon Slot #</p>
 				<div id="weapon-slots">
 					<button class="minus" onclick={() => weaponSlotAmount(-1)}
 					></button>
@@ -119,12 +126,14 @@
 					<button class="plus" onclick={() => weaponSlotAmount(1)}
 					></button>
 				</div>
-				<button id="clear-button" onclick={() => clearWeapons()}
-					>Clear Weapons</button
+				<Button
+					variant="destructive"
+					class="mt-6"
+					onclick={() => clearWeapons()}>Clear Weapons</Button
 				>
 			</div>
 			<div id="input-number">
-				<p for="item-slots">Item Slot #</p>
+				<p>Item Slot #</p>
 				<div id="item-slots">
 					<button class="minus" onclick={() => itemSlotAmount(-1)}
 					></button>
@@ -132,8 +141,11 @@
 					<button class="plus" onclick={() => itemSlotAmount(1)}
 					></button>
 				</div>
-				<button id="clear-button" onclick={() => clearItems()}
-					>Clear Items</button
+				<Button
+					variant="destructive"
+					class="mt-6"
+					id="clear-button"
+					onclick={() => clearItems()}>Clear Items</Button
 				>
 			</div>
 		</div>
@@ -144,7 +156,8 @@
 					<input
 						type="checkbox"
 						bind:checked={$showBuildName}
-						onchange={(e) => showBuildName.set(e.target.checked)}
+						onchange={(e: any) =>
+							showBuildName.set(e.target.checked)}
 					/>
 					<span class="slider"></span>
 				</label>
@@ -155,7 +168,7 @@
 					<input
 						type="checkbox"
 						bind:checked={$banWeapon}
-						onchange={(e) => banWeapon.set(e.target.checked)}
+						onchange={(e: any) => banWeapon.set(e.target.checked)}
 					/>
 					<span class="slider"></span>
 				</label>
@@ -166,12 +179,14 @@
 					<input
 						type="checkbox"
 						bind:checked={$showStamps}
-						onchange={(e) => showStamps.set(e.target.checked)}
+						onchange={(e: any) => showStamps.set(e.target.checked)}
 					/>
 					<span class="slider"></span>
 				</label>
-				<button id="clear-button" onclick={() => clearStamps()}
-					>Clear Stamps</button
+				<Button
+					variant="destructive"
+					class="mt-4"
+					onclick={() => clearStamps()}>Clear Stamps</Button
 				>
 			</div>
 		</div>

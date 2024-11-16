@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { images } from "$lib/images/exports.svelte";
 	let { charName }: { charName: string } = $props();
-	console.log(images);
 </script>
 
 {#if charName}
@@ -20,21 +19,12 @@
 
 <style lang="scss">
 	#character-container {
-		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		object-fit: contain;
+		display: flex;
 		width: 200px;
 		align-items: center;
-		@media only screen and (max-width: 640px) {
-			position: absolute;
-			width: 100%;
-			overflow: hidden;
-			left: 0;
-			right: 0;
-			opacity: 0.15;
-			z-index: 1;
-		}
 	}
 
 	#character {

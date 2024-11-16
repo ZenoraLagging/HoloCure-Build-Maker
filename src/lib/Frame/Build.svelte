@@ -4,16 +4,20 @@
 	import Items from "./Items.svelte";
 	import Stamps from "./Stamps.svelte";
 	import StatPriority from "./StatPriority.svelte";
+	import SupportItems from "./SupportItems.svelte";
 
 	/** @type {{charName: any}} */
 	let { charName } = $props();
 </script>
 
-<div id="equipment-container" class="space-y-1">
+<div id="equipment-container" class="">
 	<BuildName />
 	<Weapons {charName} />
 	<Items />
-	<Stamps />
+	<div class="flex flex-row justify-between">
+		<Stamps />
+		<SupportItems />
+	</div>
 	<StatPriority />
 </div>
 
@@ -21,7 +25,7 @@
 	#equipment-container {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-evenly;
+		justify-content: center;
 		height: 100%;
 		margin-left: 10px;
 	}
@@ -36,19 +40,6 @@
 	:global(#weapons-container, #items-container, #stamps-container) {
 		display: flex;
 		flex-direction: row;
-	}
-
-	:global(.add.material-symbols-outlined) {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		font-size: 50px;
-		color: #d1d5db;
-
-		&:hover {
-			color: white;
-		}
 	}
 
 	:global(.remove.material-symbols-outlined) {

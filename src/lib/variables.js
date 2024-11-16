@@ -23,134 +23,106 @@ export const idCharacters = idArea15.concat(idHoloro, idHoloH3ro);
 export const characters = enCharacters.concat(jpCharacters, idCharacters);
 
 export const basicWeapons = [
-	'bl-book', 'bounce-ball', 'ceos-tears', 'cutting-board', 'lava-bucket',
-	'ens-curse', 'fan-beam', 'glowstick', 'holo-bomb', 'idol-song',
-	'plug-in-asacoco', 'sui-axe', 'chama-cooking', 'wamy-water', 'x-potato', "sausage"
+	'BL Book', 'Bounce Ball', 'CEO\'s Tears', 'Cutting Board', 'Elite Lava Bucket',
+	'EN\'s Curse', 'Fan Beam', 'Glowstick', 'Holo Bomb', 'Idol Song',
+	'Plug Type Asacoco', 'Psycho Axe', 'Spider Cooking', 'Wamy Water', 'X-Potato', "Sausage", "Owl Dagger"
 ];
 
 export const collabWeapons = [
-	'absolute-wall', 'bl-fujoshi', 'bone-bros', 'breathe-in-asacoco', 'broken-dreams', "crescent-bardiche", "curse-ball",
-	'dragon-fire', 'eldritch-horror', 'elite-cooking', 'flattening-board', 'frozen-sea',
-	'im-die-ty-4eva', "legendary-sausage", "lightning-wiener", 'idol-concert', 'light-beam', 'micomet', 'mikorone',
-	'rap-dog', 'ring-of-fitness', 'snow-sake', 'stream-of-tears'
+	'Absolute Wall', 'BL Fujoshi', 'Bone Bros.', 'Breathe-In Type Asacoco', 'Broken Dreams', "Crescent Bardiche", "Curse Ball",
+	'Dragon Fire', 'Eldritch Horror', 'Elite Cooking', 'Flattening Board', 'Frozen Sea',
+	'I\'m Die, Thank You Forever', "Legendary Sausage", "Lightning Wiener", 'Idol Concert', 'Light Beam', 'MiComet', 'MiKorone',
+	'Rap Dog', 'Ring Of Fitness', 'Snow Flower Sake', 'Stream Of Tears', "Black Plague", "Blood Lust"
 ];
 
-export const superCollabWeapons = ['holy-fire', 'idol-live', 'jingisukan', 'snow-queen']
+export const superCollabWeapons = ['Holy Fire', 'Idol Live', 'Jingisukan', 'Snow Queen', "True Infinite BL Works"]
 
 export const weapons = basicWeapons.concat(collabWeapons, superCollabWeapons);
 
 
-export const basicCollabForumlas = {
-	"absolute-wall": ["bounce-ball", "cutting-board"],
-	"bl-fujoshi": ["bl-book", "sui-axe"],
-	"bone-bros": ["cutting-board", "ens-curse"],
-	"breathe-in-asacoco": ["holo-bomb", "plug-in-asacoco"],
-	"broken-dreams": ["chama-cooking", "ceos-tears"],
-	"crescent-bardiche": ['sui-axe', 'idol-song'],
-	"curse-ball": ["bounce-ball", "ens-curse"],
-	"dragon-fire": ["fan-beam", "plug-in-asacoco"],
-	"eldritch-horror": ["chama-cooking", "ens-curse"],
-	"elite-cooking": ["chama-cooking", "lava-bucket"],
-	"flattening-board": ["cutting-board", "holo-bomb"],
-	"frozen-sea": ["bl-book", "wamy-water"],
-	"im-die-ty-4eva": ["holo-bomb", "x-potato"],
-	"legendary-sausage": ["bl-boook", "sausage"],
-	"idol-concert": ["glowstick", "idol-song"],
-	"light-beam": ["fan-beam", "glowstick"],
-	"lightning-wiener": ['plug-in-asacoco', "sausage"],
-	micomet: ["lava-bucket", "sui-axe"],
-	mikorone: ["lava-bucket", "x-potato"],
-	"rap-dog": ["idol-song", "x-potato"],
-	"ring-of-fitness": ["bounce-ball", "ceos-tears"],
-	"snow-sake": ["glowstick", "wamy-water"],
-	"stream-of-tears": ["ceos-tears", "fan-beam"],
+export const basicCollabFormulas = {
+	"Absolute Wall": ["Bounce Ball", "Cutting Board"],
+	"BL Fujoshi": ["BL Book", "Psycho Axe"],
+	"Bone Bros.": ["Cutting Board", "EN\'s Curse"],
+	"Breathe-In Type Asacoco": ["Holo Bomb", "Plug Type Asacoco"],
+	"Broken Dreams": ["Spider Cooking", "Ceo\'s Tears"],
+	"Crescent Bardiche": ['Psycho Axe', 'Idol Song'],
+	"Curse Ball": ["Bounce Ball", "EN\'s Curse"],
+	"Dragon Fire": ["Fan Beam", "Plug Type Asacoco"],
+	"Eldritch Horror": ["Spider Cooking", "EN\'s Curse"],
+	"Elite Cooking": ["Spider Cooking", "Elite Lava Bucket"],
+	"Flattening Board": ["Cutting Board", "Holo Bomb"],
+	"Frozen Sea": ["BL Book", "Wamy Water"],
+	"I\'m Die, Thank You Forever": ["Holo Bomb", "X-Potato"],
+	"Legendary Sausage": ["BL Book", "sausage"],
+	"Idol Concert": ["Glowstick", "Idol Song"],
+	"Light Beam": ["Fan Beam", "Glowstick"],
+	"Lightning Wiener": ['Plug Type Asacoco', "sausage"],
+	"MiComet": ["Elite Lava Bucket", "Psycho Axe"],
+	"MiKorone": ["Elite Lava Bucket", "X-Potato"],
+	"Rap Dog": ["Idol Song", "X-Potato"],
+	"Ring Of Fitness": ["Bounce Ball", "Ceo\'s Tears"],
+	"Snow Flower Sake": ["Glowstick", "Wamy Water"],
+	"Stream Of Tears": ["Ceo\'s Tears", "Fan Beam"],
+	"Black Plague": ['EN\'s Curse', "Owl Dagger"],
+	"Blood Lust": ['Psycho Axe', "Owl Dagger"],
 };
 
 export const superCollabFormulas = {
-	"holy-fire": [
-		"fan-beam",
-		"plug-in-asacoco",
-		"gorillas-paw",
-		"super-gorillas-paw",
+	"Holy Fire": [
+		"Fan Beam",
+		"Plug Type Asacoco",
+		"Gorilla\'s Paw",
+		"Super Gorilla\'s Paw",
 	],
-	"idol-live": [
-		"glowstick",
-		"idol-song",
-		"idol-costume",
-		"super-idol-costume",
+	"Idol Live": [
+		"Glowstick",
+		"Idol Song",
+		"Idol Costume",
+		"Super Idol Costume",
 	],
-	jingisukan: [
-		"chama-cooking",
-		"lava-bucket",
-		"uber-sheep",
-		"super-uber-sheep",
+	"Jingisukan": [
+		"Spider Cooking",
+		"Elite Lava Bucket",
+		"Uber Sheep",
+		"Super Uber Sheep",
 	],
-	"snow-queen": ["glowstick", "wamy-water", "sake", "super-sake"],
+	"Snow Queen": ["Glowstick", "Wamy Water", "Sake", "Super Sake"],
+	"True Infinite BL Works": ["Psycho Axe", "BL Fujoshi", "Hope Soda", "Super Hope Soda"],
 };
 
-export const collabForumlas = {
-	...basicCollabForumlas,
+export const collabFormulas = {
+	...basicCollabFormulas,
 	...superCollabFormulas
 };
 
 export const basicItems = [
-	'blacksmiths-gear', 'body-pillow', 'breastplate', 'chickens-feather', 'credit-card',
-	'devil-hat', 'energy-drink', 'face-mask', 'full-meal', 'gorillas-paw',
-	'gws-pill', 'halu', 'headphones', 'hope-soda', 'idol-costume',
-	'injection-type-asacoco', 'just-bandage', 'milk', 'shackles', 'limiter',
-	'membership', 'horn', 'ppp', 'plushie', 'sake',
-	'piggy-bank', 'glasses', 'sc-time', 'uber-sheep', 'focus-shades', 'ninja-headband', 'researchers-coat', 'candy-kingdom-sweets', 'beetle'
+	'Blacksmith\'s Gear', 'Body Pillow', 'breastplate', 'Chicken\'s Feather', 'Credit Card',
+	'Devil Hat', 'Energy Drink', 'Face Mask', 'Full Meal', 'Gorilla\'s Paw',
+	'GWS Pill', 'Halu', 'Headphones', 'Hope Soda', 'Idol Costume',
+	'Injection Type Asacoco', 'Just Bandage', 'Knightly Milk', 'Kusogaki Shackles', 'limiter',
+	'Membership', 'Nurse\'s Horn', 'Piki Piki Piman', 'Plushie', 'Sake',
+	'Stolen Piggy Bank', 'Study Glasses', 'Super Chatto Time!', 'Uber Sheep', 'Focus Shades', 'Ninja Headband', 'Researcher\'s Coat',
+	'Candy Kingdom Sweets', 'Beetle', 'Corporation Pin', "Promise Tiara", 'Raven Feather'
 ];
 
 export const superItems = [
-	'super-glasses', 'super-idol-costume', 'super-sc-time', 'super-gorillas-paw', 'super-body-pillow',
-	'super-milk', 'super-energy-drink', 'super-credit-card', 'super-chickens-feather', 'super-sake',
-	'super-limiter', 'super-horn', 'super-headphones', 'super-hope-soda', 'super-breastplate', 'super-piggy-bank'
+	'Super Study Glasses', 'Super Idol Costume', 'Super Super Chatto Time!', 'Super Gorilla\'s Paw', 'Super Body Pillow',
+	'Super Knightly Milk', 'Super Energy Drink', 'Super Credit Card', 'Super Chicken\'s Feather', 'Super Sake',
+	'Super Limiter', 'Super Nurse\'s Horn', 'Super Headphones', 'Super Hope Soda', 'Super Breastplate', 'Super Stolen Piggy Bank',
+	'Super Injection Type Asacoco'
 ]
 
 export const items = basicItems.concat(superItems);
 
 export const stamps = [
-	'atk', 'bomb', 'cold', 'crit', 'greed', 'haste', 'knockback', 'life-steal', 'lightness', 'marking', 'projectile',
-	'reverse', 'rgb', 'size', 'slow', 'solo', 'stun', 'trumpet', 'unit', 'weaken'
+	'ATK Up', 'Bomb', 'Cold', 'Crit Up', 'Greed', 'Haste Up', 'Knockback', 'Life Steal', 'Lightness', 'Marking', 'Projectile Up',
+	'Reverse', 'RGB', 'Size Up', 'Slow', 'Solo', 'Stun', 'Trumpet', 'Unit', 'Weaken', "Rock Hard", "Collector's"
 ];
 
-export const stats = ['hp-up', 'atk-up', 'spd-up', 'crt-up', 'pick-up', 'haste-up'];
+export const stats = ['Max HP Up', 'ATK Up', 'SPD Up', 'Crit Up', 'Pick Up Range', 'Haste Up'];
 
-export const food = [{
-	name: "Tempura",
-	stat: "atk-up",
-	effect: "30%",
-	description: "Increases ATK by 30%."
-}, {
-	name: "Tuna Sandwich",
-	stat: "spd-up",
-	effect: "25%",
-	description: "Increases SPD by 25%."
-}, {
-	name: "Sushi Set",
-	stat: "crt-up",
-	effect: "10%",
-	description: "Increases Crit by 10%."
-}, {
-	name: "Poke Bowl",
-	stat: "pick-up",
-	effect: "40%",
-	description: "Increases Pick Up Range by 40%."
-}, {
-	name: "Lobster Dinner",
-	stat: "atk-up",
-	effect: "30%",
-	description: "Increase ATK by 30%."
-}, {
-	name: "Lobster Dinner",
-	stat: {
-		statOne: ["atk-up", "spd-up", "pick-up"],
-		statTwo: ["hp-up", "crt-up", "haste-up"]
-	},
-	effect: {
-		statOne: "20%",
-		statTwo: "10%"
-	},
-	description: "Increase ATK/SPD/PUR by 20% and Max HP/Crit/Haste by 10%."
-}, ]
+export const foods = ['Tempura', 'Tuna Sandwich','Sushi Set',
+	'Poke Bowl', 'Lobster Dinner', 'Pufferfish Meal Set',
+	'Vegetarian Burger and Fries', 'Unagi Don','Calamari Set','Manta Ray Soup',
+	'Fruit Sandwich','Burger Meal','Vegetable Soup', 'Spicy Seafood Udon', 'Strange Seafood Soup', 'BBQ Squid', 'Turtle Soup']

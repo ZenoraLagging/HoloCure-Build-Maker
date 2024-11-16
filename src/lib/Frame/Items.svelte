@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { run, stopPropagation } from "svelte/legacy";
 
 	import {
@@ -9,11 +9,15 @@
 		clickedSlotIndex,
 		removeItem,
 		removeInvalidItem,
+		itemSlots,
 	} from "$lib/stores";
+	import Button from "$lib/components/ui/button/button.svelte";
+	import { basicItems } from "$lib/variables";
+	import MdiPlusThick from "~icons/mdi/plus-thick";
 
 	let displayRemoveBtn = $state(Array(6).fill("hidden"));
 
-	function showItemChoices(index) {
+	function showItemChoices(index: number) {
 		// show menu
 		displayChoices.set(true);
 		displayItemChoices.set(true);
@@ -21,7 +25,7 @@
 		clickedSlotIndex.set(index);
 	}
 
-	function removeGear(index) {
+	function removeGear(index: number) {
 		// add back add symbol
 		itemAddSymbols.update((arr) => {
 			arr[index] = "add";
@@ -33,6 +37,11 @@
 		removeItem.set(true);
 	}
 
+	function getItemType(item: string) {
+		if (basicItems.includes(item)) return "basic";
+		else return "super";
+	}
+
 	$effect(() => {
 		if ($removeInvalidItem > -1) {
 			removeGear($removeInvalidItem);
@@ -41,38 +50,51 @@
 	});
 </script>
 
-<div id="items-container">
-	{#each $equippedItems as equippedItem, index}
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div
-			class="item slot"
-			onclick={(e) => {
-				e.preventDefault();
-				showItemChoices(index);
-			}}
-			onmouseenter={() => {
-				if ($equippedItems[index] !== "") displayRemoveBtn[index] = "";
-			}}
-			onmouseleave={() => (displayRemoveBtn[index] = "hidden")}
-		>
-			<div class="img {equippedItem}">
-				<span class="add material-symbols-outlined"
-					>{$itemAddSymbols[index]}</span
-				>
-			</div>
-			<span
-				class="remove material-symbols-outlined {displayRemoveBtn[
-					index
-				]}"
-				onclick={(e) => {
+{#if $itemSlots > 0}
+	<div id="items-container">
+		{#each $equippedItems as equippedItem, index}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<Button
+				variant="ghost"
+				class="item slot w-16 h-16"
+				size="icon"
+				onclick={(e: any) => {
 					e.preventDefault();
-					e.stopPropagation();
-					removeGear(index);
+					showItemChoices(index);
 				}}
+				onmouseenter={() => {
+					if ($equippedItems[index] !== "")
+						displayRemoveBtn[index] = "";
+				}}
+				onmouseleave={() => (displayRemoveBtn[index] = "hidden")}
 			>
-				cancel
-			</span>
-		</div>
-	{/each}
-</div>
+				{#if equippedItem}
+					<img
+						class="w-12"
+						src={`src/lib/images/items/${getItemType(equippedItem)}/${equippedItem.replaceAll(" ", "_")}_Icon.png`}
+						alt={equippedItem}
+					/>
+				{:else}
+					<img
+						src={`src/lib/images/items/item_slot.png`}
+						alt="item slot"
+					/>
+				{/if}
+
+				<span
+					class="remove material-symbols-outlined {displayRemoveBtn[
+						index
+					]}"
+					onclick={(e: any) => {
+						e.preventDefault();
+						e.stopPropagation();
+						removeGear(index);
+					}}
+				>
+					cancel
+				</span>
+			</Button>
+		{/each}
+	</div>
+{/if}

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import {
 		charSelected,
 		displayChoices,
@@ -9,12 +9,14 @@
 		jpCharacters,
 		idCharacters,
 		characters,
+		jpGen3,
+		jpGen4,
 	} from "$lib/variables";
-	import { images } from "$lib/images/exports.svelte";
+	import { Button } from "$lib/components/ui/button/index.js";
 	/** @type {{display: any}} */
 	let { display } = $props();
 
-	function clickHandler(character) {
+	function clickHandler(character: string) {
 		if (character === "en") {
 			let random = Math.floor(Math.random() * enCharacters.length);
 			character = enCharacters[random];
@@ -34,146 +36,125 @@
 		displayChoices.set(false);
 		displayCharacterChoices.set(false);
 	}
-
-	//dynamically import images as urls so i don't go crazy manually importing all by hand
-	let enChars = enCharacters.reduce(
-		(accumulator, currValue) => (
-			(accumulator[currValue] = new URL(
-				"../images/characters/Select/en/" +
-					currValue.replace(" ", "_").replace("'", "") +
-					"_Icon.png",
-				import.meta.url,
-			).href),
-			accumulator
-		),
-		{},
-	);
-
-	let jpChars = jpCharacters.reduce(
-		(accumulator, currValue) => (
-			(accumulator[currValue] = new URL(
-				"../images/characters/Select/jp/" +
-					currValue.replace(" ", "_").replace("'", "") +
-					"_Icon.png",
-				import.meta.url,
-			).href),
-			accumulator
-		),
-		{},
-	);
-
-	let idChars = idCharacters.reduce(
-		(accumulator, currValue) => (
-			(accumulator[currValue] = new URL(
-				"../images/characters/Select/id/" +
-					currValue.replace(" ", "_").replace("'", "") +
-					"_Icon.png",
-				import.meta.url,
-			).href),
-			accumulator
-		),
-		{},
-	);
 </script>
 
-<div id="character-choices" class={display}>
-	<h1 id="generation-header">HoloEN</h1>
-	<div id="select-character-choices">
-		{#each Object.entries(enChars) as [character, url]}
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<div
-				class="character choice {$charSelected === character
-					? 'selected'
-					: ''}"
-				onclick={(e) => clickHandler(character)}
-			>
-				<!-- <div id="char-name-container">
-					<p id="char-name">{character}</p>
-				</div> -->
-				<div
-					class="img-char"
-					style="background-image: url('{url}');"
-				></div>
-			</div>
-		{/each}
+{#if display}
+	<div id="character-choices">
+		<h1 id="generation-header">HoloEN</h1>
+		<div id="select-character-choices" class="flex flex-row flex-wrap">
+			{#each enCharacters as character}
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<Button
+					class="w-fit h-fit character p-1 {$charSelected ===
+					character
+						? 'selected'
+						: ''}"
+					variant="ghost"
+					onclick={() => clickHandler(character)}
+				>
+					<img
+						class="w-16"
+						src={`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`}
+						alt={character}
+					/>
+				</Button>
+			{/each}
 
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<div class="character choice" onclick={(e) => clickHandler("en")}>
-			<div class="img-char"><h1 id="random-character">?</h1></div>
-		</div>
-	</div>
-	<h1 id="generation-header">HoloJP</h1>
-	<div id="select-character-choices">
-		{#each Object.entries(jpChars) as [character, url]}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<div
-				class="character choice {$charSelected === character
-					? 'selected'
-					: ''}"
-				onclick={(e) => clickHandler(character)}
+			<Button
+				class="character  w-[72px] h-[70px]  text-2xl"
+				variant="ghost"
+				onclick={(e: any) => clickHandler("en")}
 			>
-				<div
-					class="img-char"
-					style="background-image: url('{url}');"
-				></div>
-			</div>
-		{/each}
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<div class="character choice" onclick={(e) => clickHandler("jp")}>
-			<div class="img-char"><h1 id="random-character">?</h1></div>
+				?
+			</Button>
 		</div>
-	</div>
-	<h1 id="generation-header">HoloID</h1>
-	<div id="select-character-choices">
-		{#each Object.entries(idChars) as [character, url]}
+		<h1 id="generation-header">HoloJP</h1>
+		<div id="select-character-choices" class="flex flex-row flex-wrap">
+			{#each jpCharacters as character}
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<Button
+					class="w-fit h-fit character p-1 {$charSelected ===
+					character
+						? 'selected'
+						: ''}"
+					variant="ghost"
+					onclick={() => clickHandler(character)}
+				>
+					{#if jpGen3.includes(character) || jpGen4.includes(character)}
+						<p class="absolute bottom-[-18px] text-red-400">New!</p>
+					{/if}
+					<img
+						class="w-16"
+						src={`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`}
+						alt={character}
+					/>
+				</Button>
+			{/each}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<div
-				class="character choice {$charSelected === character
-					? 'selected'
-					: ''}"
-				onclick={(e) => clickHandler(character)}
+			<Button
+				class="character p-1  w-[72px] h-[70px] text-2xl"
+				variant="ghost"
+				onclick={(e: any) => clickHandler("jp")}
 			>
-				<div
-					class="img-char"
-					style="background-image: url('{url}');"
-				></div>
-			</div>
-		{/each}
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<div class="character choice" onclick={(e) => clickHandler("id")}>
-			<div class="img-char"><h1 id="random-character">?</h1></div>
+				?
+			</Button>
 		</div>
-	</div>
+		<h1 id="generation-header">HoloID</h1>
+		<div id="select-character-choices" class="flex flex-row flex-wrap">
+			{#each idCharacters as character}
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<Button
+					class="w-fit h-fit character p-1 {$charSelected ===
+					character
+						? 'selected'
+						: ''}"
+					variant="ghost"
+					onclick={() => clickHandler(character)}
+				>
+					<img
+						class="w-16"
+						src={`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`}
+						alt={character}
+					/>
+				</Button>
+			{/each}
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<Button
+				variant="ghost"
+				class="character p-1 w-[72px] h-[70px] text-2xl"
+				onclick={(e: any) => clickHandler("id")}
+			>
+				?
+			</Button>
+		</div>
 
-	<h1 id="generation-header">Random</h1>
-	<div id="select-character-choices">
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<div class="character choice" onclick={(e) => clickHandler("random")}>
-			<div class="img-char random-select">
-				<h1 id="random-character">?</h1>
-			</div>
+		<h1 id="generation-header">Random</h1>
+		<div
+			id="select-character-choices"
+			class="flex flex-row flex-wrap align-center"
+		>
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<Button
+				class="character p-1 w-[72px] h-[70px] text-2xl"
+				variant="ghost"
+				onclick={(e: any) => clickHandler("random")}
+			>
+				?
+			</Button>
 		</div>
 	</div>
-</div>
+{/if}
 
 <style lang="scss">
-	.character:hover {
-		background-color: #2a2a2a;
-	}
-
 	.selected {
 		border: 3px solid #fff38c;
 		filter: brightness(30%);
 		pointer-events: none;
 		cursor: default;
 	}
-	#random-character {
-		font-size: 50px;
-		text-align: center;
-		margin-left: 5px;
-		@media only screen and (max-width: 1920px) {
-			font-size: 40px;
-		}
+	#generation-header {
+		padding: 10px 0 5px 0;
 	}
 	#char-name-container {
 		display: flex;
@@ -187,5 +168,9 @@
 	}
 	#char-name {
 		text-align: center;
+	}
+	.specialtext {
+		-webkit-text-fill-color: transparent;
+		-webkit-text-stroke-width: 1px;
 	}
 </style>

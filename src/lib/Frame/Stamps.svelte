@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+	import { Button } from "$lib/components/ui/button";
 	import {
 		displayChoices,
 		displayStampChoices,
@@ -8,10 +9,11 @@
 		removeStamp,
 		showStamps,
 	} from "$lib/stores";
+	import MdiPlusThick from "~icons/mdi/plus-thick";
 
 	let displayRemoveBtn = $state(Array(3).fill("hidden"));
 
-	function showStampChoices(index) {
+	function showStampChoices(index: number) {
 		// show menu
 		displayChoices.set(true);
 		displayStampChoices.set(true);
@@ -19,7 +21,7 @@
 		clickedSlotIndex.set(index);
 	}
 
-	function removeGear(index) {
+	function removeGear(index: number) {
 		// add back add symbol
 		stampAddSymbols.update((arr) => {
 			arr[index] = "add";
@@ -33,13 +35,15 @@
 </script>
 
 {#if $showStamps}
-	<div id="stamps-container">
+	<div id="stamps-container" class="flex flex-row flex-wrap">
 		{#each $equippedStamps as equippedStamp, index}
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<div
-				class="stamp slot"
-				onclick={(e) => {
+			<Button
+				variant="ghost"
+				class="stamp slot w-16 h-16"
+				size="icon"
+				onclick={(e: any) => {
 					e.preventDefault();
 					showStampChoices(index);
 				}}
@@ -49,11 +53,16 @@
 				}}
 				onmouseleave={() => (displayRemoveBtn[index] = "hidden")}
 			>
-				<div class="img {equippedStamp}">
-					<span class="add material-symbols-outlined"
-						>{$stampAddSymbols[index]}</span
-					>
-				</div>
+				{#if equippedStamp}
+					<img
+						class="w-16"
+						src={`/src/lib/images/stamps/${equippedStamp.replaceAll(" ", "_")}_Stamp_Icon.png`}
+						alt={equippedStamp}
+					/>
+				{:else}
+					<MdiPlusThick style="font-size:2em" />
+				{/if}
+
 				<span
 					class="remove material-symbols-outlined {displayRemoveBtn[
 						index
@@ -66,7 +75,7 @@
 				>
 					cancel
 				</span>
-			</div>
+			</Button>
 		{/each}
 	</div>
 {/if}

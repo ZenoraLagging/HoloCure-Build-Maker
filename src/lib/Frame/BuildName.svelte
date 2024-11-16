@@ -3,7 +3,7 @@
 	import { Input } from "$lib/components/ui/input/index.js";
 	import { Textarea } from "$lib/components/ui/textarea/index.js";
 
-	const buildNameCharLimit = 99999999;
+	const buildNameCharLimit = 32;
 
 	function focusHandler(name: string) {
 		if (name === "Build Name") {
@@ -43,6 +43,6 @@
 		}}
 		onfocus={(e: any) => focusHandler(e.currentTarget.value)}
 		onblur={(e: any) => blurHandler(e.currentTarget.value)}
-		class="text-3xl lg:text-5xl break-all text-left lg:text-center border-none overflow-hidden min-h-16 h-16 bg-opacity-0 z-50"
+		class="text-3xl lg:text-5xl break-all text-left lg:text-center border-none overflow-hidden min-h-10 h-16 max-h-32 bg-opacity-0 z-1 mb-4"
 	/>
 {/if}
