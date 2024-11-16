@@ -13,6 +13,7 @@
 		jpGen4,
 	} from "$lib/variables";
 	import { Button } from "$lib/components/ui/button/index.js";
+	import { images } from "$lib/images/exports.svelte";
 	/** @type {{display: any}} */
 	let { display } = $props();
 
@@ -114,7 +115,9 @@
 				>
 					<img
 						class="w-16"
-						src={`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`}
+						src={images[
+							`/src/lib/images/characters/Select/${character.replaceAll(" ", "_")}_Icon.png`
+						].img.src}
 						alt={character}
 					/>
 				</Button>
