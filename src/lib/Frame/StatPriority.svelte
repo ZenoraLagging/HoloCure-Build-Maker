@@ -13,7 +13,7 @@
 				].img.src}
 				alt={stat}
 			/>
-			<p class="text-2xl justify-center">
+			<p class="text-2xl justify-center mx-2">
 				{index !== $statPriorityOrder.length - 1 ? ">" : ""}
 			</p>
 		{/each}
