@@ -12,33 +12,6 @@
 </script>
 
 <div id="support-container" class="flex flex-row flex-wrap">
-	<Button
-		variant="ghost"
-		class="support slot w-16 h-16"
-		size="icon"
-		onclick={(e: any) => {
-			e.preventDefault();
-			displayChoices.set(true);
-			displayFoodChoices.set(true);
-		}}
-	>
-		{#if $equippedFoodDish}
-			<img
-				id="img"
-				class="w-12 h-12"
-				src={images[
-					`/src/lib/images/foods/${$equippedFoodDish.replaceAll(" ", "_")}_Icon.png`
-				].img.src}
-				alt="support"
-			/>
-		{:else}
-			<img
-				id="img"
-				src={images[`/src/lib/images/equips/none.png`].img.src}
-				alt="support"
-			/>
-		{/if}
-	</Button>
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			{#snippet child({ props })}
@@ -51,20 +24,31 @@
 					onmouseenter={() => {}}
 					onmouseleave={() => {}}
 				>
-					<img
-						id="img"
-						src={images[
-							`/src/lib/images/equips/support/HUD_Support.png`
-						].img.src}
-						alt="support"
-					/>
+					<p id="support-label" class="absolute bottom-[-20px]">
+						Support
+					</p>
+
 					{#if $equippedSupportItem}
+						<img
+							id="img"
+							src={images[
+								`/src/lib/images/equips/support/HUD_Support.png`
+							].img.src}
+							alt="support"
+						/>
 						<img
 							id="img"
 							class="absolute w-1/2 left-6 top-5"
 							src={images[
 								`/src/lib/images/equips/support/${$equippedSupportItem}_Support.png`
 							].img.src}
+							alt="support"
+						/>
+					{:else}
+						<img
+							id="img"
+							src={images[`/src/lib/images/equips/none.png`].img
+								.src}
 							alt="support"
 						/>
 					{/if}
@@ -121,6 +105,36 @@
 			</DropdownMenu.Group>
 		</DropdownMenu.Content>
 	</DropdownMenu.Root>
+
+	<Button
+		variant="ghost"
+		class="support slot w-16 h-16"
+		size="icon"
+		onclick={(e: any) => {
+			e.preventDefault();
+			displayChoices.set(true);
+			displayFoodChoices.set(true);
+		}}
+	>
+		<p id="support-label" class="absolute bottom-[-20px]">Food</p>
+		{#if $equippedFoodDish}
+			<img
+				id="img"
+				class="w-12 h-12"
+				src={images[
+					`/src/lib/images/foods/${$equippedFoodDish.replaceAll(" ", "_")}_Icon.png`
+				].img.src}
+				alt="support"
+			/>
+		{:else}
+			<img
+				id="img"
+				src={images[`/src/lib/images/equips/none.png`].img.src}
+				alt="support"
+			/>
+		{/if}
+	</Button>
+
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			{#snippet child({ props })}
@@ -133,6 +147,9 @@
 					onmouseenter={() => {}}
 					onmouseleave={() => {}}
 				>
+					<p id="support-label" class="absolute bottom-[-20px]">
+						Prism
+					</p>
 					{#if $equippedPrism}
 						<img
 							id="img"

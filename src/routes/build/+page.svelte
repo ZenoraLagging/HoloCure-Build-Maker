@@ -107,6 +107,7 @@
 	<div id="pending-updates">
 		<p>○ Added JP Gen 3 & 4</p>
 	</div>
+
 	<Frame />
 </main>
 <Settings />

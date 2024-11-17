@@ -4,35 +4,27 @@
 </script>
 
 {#if charName}
-	<div id="character-container">
-		<div id="character">
+	<div
+		id="character-container"
+		class="flex-col mb-5 sm:mb-0 w-32 sm:w-[200px] object-contain flex justify-evenly"
+	>
+		<div id="character" class="object-contain flex justify-center">
 			<img
 				id="img"
+				class="sm:block hidden"
 				src={images[
 					`/src/lib/images/characters/${charName}/portrait.png`
+				].img.src}
+				alt="{charName} portrait"
+			/>
+			<img
+				id="img"
+				class="sm:hidden block support p-1"
+				src={images[
+					`/src/lib/images/characters/Select/${charName.replaceAll(" ", "_")}_Icon.png`
 				].img.src}
 				alt="{charName} portrait"
 			/>
 		</div>
 	</div>
 {/if}
-
-<style lang="scss">
-	#character-container {
-		flex-direction: column;
-		justify-content: center;
-		object-fit: contain;
-		display: flex;
-		width: 200px;
-		align-items: center;
-	}
-
-	#character {
-		object-fit: contain;
-	}
-
-	#img {
-		height: 100%;
-		width: 100%;
-	}
-</style>

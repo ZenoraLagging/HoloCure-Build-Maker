@@ -12,6 +12,7 @@
 		removeInvalidItem,
 		resetItemSlots,
 		addWeapon,
+		removeWeapon,
 	} from "$lib/stores";
 
 	import {
@@ -120,7 +121,6 @@
 
 	function manageItemChoices() {
 		reinitialize();
-
 		// identify unavailable items
 		$equippedItems
 			.filter((str) => str !== "")
