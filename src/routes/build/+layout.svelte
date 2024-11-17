@@ -3,9 +3,18 @@
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import AppSidebar from "$lib/components/app-sidebar.svelte";
 	import { type Snippet } from "svelte";
+	import { page } from "$app/stores";
 
 	let { children }: { children: Snippet } = $props();
 </script>
+
+<svelte:head>
+	{#if $page.data.meta}
+		{#each $page.data.meta as { name, content }}
+			<meta {name} {content} />
+		{/each}
+	{/if}
+</svelte:head>
 
 <Sidebar.Provider>
 	<AppSidebar />
