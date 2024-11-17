@@ -1,4 +1,5 @@
-import siteIcon from "$lib/images/holocure_icon.png";
+import { images } from "$lib/images/exports.svelte";
+
 
 export const load = (async () => {
 	const meta = [
@@ -32,7 +33,7 @@ export const load = (async () => {
 		},
 		{
 			property:"og:image",
-			content: siteIcon
+			content: images[`/src/lib/images/og/holocure_icon.png`].img.src,
 		},
 		{
 			property: "og:site_name",

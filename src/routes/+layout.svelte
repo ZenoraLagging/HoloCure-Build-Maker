@@ -6,7 +6,6 @@
 	import { page } from "$app/stores";
 
 	let { children }: { children: Snippet } = $props();
-	console.log($page.data);
 </script>
 
 <svelte:head>
