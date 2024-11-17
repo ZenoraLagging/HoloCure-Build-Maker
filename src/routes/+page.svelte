@@ -38,7 +38,9 @@
 	<div id="pending-updates">
 		<p>○ Added JP Gen 3 & 4</p>
 	</div>
-	<Frame />
+	<div id="screenshot-frame">
+		<Frame />
+	</div>
 </main>
 <Settings />
 <SaveImage />

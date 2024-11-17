@@ -12,13 +12,15 @@
 	let item = (el: Node) => {
 		if ($equippedItems.length > 0) return true;
 		let ignore = document.querySelector("#items-container");
+		// let ignore = document.querySelectorAll("#support-label")
 		return el != ignore;
 	};
 
 	function saveImage() {
 		domToPng(
+			// document.querySelector("#build-container") as HTMLElement,
 			document.querySelector("#build-container") as HTMLElement,
-			{},
+			{ filter: item },
 		).then((dataUrl) => {
 			const characterSelected = $charSelected ?? "Generic";
 			const link = document.createElement("a");

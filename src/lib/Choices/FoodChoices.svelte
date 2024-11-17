@@ -24,8 +24,19 @@
 	<div id="food-choices">
 		<h1 id="item-header">Foods</h1>
 		<div id="basic-choices" class="flex flex-row flex-wrap">
+			<Button
+				class="choice w-20 h-20"
+				variant="ghost"
+				size="icon"
+				onclick={() => clickHandler("")}
+			>
+				<img
+					id="img"
+					src={images[`/src/lib/images/equips/none.png`].img.src}
+					alt="support"
+				/>
+			</Button>
 			{#each foods as food, i}
-				<!-- svelte-ignore a11y_click_events_have_key_events -->
 				<Button
 					class="choice {food === $equippedFoodDish
 						? 'bg-red-500/50'

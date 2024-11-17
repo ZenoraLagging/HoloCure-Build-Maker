@@ -251,6 +251,7 @@
 		}
 
 		manageWeaponChoices();
+		addWeapon.set(true);
 
 		// set boolean back to false
 		removeWeapon.set(false);
