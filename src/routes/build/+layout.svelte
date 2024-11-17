@@ -24,7 +24,7 @@
 		{/each}
 	{/if}
 
-	<meta property="og:image" content={url + image} />
+	<meta property="og:image" content={image} />
 	<meta property="og:site_name" content="HoloCure Build Maker" />
 	<meta property="og:url" content={url} />
 </svelte:head>

@@ -18,8 +18,7 @@
 
 	<meta
 		property="og:image"
-		content={"https://holocure-build-maker-opal.vercel.app" +
-			images[`/src/lib/images/og/holocure_icon.png`].img.src}
+		content={images[`/src/lib/images/og/holocure_icon.png`].img.src}
 	/>
 	<meta property="og:site_name" content="HoloCure Build Maker" />
 	<meta
