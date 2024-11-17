@@ -24,6 +24,8 @@
 	} from "$lib/stores";
 
 	import { Button } from "$lib/components/ui/button/index.js";
+	import { resetAll } from "./utils";
+	import Link from "$lib/Link.svelte";
 
 	function weaponSlotAmount(num: number) {
 		if (
@@ -105,24 +107,32 @@
 
 <div id="settings">
 	<!-- <CharacterChoicesDropdown /> -->
-	<div id="char-select-container">
+	<div class="flex flex-row flex-wrap justify-center gap-4">
+		<div id="char-select-container">
+			<Button
+				variant="secondary"
+				class="w-64 h-fit p-4 text-2xl hover:bg-white"
+				onclick={showCharacterChoices}
+				>{$charSelected ? $charSelected : "Select Character"}</Button
+			>
+		</div>
+		<div id="options-container">
+			<Button
+				variant="secondary"
+				class="w-64 h-fit p-4 text-2xl hover:bg-white"
+				onclick={showStatChoices}>Stat Priority</Button
+			>
+		</div>
 		<Button
-			variant="secondary"
-			class="w-fit h-fit p-4 text-2xl hover:bg-white"
-			onclick={showCharacterChoices}
-			>{$charSelected ? $charSelected : "Select Character"}</Button
-		>
-	</div>
-	<div id="options-container">
-		<Button
-			variant="secondary"
-			class="w-fit h-fit p-4 text-2xl hover:bg-white"
-			onclick={showStatChoices}>Stat Priority</Button
+			variant="destructive"
+			class="w-64 h-fit p-4 text-2xl"
+			id="clear-button"
+			onclick={() => resetAll()}>Reset All</Button
 		>
 	</div>
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div id="more-settings">
-		<div id="slot-container">
+		<div id="slot-container" class="flex flex-wrap">
 			<div id="input-number">
 				<p>Weapon Slot #</p>
 				<div id="weapon-slots">
@@ -155,7 +165,7 @@
 				>
 			</div>
 		</div>
-		<div id="toggle-container">
+		<div id="toggle-container" class="flex flex-wrap">
 			<div id="show-build-name-container">
 				<p>Show Build Name</p>
 				<label class="switch">
@@ -199,6 +209,9 @@
 			</div>
 		</div>
 	</div>
+	<div id="save-settings" class="flex flex-wrap flex-row">
+		<Link />
+	</div>
 </div>
 
 <style lang="scss">
@@ -223,31 +236,6 @@
 		justify-content: space-around;
 		width: 100%;
 	}
-
-	#char-select-button {
-		font-size: 24px;
-		width: 100%;
-		height: 100%;
-		padding: 15px;
-		text-align: center;
-	}
-	#char-select-container {
-		position: relative;
-		display: flex;
-		overflow: hidden;
-		margin-bottom: 20px;
-	}
-	#slot-container,
-	#toggle-container,
-	#options-container {
-		--min: 5rem;
-		--gap: 0.5rem;
-
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--gap);
-	}
-
 	#input-number {
 		display: flex;
 		flex-direction: column;

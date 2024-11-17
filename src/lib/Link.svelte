@@ -21,6 +21,9 @@
 	import { characters, weapons, items, stamps, stats } from "$lib/variables";
 	import { Button } from "./components/ui/button";
 	import type { buildsTable } from "./db/schema";
+	import SaveImage from "$lib/SaveImage.svelte";
+	import { Input } from "$lib/components/ui/input/index.js";
+	import toast from "svelte-hot-french-toast";
 	type NewBuild = typeof buildsTable.$inferInsert;
 
 	function generateId() {
@@ -122,32 +125,31 @@
 
 	function copyToClipboard() {
 		navigator.clipboard.writeText(message).then(() => (copySuccess = true));
+		toast.success("Successfully copied link!", {
+			icon: "✔️",
+			style: "color: #fff; background-color: #333;",
+		});
 	}
 </script>
 
-{#if message}
-	<div id="generated-link">
-		<p>{message}</p>
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div class="flex flex-col flex-wrap gap-6">
+	{#if message}
 		<div>
-			{#if copySuccess}
-				<p>COPIED!</p>
-			{:else if !copySuccess && message.includes("build")}
-				<span
-					class="material-symbols-outlined"
-					onclick={copyToClipboard}>content_copy</span
+			<div class="flex flex-row w-full items-center space-x-2">
+				<Input value={message} class="text-lg" />
+				<Button
+					class="material-symbols-outlined w-fit"
+					onclick={copyToClipboard}>content_copy</Button
 				>
-			{/if}
+			</div>
 		</div>
-	</div>
-{/if}
-<div id="generate-link-container">
+	{/if}
 	<Button
-		class="hover:bg-white"
+		class="w-64 h-fit p-4 text-2xl hover:bg-white"
 		variant="secondary"
-		id="generate-link"
 		onclick={generateLink}>Generate Link</Button
 	>
+	<SaveImage />
 </div>
 
 <style lang="scss">

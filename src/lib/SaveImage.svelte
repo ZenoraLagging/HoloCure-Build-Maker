@@ -36,11 +36,8 @@
 	}
 </script>
 
-<div id="save-image-container">
-	<Button
-		class="hover:bg-white"
-		variant="secondary"
-		id="save-image"
-		onclick={saveImage}>Save Image</Button
-	>
-</div>
+<Button
+	class="w-64 h-fit p-4 text-2xl hover:bg-white"
+	variant="secondary"
+	onclick={saveImage}>Save Image</Button
+>

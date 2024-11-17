@@ -3,8 +3,6 @@
 	import toast, { Toaster } from "svelte-hot-french-toast";
 	import Frame from "$lib/Frame/Frame.svelte";
 	import Settings from "$lib/Settings.svelte";
-	import Link from "$lib/Link.svelte";
-	import SaveImage from "$lib/SaveImage.svelte";
 	import Choices from "$lib/Choices/Choices.svelte";
 
 	// Vercel Analytics
@@ -43,8 +41,6 @@
 	</div>
 </main>
 <Settings />
-<SaveImage />
-<Link />
 <Choices />
 
 <style lang="scss">

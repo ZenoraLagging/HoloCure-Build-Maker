@@ -68,7 +68,7 @@
 
 {#if display}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
-	<div id="stats-choices" class={display}>
+	<div id="stats-choices" class="flex flex-wrap flex-col text-center text-lg">
 		<p>Select stats in order of most prioritized to least prioritized.</p>
 		<p>Not required to select all stats.</p>
 		<div>
@@ -76,7 +76,7 @@
 				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<Button
 					variant="ghost"
-					class="w-fit h-fit"
+					class="w-fit h-fit mt-6"
 					onclick={() => manageOrder(index)}
 				>
 					<img
@@ -90,11 +90,20 @@
 				</Button>
 			{/each}
 		</div>
-		<div id="options-container">
-			<button id="confirm" onclick={() => clickHandler(true)}
-				>Confirm</button
+		<div
+			id="options-container"
+			class="mt-6 flex flex-wrap gap-3 justify-center"
+		>
+			<Button
+				variant="secondary"
+				id="confirm"
+				class="hover:bg-white hover:text-black"
+				onclick={() => clickHandler(true)}>Confirm</Button
 			>
-			<button id="clear" onclick={() => clickHandler(false)}>Clear</button
+			<Button
+				variant="destructive"
+				id="clear"
+				onclick={() => clickHandler(false)}>Clear</Button
 			>
 		</div>
 	</div>
@@ -102,12 +111,6 @@
 
 <style lang="scss">
 	#stats-choices {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-
 		> p {
 			line-height: 20px;
 		}
@@ -125,28 +128,6 @@
 			position: absolute;
 			top: -25px;
 			font-size: 20px;
-		}
-	}
-
-	#options-container {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		width: 150px;
-
-		#confirm,
-		#clear {
-			cursor: pointer;
-		}
-
-		p {
-			padding-top: 20px;
-			padding-bottom: 10px;
-
-			&:hover {
-				padding-bottom: 7px;
-				border-bottom: 3px solid var(--font-color);
-			}
 		}
 	}
 
