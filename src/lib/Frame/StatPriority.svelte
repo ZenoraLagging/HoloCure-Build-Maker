@@ -7,7 +7,11 @@
 {#if $showPriorityOrder}
 	<div class="grid grid-cols-6 sm:flex sm:flex-row items-middle mt-6">
 		{#each $statPriorityOrder as stat, index}
-			<Button variant="ghost" size="icon" class="flex flex-1 w-fit">
+			<Button
+				variant="ghost"
+				size="icon"
+				class="flex flex-1 w-fit mx-auto"
+			>
 				<img
 					class="w-fit h-fit"
 					src={images[
@@ -16,7 +20,7 @@
 					alt={stat}
 				/>
 			</Button>
-			<p class="text-2xl sm:mt-0 mt-1">
+			<p class="text-2xl sm:mt-0 mt-1 mx-auto">
 				{index !== $statPriorityOrder.length - 1 ? ">" : ""}
 			</p>
 		{/each}

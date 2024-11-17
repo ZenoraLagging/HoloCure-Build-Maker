@@ -117,9 +117,24 @@
 					oldEncoded = finalEncoded;
 				})
 				.catch((error) => {
-					message = "Error. Please try again.";
+					toast.error(
+						"There was an error generating the link. Try again.",
+						{
+							icon: "❌",
+							style: "color: #fff; background-color: #333;",
+						},
+					);
+					message = "Error!";
+					copySuccess = false;
 					console.error(error);
 				});
+		} else {
+			toast.error("There was an error generating the link. Try again.", {
+				icon: "❌",
+				style: "color: #fff; background-color: #333;",
+			});
+			message = "Error!";
+			copySuccess = false;
 		}
 	}
 
@@ -138,6 +153,7 @@
 			<div class="flex flex-row w-full items-center space-x-2">
 				<Input value={message} class="text-lg" />
 				<Button
+					disabled={copySuccess}
 					class="material-symbols-outlined w-fit"
 					onclick={copyToClipboard}>content_copy</Button
 				>
