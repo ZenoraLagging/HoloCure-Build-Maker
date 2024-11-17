@@ -20,6 +20,7 @@
 		showStamps,
 		superCollabLimit,
 		banWeapon,
+		buildName,
 	} from "$lib/stores";
 
 	import { Button } from "$lib/components/ui/button/index.js";
@@ -95,6 +96,11 @@
 		equippedStamps.set(Array(3).fill(""));
 		resetStampSlots.set(true);
 	}
+
+	function handleShowName(e: any) {
+		if (!$showBuildName) buildName.set("Build Name");
+		showBuildName.set(e.target.checked);
+	}
 </script>
 
 <div id="settings">
@@ -156,8 +162,10 @@
 					<input
 						type="checkbox"
 						bind:checked={$showBuildName}
-						onchange={(e: any) =>
-							showBuildName.set(e.target.checked)}
+						onchange={(e: any) => {
+							e.preventDefault();
+							handleShowName(e);
+						}}
 					/>
 					<span class="slider"></span>
 				</label>
