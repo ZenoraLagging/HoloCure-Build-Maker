@@ -11,7 +11,7 @@
 		? images[
 				`/src/lib/images/characters/Select/${charName.replaceAll(" ", "_")}_Icon.png`
 			].img.src
-		: images[`/src/lib/images/og/holocure_icon.png`].img.src;
+		: images[`/src/lib/images/og/hud_icon.png`].img.src;
 	const url = "https://holocure-build-maker-opal.vercel.app";
 
 	let { children }: { children: Snippet } = $props();

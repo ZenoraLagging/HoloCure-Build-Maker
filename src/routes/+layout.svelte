@@ -16,10 +16,6 @@
 		{/each}
 	{/if}
 
-	<meta
-		property="og:image"
-		content={images[`/src/lib/images/og/holocure_icon.png`].img.src}
-	/>
 	<meta property="og:site_name" content="HoloCure Build Maker" />
 	<meta
 		property="og:url"
