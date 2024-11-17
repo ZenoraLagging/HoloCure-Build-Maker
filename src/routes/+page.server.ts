@@ -1,5 +1,3 @@
-import { images } from "$lib/images/exports.svelte";
-
 
 export const load = (async () => {
 	const meta = [
@@ -30,10 +28,6 @@ export const load = (async () => {
 		{
 			name:"og:description",
 			content: "A build maker for Holocure." 
-		},
-		{
-			property:"og:image",
-			content: images[`/src/lib/images/og/holocure_icon.png`].img.src,
 		},
 		{
 			property: "og:site_name",

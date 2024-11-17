@@ -4,6 +4,7 @@
 	import AppSidebar from "$lib/components/app-sidebar.svelte";
 	import { type Snippet } from "svelte";
 	import { page } from "$app/stores";
+	import { images } from "$lib/images/exports.svelte";
 
 	let { children }: { children: Snippet } = $props();
 </script>
@@ -14,6 +15,11 @@
 			<meta {name} {content} />
 		{/each}
 	{/if}
+
+	<meta
+		property="og:image"
+		content={images[`/src/lib/images/og/holocure_icon.png`].img.src}
+	/>
 </svelte:head>
 
 <Sidebar.Provider>
