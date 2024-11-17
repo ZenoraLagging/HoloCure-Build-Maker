@@ -17,7 +17,7 @@ export const load = (async ({ url }) => {
 	const title = result[0].name ? result[0].name : 'HoloCure Build Maker';
 	const description = charName ? "A build for " + charName : 'A generic build for any character.';
 	const image = charName ? images[`/src/lib/images/characters/Select/${charName.replaceAll(" ", "_")}_Icon.png`].img.src : images[`/src/lib/images/og/holocure_icon.png`].img.src;
-	const url = "https://holocure-build-maker-opal.vercel.app/";
+	const url = "https://holocure-build-maker-opal.vercel.app";
 
 	const meta = [
 		{
