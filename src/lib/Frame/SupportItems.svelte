@@ -8,6 +8,8 @@
 		equippedFoodDish,
 		displayFoodChoices,
 		displayChoices,
+		itemSlots,
+		weaponSlots,
 	} from "$lib/stores";
 </script>
 
@@ -24,13 +26,14 @@
 					onmouseenter={() => {}}
 					onmouseleave={() => {}}
 				>
-					<p id="support-label" class="absolute bottom-[-20px]">
+					<p id="support-label" class="absolute bottom-[-1px]">
 						Support
 					</p>
 
 					{#if $equippedSupportItem}
 						<img
 							id="img"
+							class="pb-4"
 							src={images[
 								`/src/lib/images/equips/support/HUD_Support.png`
 							].img.src}
@@ -38,7 +41,7 @@
 						/>
 						<img
 							id="img"
-							class="absolute w-1/2 left-6 top-5"
+							class="absolute w-1/2 left-6 top-3"
 							src={images[
 								`/src/lib/images/equips/support/${$equippedSupportItem}_Support.png`
 							].img.src}
@@ -116,11 +119,12 @@
 			displayFoodChoices.set(true);
 		}}
 	>
-		<p id="support-label" class="absolute bottom-[-20px]">Food</p>
+		<p id="support-label" class="absolute bottom-[-1px]">Food</p>
+
 		{#if $equippedFoodDish}
 			<img
 				id="img"
-				class="w-12 h-12"
+				class="w-12 h-12 mb-4"
 				src={images[
 					`/src/lib/images/foods/${$equippedFoodDish.replaceAll(" ", "_")}_Icon.png`
 				].img.src}
@@ -147,7 +151,7 @@
 					onmouseenter={() => {}}
 					onmouseleave={() => {}}
 				>
-					<p id="support-label" class="absolute bottom-[-20px]">
+					<p id="support-label" class="absolute bottom-[-1px]">
 						Prism
 					</p>
 					{#if $equippedPrism}
@@ -157,6 +161,7 @@
 								`/src/lib/images/equips/prism/${$equippedPrism}_Prism.png`
 							].img.src}
 							alt="support"
+							class="pb-4"
 						/>
 					{:else}
 						<img

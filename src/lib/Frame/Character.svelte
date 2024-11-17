@@ -19,7 +19,7 @@
 			/>
 			<img
 				id="img"
-				class="sm:hidden block support p-1"
+				class="sm:hidden block support p-1 min-w-[127px]"
 				src={images[
 					`/src/lib/images/characters/Select/${charName.replaceAll(" ", "_")}_Icon.png`
 				].img.src}

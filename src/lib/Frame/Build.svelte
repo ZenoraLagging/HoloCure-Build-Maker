@@ -6,6 +6,7 @@
 	import StatPriority from "./StatPriority.svelte";
 	import SupportItems from "./SupportItems.svelte";
 	import { images } from "$lib/images/exports.svelte";
+	import { itemSlots, weaponSlots } from "$lib/stores";
 
 	/** @type {{charName: any}} */
 	let { charName } = $props();
@@ -15,7 +16,9 @@
 	<BuildName />
 	<Weapons {charName} />
 	<Items />
-	<div class="flex flex-wrap">
+	<div
+		class={`flex flex-row ${$itemSlots <= 5 && $weaponSlots <= 5 ? "w-0 sm:w-full" : ""}`}
+	>
 		<Stamps />
 		<SupportItems />
 	</div>
