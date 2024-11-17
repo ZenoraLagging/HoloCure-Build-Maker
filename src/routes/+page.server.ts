@@ -44,7 +44,7 @@ export const load = (async () => {
 		}]
 
 	try {
-	return meta;
+	return {meta};
 	} catch (error) {
 		console.log(error);
 	}
