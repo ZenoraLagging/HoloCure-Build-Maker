@@ -4,6 +4,7 @@
 	import AppSidebar from "$lib/components/app-sidebar.svelte";
 	import { type Snippet } from "svelte";
 	import { page } from "$app/stores";
+	import { images } from "$lib/images/exports.svelte";
 
 	let { children }: { children: Snippet } = $props();
 </script>
@@ -14,6 +15,17 @@
 			<meta {name} {content} />
 		{/each}
 	{/if}
+
+	<meta
+		property="og:image"
+		content={"https://holocure-build-maker-opal.vercel.app" +
+			images[`/src/lib/images/og/holocure_icon.png`].img.src}
+	/>
+	<meta property="og:site_name" content="HoloCure Build Maker" />
+	<meta
+		property="og:url"
+		content="https://holocure-build-maker-opal.vercel.app/"
+	/>
 </svelte:head>
 
 <Sidebar.Provider>

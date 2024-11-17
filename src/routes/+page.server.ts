@@ -25,18 +25,6 @@ export const load = (async () => {
 		{
 			name:"og:description",
 			content: "A build maker for Holocure." 
-		},
-		{
-			property:"og:image",
-			content: "https://holocure-build-maker-opal.vercel.app" + images[`/src/lib/images/og/holocure_icon.png`].img.src
-		},
-		{
-			property: "og:site_name",
-			content: "HoloCure Build Maker" 
-		},
-		{
-			property:"og:url",
-			content: "https://holocure-build-maker-opal.vercel.app/"
 		}]
 
 	try {
