@@ -28,7 +28,7 @@ export const load = (async () => {
 		},
 		{
 			property:"og:image",
-			content: images[`/src/lib/images/og/holocure_icon.png`].img.src
+			content: "https://holocure-build-maker-opal.vercel.app/" + images[`/src/lib/images/og/holocure_icon.png`].img.src
 		},
 		{
 			property: "og:site_name",
