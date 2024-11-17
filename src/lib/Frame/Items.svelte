@@ -13,7 +13,6 @@
 	} from "$lib/stores";
 	import Button from "$lib/components/ui/button/button.svelte";
 	import { basicItems } from "$lib/variables";
-	import MdiPlusThick from "~icons/mdi/plus-thick";
 	import { images } from "$lib/images/exports.svelte";
 
 	let displayRemoveBtn = $state(Array(6).fill("hidden"));

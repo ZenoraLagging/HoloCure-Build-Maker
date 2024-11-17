@@ -5,16 +5,17 @@
 	import Stamps from "./Stamps.svelte";
 	import StatPriority from "./StatPriority.svelte";
 	import SupportItems from "./SupportItems.svelte";
+	import { images } from "$lib/images/exports.svelte";
 
 	/** @type {{charName: any}} */
 	let { charName } = $props();
 </script>
 
-<div id="equipment-container" class="">
+<div id="equipment-container">
 	<BuildName />
 	<Weapons {charName} />
 	<Items />
-	<div class="flex flex-row justify-between">
+	<div class="flex flex-wrap">
 		<Stamps />
 		<SupportItems />
 	</div>
