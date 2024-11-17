@@ -25,6 +25,7 @@
 			"$lib/images/items/*.png",
 			"$lib/images/foods/*.png",
 			"$lib/images/stats/*.png",
+			"$lib/images/og/*.png",
 		],
 		{
 			query: { enhanced: true },
