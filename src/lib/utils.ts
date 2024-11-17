@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { buildName, charSelected, equippedFoodDish, equippedItems, equippedPrism, equippedStamps, equippedSupportItem, equippedWeapons, resetItemSlots, resetStampSlots, resetWeaponSlots, statPriorityOrder } from "./stores";
+import { buildName, charSelected, equippedFoodDish, equippedItems, equippedPrism, equippedStamps, equippedSupportItem, equippedWeapons, itemSlots, resetItemSlots, resetStampSlots, resetWeaponSlots, statPriorityOrder, weaponSlots } from "./stores";
 
 /**
  * @param {unknown[]} inputs
@@ -190,12 +190,14 @@ export function decodeBuild(buildStr: string) {
 }
 
 export function resetAll() {
-		equippedWeapons.set(Array(5).fill(""));
 		charSelected.set("");
+		equippedWeapons.set(Array(5).fill(""));
+		weaponSlots.set(6);
 		resetWeaponSlots.set(true);
 
 		equippedItems.set(Array(6).fill(""));
 		resetItemSlots.set(true);
+		itemSlots.set(6);
 
 		equippedStamps.set(Array(3).fill(""));
 		resetStampSlots.set(true);
