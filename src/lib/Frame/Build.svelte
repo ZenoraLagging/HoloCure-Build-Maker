@@ -17,7 +17,7 @@
 	<Weapons {charName} />
 	<Items />
 	<div
-		class={`flex flex-row ${$itemSlots <= 5 && $weaponSlots <= 5 ? "w-0 sm:w-full" : ""}`}
+		class={`flex flex-row ${$itemSlots <= 5 && $weaponSlots < 6 ? "w-36 sm:w-full" : ""}`}
 	>
 		<Stamps />
 		<SupportItems />
