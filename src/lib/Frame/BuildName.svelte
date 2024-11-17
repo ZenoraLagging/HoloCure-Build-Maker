@@ -43,6 +43,6 @@
 		}}
 		onfocus={(e: any) => focusHandler(e.currentTarget.value)}
 		onblur={(e: any) => blurHandler(e.currentTarget.value)}
-		class="text-3xl lg:text-5xl break-all text-left lg:text-center border-none overflow-hidden min-h-10 h-16 max-h-32 bg-opacity-0 z-1 mb-4"
+		class="text-4xl lg:text-5xl break-words text-left lg:text-center border-none overflow-hidden min-h-10 h-16 max-h-32 bg-opacity-0 z-1 mb-4"
 	/>
 {/if}
