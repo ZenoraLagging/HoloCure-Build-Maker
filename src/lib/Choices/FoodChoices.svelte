@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button";
-	import { equippedFoodDish } from "$lib/stores";
+	import {
+		displayChoices,
+		displayFoodChoices,
+		equippedFoodDish,
+	} from "$lib/stores";
 	import { images } from "$lib/images/exports.svelte";
 	import { foods } from "$lib/variables";
 
@@ -9,6 +13,10 @@
 
 	function clickHandler(selected: string) {
 		equippedFoodDish.set(selected);
+
+		// hide menu
+		displayChoices.set(false);
+		displayFoodChoices.set(false);
 	}
 </script>
 

@@ -43,7 +43,7 @@ export const weapons = basicWeapons.concat(collabWeapons, superCollabWeapons);
 export const basicCollabFormulas = {
 	"Absolute Wall": ["Bounce Ball", "Cutting Board"],
 	"BL Fujoshi": ["BL Book", "Psycho Axe"],
-	"Bone Bros.": ["Cutting Board", "EN\'s Curse"],
+	"Bone Bros": ["Cutting Board", "EN\'s Curse"],
 	"Breathe-In Type Asacoco": ["Holo Bomb", "Plug Type Asacoco"],
 	"Broken Dreams": ["Spider Cooking", "Ceo\'s Tears"],
 	"Crescent Bardiche": ['Psycho Axe', 'Idol Song'],
