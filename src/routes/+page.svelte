@@ -30,18 +30,18 @@
 </script>
 
 <Toaster />
-<main id="main-container">
-	<h1 id="title">HOLOCURE BUILD MAKER</h1>
-	<p id="subtitle">Updated for v0.7</p>
-	<div id="pending-updates">
-		<p>○ Added JP Gen 3 & 4</p>
-	</div>
-	<div id="screenshot-frame">
+<div class="flex flex-col xl:flex-row mx-auto">
+	<main id="main-container">
+		<h1 id="title">HOLOCURE BUILD MAKER</h1>
+		<p id="subtitle">Updated for v0.7</p>
+		<div id="pending-updates">
+			<p>○ Added JP Gen 3 & 4</p>
+		</div>
 		<Frame />
-	</div>
-</main>
-<Settings />
-<Choices />
+	</main>
+	<Settings />
+	<Choices />
+</div>
 
 <style lang="scss">
 	:global(:root) {
