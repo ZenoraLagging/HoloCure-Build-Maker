@@ -30,15 +30,13 @@
 </script>
 
 <Toaster />
-<main id="main-container">
+<main id="main-container" class="flex flex-col xl:flex-row mx-auto">
 	<h1 id="title">HOLOCURE BUILD MAKER</h1>
 	<p id="subtitle">Updated for v0.7</p>
 	<div id="pending-updates">
 		<p>○ Added JP Gen 3 & 4</p>
 	</div>
-	<div id="screenshot-frame">
-		<Frame />
-	</div>
+	<Frame />
 </main>
 <Settings />
 <Choices />

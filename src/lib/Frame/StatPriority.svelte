@@ -5,13 +5,11 @@
 </script>
 
 {#if $showPriorityOrder}
-	<div class="grid grid-cols-6 sm:flex sm:flex-row items-middle mt-6">
+	<div
+		class="grid grid-cols-6 sm:flex sm:flex-row min-w-80 items-middle mt-6"
+	>
 		{#each $statPriorityOrder as stat, index}
-			<Button
-				variant="ghost"
-				size="icon"
-				class="flex flex-1 w-fit mx-auto"
-			>
+			<Button variant="ghost" size="icon" class="flex w-16 mx-auto">
 				<img
 					class="w-fit h-fit"
 					src={images[
