@@ -69,25 +69,10 @@ export const basicCollabFormulas = {
 };
 
 export const superCollabFormulas = {
-	"Holy Fire": [
-		"Fan Beam",
-		"Plug Type Asacoco",
-		"Gorilla\'s Paw",
-		"Super Gorilla\'s Paw",
-	],
-	"Idol Live": [
-		"Glowstick",
-		"Idol Song",
-		"Idol Costume",
-		"Super Idol Costume",
-	],
-	"Jingisukan": [
-		"Spider Cooking",
-		"Elite Lava Bucket",
-		"Uber Sheep",
-		"Super Uber Sheep",
-	],
-	"Snow Queen": ["Glowstick", "Wamy Water", "Sake", "Super Sake"],
+	"Holy Fire": ["Fan Beam", "Dragon Fire", "Gorilla\'s Paw", "Super Gorilla\'s Paw"],
+	"Idol Live": ["Glowstick", "Idol Concert", "Idol Costume", "Super Idol Costume"],
+	"Jingisukan": ["Spider Cooking", "Elite Cooking", "Uber Sheep", "Super Uber Sheep"],
+	"Snow Queen": ["Glowstick", "Snow Flower Sake", "Sake", "Super Sake"],
 	"True Infinite BL Works": ["Psycho Axe", "BL Fujoshi", "Hope Soda", "Super Hope Soda"],
 };
 
